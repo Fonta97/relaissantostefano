@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
-import CookieBanner from './CookieBanner';
+import ConsentNotice from './ConsentNotice';
 import SiteFooter from './SiteFooter';
 import SiteHeader from './SiteHeader';
 import useScrollReveal from '../hooks/useScrollReveal';
@@ -43,7 +43,7 @@ function SiteLayout() {
       </main>
 
       <SiteFooter />
-      <CookieBanner copy={cookieCopy} />
+      <ConsentNotice copy={cookieCopy} />
     </div>
   );
 }

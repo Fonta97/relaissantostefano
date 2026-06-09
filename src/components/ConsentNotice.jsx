@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const consentStorageKey = 'relais-santo-stefano-cookie-consent';
+const consentStorageKey = 'relais-santo-stefano-consent-notice';
 
-function CookieBanner({ copy }) {
+function ConsentNotice({ copy }) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -26,7 +26,6 @@ function CookieBanner({ copy }) {
     <aside
       className="fixed inset-x-4 bottom-4 z-[45] border border-black/10 bg-white p-5 text-graphite shadow-[0_24px_80px_rgba(0,0,0,0.16)] sm:left-auto sm:max-w-xl"
       aria-label={copy.title}
-      data-no-typewriter="true"
     >
       <p className="font-serif text-[1.8rem] leading-[1.04]">
         {copy.title}
@@ -55,4 +54,4 @@ function CookieBanner({ copy }) {
   );
 }
 
-export default CookieBanner;
+export default ConsentNotice;
