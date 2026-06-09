@@ -47,12 +47,12 @@ function MosaicGallery({
 
   return (
     <>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {images.map((image, index) => (
           <button
             key={`${image.src}-${index}`}
             type="button"
-            className="group relative aspect-[4/3] overflow-hidden border border-black/10 bg-black/5 text-left shadow-soft transition-transform duration-500 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze"
+            className="group relative aspect-[4/3] overflow-hidden border border-black/10 bg-black/5 text-left transition-transform duration-500 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze"
             onClick={() => setActiveIndex(index)}
             aria-label={`${openLabel}: ${image.caption || image.alt}`}
           >
@@ -61,16 +61,16 @@ function MosaicGallery({
               alt={image.alt}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover transition-transform duration-[1400ms] group-hover:scale-[1.025]"
+              className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
             />
             {showCaptions ? (
               <>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p className="font-ui text-xs uppercase tracking-[0.18em] text-white/70">
+                  <p className="font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
                     {title}
                   </p>
-                  <p className="mt-2 font-serif text-2xl leading-none text-white">{image.caption}</p>
+                  <p className="mt-2 font-serif text-2xl leading-tight text-white">{image.caption}</p>
                 </div>
               </>
             ) : null}
@@ -92,14 +92,14 @@ function MosaicGallery({
                 onClick={(event) => event.stopPropagation()}
               >
                 <div className="mb-4 flex items-center justify-between text-white">
-                  <p className="font-ui text-xs uppercase tracking-[0.18em] text-white/70">
+                  <p className="font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
                     {title}
                   </p>
                   <button
                     type="button"
                     onClick={() => setActiveIndex(-1)}
                     aria-label={modalLabels.close}
-                    className="border border-white bg-white px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-black transition-colors hover:bg-ivory"
+                    className="border border-white bg-white px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-black transition-colors hover:bg-ivory"
                   >
                     {modalLabels.close}
                   </button>
@@ -120,7 +120,7 @@ function MosaicGallery({
                     aria-label={modalLabels.prev}
                     className="absolute left-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/70 bg-black/78 font-ui text-xl font-semibold text-white transition-colors hover:bg-black sm:left-4 sm:h-12 sm:w-12"
                   >
-                    <span aria-hidden="true">←</span>
+                    <span aria-hidden="true">&larr;</span>
                   </button>
                   <button
                     type="button"
@@ -128,15 +128,15 @@ function MosaicGallery({
                     aria-label={modalLabels.next}
                     className="absolute right-3 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/70 bg-black/78 font-ui text-xl font-semibold text-white transition-colors hover:bg-black sm:right-4 sm:h-12 sm:w-12"
                   >
-                    <span aria-hidden="true">→</span>
+                    <span aria-hidden="true">&rarr;</span>
                   </button>
                 </div>
 
                 <div className="mt-4 flex items-center justify-between gap-4 text-white">
-                  <p className="font-serif text-[1.7rem] leading-none sm:text-2xl">
+                  <p className="font-serif text-[1.7rem] leading-tight sm:text-2xl">
                     {images[activeIndex].caption}
                   </p>
-                  <p className="font-ui text-xs uppercase tracking-[0.16em] text-white/65">
+                  <p className="font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white/65">
                     {activeIndex + 1} / {images.length}
                   </p>
                 </div>

@@ -24,20 +24,20 @@ function ConsentNotice({ copy }) {
 
   return (
     <aside
-      className="fixed inset-x-4 bottom-4 z-[45] border border-black/10 bg-white p-5 text-graphite shadow-[0_24px_80px_rgba(0,0,0,0.16)] sm:left-auto sm:max-w-xl"
+      className="fixed inset-x-3 bottom-3 z-[45] border border-white/16 bg-sage p-4 text-white shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:left-auto sm:max-w-lg sm:p-5"
       aria-label={copy.title}
     >
-      <p className="font-serif text-[1.8rem] leading-[1.04]">
+      <p className="font-serif text-[1.45rem] leading-[1.08] sm:text-[1.8rem]">
         {copy.title}
       </p>
-      <p className="mt-3 font-ui text-sm leading-7 text-graphite/72">
+      <p className="mt-2 font-body text-sm leading-6 text-white/80 sm:mt-3 sm:leading-7">
         {copy.text}
       </p>
-      <div className="mt-5 flex flex-wrap items-center gap-3">
+      <div className="mt-4 flex flex-wrap items-center gap-3 sm:mt-5">
         <button
           type="button"
           onClick={handleAccept}
-          className="border border-bronze/40 bg-bronze px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#8f704c]"
+          className="border border-white bg-white px-4 py-2.5 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-sage transition-colors hover:bg-ivory sm:px-5 sm:py-3"
         >
           {copy.accept}
         </button>
@@ -45,7 +45,7 @@ function ConsentNotice({ copy }) {
           href="/privacy.html"
           target="_blank"
           rel="noreferrer"
-          className="border border-black/10 px-5 py-3 font-ui text-xs uppercase tracking-[0.16em] transition-colors hover:border-bronze hover:text-bronze"
+          className="border border-white/24 px-4 py-2.5 font-ui text-xs font-semibold uppercase tracking-[0.14em] transition-colors hover:bg-white/10 sm:px-5 sm:py-3"
         >
           {copy.privacy}
         </a>

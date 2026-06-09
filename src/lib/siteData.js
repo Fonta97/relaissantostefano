@@ -18,7 +18,8 @@ export const contact = {
 };
 
 export const bookingUrl =
-  import.meta.env.VITE_BOOKING_URL?.trim() || 'https://www.relaissantostefano.com/booking/';
+  import.meta.env.VITE_BOOKING_URL?.trim() ||
+  'https://www.simplebooking.it/ibe2/hotel/8176?lang=IT&cur=EUR';
 
 export const socialLinks = [
   {
@@ -31,76 +32,129 @@ export const socialLinks = [
   },
 ];
 
-const unsplash = (id, width = 1800) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=82`;
+const relaisImage = (file) => `/images/relais/${file}`;
 
 export const images = {
+  logo: {
+    light: relaisImage('logo-rss.png'),
+    dark: relaisImage('logo-rss-black.png'),
+    mark: relaisImage('logo-icon.png'),
+  },
   hero: {
-    src: '/images/relais-hero-generated.png',
-    alt: 'Visual prototipo di relais piemontese con piscina, giardino e luce serale.',
+    src: relaisImage('hero-facade.jpg'),
+    alt: 'Ingresso del Relais Santo Stefano a Sandigliano con la torre e la facciata storica.',
+    objectPosition: 'center 52%',
+  },
+  pool: {
+    src: relaisImage('pool.jpg'),
+    alt: 'Piscina estiva del Relais Santo Stefano affacciata sul verde del Biellese.',
+    objectPosition: 'center center',
   },
   room: {
-    src: unsplash('photo-1611892440504-42a792e24d32', 1600),
-    alt: 'Camera elegante con letto matrimoniale e luce naturale.',
+    src: relaisImage('room-balcony.jpg'),
+    alt: 'Affaccio dai balconi delle camere del Relais Santo Stefano verso i giardini interni.',
+    objectPosition: 'center center',
+  },
+  suite: {
+    src: relaisImage('room-suite.jpg'),
+    alt: 'Suite Classic del Relais Santo Stefano con arredi caldi e atmosfera riservata.',
+    objectPosition: 'center center',
   },
   spa: {
-    src: unsplash('photo-1540555700478-4be289fbecef', 1600),
-    alt: 'Ambiente wellness con dettagli di spa e relax.',
+    src: relaisImage('spa.jpg'),
+    alt: 'Area umida della SPA del Relais Santo Stefano con idromassaggio e zona relax.',
+    objectPosition: 'center center',
+  },
+  spaMassage: {
+    src: relaisImage('spa-massage.jpg'),
+    alt: 'Cabina trattamenti della SPA del Relais Santo Stefano.',
+    objectPosition: 'center center',
   },
   restaurant: {
-    src: unsplash('photo-1414235077428-338989a2e8c0', 1600),
-    alt: 'Tavola apparecchiata in un ristorante elegante.',
+    src: relaisImage('restaurant.jpg'),
+    alt: 'Cena al ristorante del Relais Santo Stefano con servizio al tavolo.',
+    objectPosition: 'center center',
   },
   breakfast: {
-    src: unsplash('photo-1533089860892-a7c6f0a88666', 1600),
-    alt: 'Colazione continentale con prodotti dolci e salati.',
+    src: relaisImage('breakfast.jpg'),
+    alt: 'Buffet colazione del Relais Santo Stefano con frutta, dolci e prodotti da forno.',
+    objectPosition: 'center center',
   },
   sport: {
-    src: unsplash('photo-1626224583764-f87db24ac4ea', 1600),
-    alt: 'Campo sportivo outdoor per racchette.',
+    src: relaisImage('sport-padel.jpg'),
+    alt: 'Campi da padel del centro sportivo Santo Stefano.',
+    objectPosition: 'center center',
+  },
+  bike: {
+    src: relaisImage('sport-bike.jpg'),
+    alt: 'Dettaglio delle e-bike disponibili al Relais Santo Stefano.',
+    objectPosition: 'center center',
   },
   meeting: {
-    src: unsplash('photo-1517457373958-b7bdd4587205', 1600),
-    alt: 'Sala meeting luminosa allestita per lavoro di gruppo.',
+    src: relaisImage('meeting.jpg'),
+    alt: 'Sala meeting del Relais Santo Stefano allestita per un evento aziendale.',
+    objectPosition: 'center center',
+  },
+  meetingOropa: {
+    src: relaisImage('meeting-oropa.jpg'),
+    alt: 'Sala Oropa del Relais Santo Stefano con sedute e schermi per convegni.',
+    objectPosition: 'center center',
   },
   territory: {
-    src: unsplash('photo-1500530855697-b586d89ba3ee', 1600),
-    alt: 'Paesaggio verde con rilievi e luce naturale.',
+    src: relaisImage('pool.jpg'),
+    alt: 'Vista sulla piscina e sul verde intorno al Relais Santo Stefano.',
+    objectPosition: 'center center',
   },
   offers: {
-    src: unsplash('photo-1506126613408-eca07ce68773', 1600),
-    alt: 'Dettaglio benessere con asciugamani e atmosfera rilassante.',
+    src: relaisImage('offers.jpg'),
+    alt: 'Coppia durante un soggiorno benessere al Relais Santo Stefano.',
+    objectPosition: 'center center',
+  },
+  welcome: {
+    src: relaisImage('welcome.jpg'),
+    alt: 'Accoglienza alla reception del Relais Santo Stefano.',
+    objectPosition: 'center center',
   },
   gallery: [
     {
-      src: '/images/relais-hero-generated.png',
-      alt: 'Visual prototipo di resort con piscina e giardino in luce serale.',
-      caption: 'Resort e piscina',
+      src: relaisImage('hero-facade.jpg'),
+      alt: 'Facciata e ingresso del Relais Santo Stefano.',
+      caption: 'Ingresso e torre',
     },
     {
-      src: unsplash('photo-1611892440504-42a792e24d32', 1400),
-      alt: 'Camera matrimoniale elegante.',
-      caption: 'Camere luminose',
+      src: relaisImage('pool.jpg'),
+      alt: 'Piscina estiva del Relais Santo Stefano.',
+      caption: 'Piscina estiva',
     },
     {
-      src: unsplash('photo-1540555700478-4be289fbecef', 1400),
-      alt: 'Dettagli wellness.',
+      src: relaisImage('room-suite.jpg'),
+      alt: 'Suite Classic del Relais Santo Stefano.',
+      caption: 'Suite e ospitalità',
+    },
+    {
+      src: relaisImage('spa.jpg'),
+      alt: 'Area idromassaggio della SPA.',
       caption: 'SPA e relax',
     },
     {
-      src: unsplash('photo-1414235077428-338989a2e8c0', 1400),
-      alt: 'Ristorante con mise en place.',
+      src: relaisImage('restaurant.jpg'),
+      alt: 'Ristorante del Relais Santo Stefano.',
       caption: 'Cucina territoriale',
     },
     {
-      src: unsplash('photo-1517457373958-b7bdd4587205', 1400),
-      alt: 'Tavolo meeting con persone al lavoro.',
+      src: relaisImage('sport-padel.jpg'),
+      alt: 'Campi da padel del centro sportivo.',
+      caption: 'Padel e activity',
+    },
+    {
+      src: relaisImage('meeting.jpg'),
+      alt: 'Sala meeting del Relais Santo Stefano.',
       caption: 'Meeting ed eventi',
     },
     {
-      src: unsplash('photo-1500530855697-b586d89ba3ee', 1400),
-      alt: 'Paesaggio verde del territorio.',
-      caption: 'Biellese da scoprire',
+      src: relaisImage('breakfast.jpg'),
+      alt: 'Buffet colazione del Relais Santo Stefano.',
+      caption: 'Colazione',
     },
   ],
 };
@@ -140,7 +194,7 @@ export const rooms = [
   {
     name: 'Singola',
     summary: 'Una soluzione raccolta e funzionale per soggiorni business o passaggi brevi nel Biellese.',
-    details: ['1 ospite', 'Wi-Fi gratuito', 'Vista giardino su disponibilita'],
+    details: ['1 ospite', 'Wi-Fi gratuito', 'Vista giardino su disponibilità'],
   },
   {
     name: 'Standard Queen',
@@ -154,12 +208,12 @@ export const rooms = [
   },
   {
     name: 'Superior Queen e King',
-    summary: 'Camere piu ampie, anche con balcone, pensate per chi desidera piu luce e respiro.',
+    summary: 'Camere più ampie, anche con balcone, pensate per chi desidera più luce e respiro.',
     details: ['Queen o king', 'Balcone in alcune camere', 'Affacci sui giardini'],
   },
   {
     name: 'Deluxe',
-    summary: 'Spazi eleganti e maggiore comfort, disponibili anche con balcone per un soggiorno piu lento.',
+    summary: 'Spazi eleganti e maggiore comfort, disponibili anche con balcone per un soggiorno più lento.',
     details: ['Versione con balcone', 'Minibar', 'Sconto SPA trattamenti'],
   },
   {
@@ -170,7 +224,7 @@ export const rooms = [
   {
     name: 'Spa Suite',
     summary:
-      'Junior Suite Superior da 35 m2, Suite Superior Gessi da 60 m2 e Suite Deluxe da 70 m2 con mini SPA privata.',
+      'Junior Suite Superior da 35 m², Suite Superior Gessi da 60 m² e Suite Deluxe da 70 m² con mini SPA privata.',
     details: ['Vasca idromassaggio', 'Sauna e bagno turco', 'Cromoterapia'],
   },
 ];
@@ -211,7 +265,7 @@ export const experiences = [
   {
     title: 'Meeting ed eventi',
     text:
-      'Sala Oropa da 245 m2, Sala Bike da 155 m2 e Saletta Les Oliviers da 30 m2 per incontri, team building, light lunch, aperitivi e business dinner.',
+      'Sala Oropa da 245 m², Sala Bike da 155 m² e Saletta Les Oliviers da 30 m² per incontri, team building, light lunch, aperitivi e business dinner.',
     path: '/meeting-eventi',
     image: images.meeting,
   },
@@ -226,7 +280,7 @@ export const offers = [
   {
     title: 'Noi due',
     price: 'da 429 euro',
-    text: 'Una proposta per coppie con esperienza piu completa e attenzione ai dettagli del soggiorno.',
+    text: 'Una proposta per coppie con esperienza più completa e attenzione ai dettagli del soggiorno.',
   },
   {
     title: 'Notte da sogno',
@@ -236,7 +290,7 @@ export const offers = [
   {
     title: 'Gift Card benessere',
     price: 'su richiesta',
-    text: 'Percorsi e trattamenti SPA acquistabili come regalo, con possibilita di integrare il soggiorno.',
+    text: 'Percorsi e trattamenti SPA acquistabili come regalo, con possibilità di integrare il soggiorno.',
   },
 ];
 
@@ -245,7 +299,7 @@ export const territoryPlaces = [
   "Ricetto di Candelo, a pochi minuti d'auto",
   "Oasi Zegna, a meno di mezz'ora",
   'Lago di Viverone e Sacri Monti UNESCO',
-  'Biella Citta Creativa UNESCO',
+  'Biella Città Creativa UNESCO',
 ];
 
 export const seo = {
@@ -272,7 +326,7 @@ export const seo = {
   '/sport-activity': {
     title: 'Sport e Activity | Relais Santo Stefano',
     description:
-      'Padel, pickleball, e-bike, piscina estiva e palestra Technogym: attivita per ospiti hotel e visitatori esterni.',
+      'Padel, pickleball, e-bike, piscina estiva e palestra Technogym: attività per ospiti hotel e visitatori esterni.',
   },
   '/meeting-eventi': {
     title: 'Meeting ed Eventi | Relais Santo Stefano',
@@ -287,7 +341,7 @@ export const seo = {
   '/offerte': {
     title: 'Offerte e Gift Card | Relais Santo Stefano',
     description:
-      'Pacchetti romantici, soggiorni benessere e gift card del Relais Santo Stefano. Prezzi e disponibilita da verificare con la struttura.',
+      'Pacchetti romantici, soggiorni benessere e gift card del Relais Santo Stefano. Prezzi e disponibilità da verificare con la struttura.',
   },
   '/contatti': {
     title: 'Contatti | Relais Santo Stefano Sandigliano',
@@ -298,8 +352,7 @@ export const seo = {
 
 export const cookieCopy = {
   title: 'Cookie essenziali',
-  text:
-    'Questo prototipo usa solo funzionalita tecniche necessarie alla navigazione. Per dettagli consulta la privacy policy.',
+  text: 'Usiamo solo cookie tecnici e la preferenza del banner. Per dettagli consulta la privacy policy.',
   accept: 'Accetta',
   privacy: 'Privacy',
 };

@@ -25,7 +25,7 @@ function SiteLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#fbf8f1] text-graphite">
+    <div className="min-h-screen overflow-hidden bg-ivory text-graphite">
       <a
         href="#main-content"
         className="fixed left-4 top-4 z-[300] -translate-y-24 bg-graphite px-4 py-3 font-ui text-xs uppercase tracking-[0.16em] text-white transition-transform focus:translate-y-0"

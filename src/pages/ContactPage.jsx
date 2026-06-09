@@ -3,9 +3,9 @@ import { bookingUrl, contact, images } from '../lib/siteData';
 
 function ContactCard({ label, children }) {
   return (
-    <article className="border border-black/10 bg-white p-6 shadow-soft">
-      <p className="font-ui text-xs uppercase tracking-[0.2em] text-bronze">{label}</p>
-      <div className="mt-4 font-ui text-base leading-8 text-graphite/74">{children}</div>
+    <article className="border border-black/10 bg-white p-6">
+      <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-bronze">{label}</p>
+      <div className="mt-4 font-body text-base leading-8 text-body">{children}</div>
     </article>
   );
 }
@@ -14,7 +14,7 @@ function ContactPage() {
   return (
     <>
       <PageHero
-        image={images.hero}
+        image={images.welcome}
         eyebrow="Contatti"
         title="Arrivare al Relais Santo Stefano."
         subtitle="Siamo in Via Garibaldi 5, a Sandigliano, alle porte di Biella. Scrivici o chiamaci per soggiorni, SPA, ristorante ed eventi."
@@ -25,7 +25,7 @@ function ContactPage() {
               href={bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex justify-center border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-white"
+              className="inline-flex justify-center border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage"
             >
               Prenota soggiorno
             </a>
@@ -33,7 +33,7 @@ function ContactPage() {
               href={contact.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex justify-center border border-white/35 px-6 py-3 font-ui text-xs uppercase tracking-[0.16em] text-white hover:bg-white/14"
+              className="inline-flex justify-center border border-white/45 px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white hover:bg-white/14"
             >
               Apri mappa
             </a>
@@ -44,7 +44,7 @@ function ContactPage() {
       <section data-reveal className="reveal-scroll grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <ContactCard label="Indirizzo">
           <p>{contact.address}</p>
-          <a href={contact.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex text-bronze hover:text-graphite">
+          <a href={contact.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex text-bronze hover:text-sage">
             Google Maps
           </a>
         </ContactCard>
@@ -72,36 +72,36 @@ function ContactPage() {
 
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <p className="font-ui text-xs uppercase tracking-[0.24em] text-bronze">Richieste</p>
-          <h2 className="mt-4 font-serif text-[2.8rem] leading-[0.96] sm:text-[4.3rem]">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">Richieste</p>
+          <h2 className="mt-4 font-serif text-[2.55rem] leading-[1.05] text-graphite sm:text-[4rem]">
             Scrivi una richiesta precisa, ricevi una risposta utile.
           </h2>
-          <p className="mt-6 font-ui text-base leading-8 text-graphite/72">
+          <p className="mt-6 font-body text-base leading-8 text-body">
             Per date, preventivi meeting, tavoli ristorante, trattamenti SPA o esigenze particolari, indica periodo, numero di ospiti e preferenze.
           </p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent('Richiesta soggiorno Relais Santo Stefano')}`}
-            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.12em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
           >
             Richiesta soggiorno
           </a>
           <a
             href={`mailto:${contact.spaEmail}?subject=${encodeURIComponent('Richiesta SPA Relais Santo Stefano')}`}
-            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.12em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
           >
             Richiesta SPA
           </a>
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent('Richiesta ristorante Relais Santo Stefano')}`}
-            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.12em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
           >
             Ristorante
           </a>
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent('Richiesta meeting ed eventi Relais Santo Stefano')}`}
-            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.12em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
           >
             Meeting ed eventi
           </a>
