@@ -1,0 +1,17 @@
+node_modules
+dist
+.DS_Store
+*.local
+.env.vercel.*
+.codex/
+.vercel
+vite-dev*.log
+vite-preview*.log
+
+.vercel
+
+.cursor/
+_tmp_*
+immagini/CAMERE/
+immagini/Foto Mostra/
+immagini/PER SITO/

@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/home", "destination": "/" },
+    { "source": "/camere", "destination": "/" },
+    { "source": "/camere-e-spa-lodge-relais-santo-stefano", "destination": "/" },
+    { "source": "/suite", "destination": "/" },
+    { "source": "/spa-resort-piemonte", "destination": "/" },
+    { "source": "/sale-meeting", "destination": "/" },
+    { "source": "/sport", "destination": "/" },
+    { "source": "/colazione", "destination": "/" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}

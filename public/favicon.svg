@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#28241f"/>
+  <circle cx="32" cy="32" r="23" fill="none" stroke="#d9bd92" stroke-width="2"/>
+  <text x="32" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#fbf8f1">RSS</text>
+</svg>

@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+*.local
+.env*
+.codex/
+.vercel
+vite-dev*.log
+_tmp_*
+immagini/PER SITO/
