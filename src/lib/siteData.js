@@ -21,6 +21,73 @@ export const bookingUrl =
   import.meta.env.VITE_BOOKING_URL?.trim() ||
   'https://www.simplebooking.it/ibe2/hotel/8176?lang=IT&cur=EUR';
 
+export const bookingManageUrl = bookingUrl;
+
+const clamp = (value, min, max) => Math.min(max, Math.max(min, Number(value) || min));
+
+export function toDateInputValue(date) {
+  const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
+  return localDate.toISOString().slice(0, 10);
+}
+
+export function addDays(date, days) {
+  const nextDate = new Date(date);
+  nextDate.setDate(nextDate.getDate() + days);
+  return nextDate;
+}
+
+export function getDefaultBookingDates(referenceDate = new Date()) {
+  const checkInDate = addDays(referenceDate, 1);
+  return {
+    checkIn: toDateInputValue(checkInDate),
+    checkOut: toDateInputValue(addDays(checkInDate, 1)),
+  };
+}
+
+function buildGuests(adults, rooms) {
+  const safeRooms = clamp(rooms, 1, 4);
+  const safeAdults = clamp(adults, safeRooms, 8);
+  let remainingAdults = safeAdults;
+
+  return Array.from({ length: safeRooms }, (_, index) => {
+    const roomsLeft = safeRooms - index;
+    const adultsInRoom = Math.ceil(remainingAdults / roomsLeft);
+    remainingAdults -= adultsInRoom;
+    return Array.from({ length: adultsInRoom }, () => 'A').join(',');
+  }).join('|');
+}
+
+export function buildBookingUrl({
+  checkIn,
+  checkOut,
+  adults = 2,
+  rooms = 1,
+  promoCode = '',
+} = {}) {
+  const url = new URL(bookingUrl);
+  url.searchParams.set('lang', url.searchParams.get('lang') || 'IT');
+  url.searchParams.set('cur', url.searchParams.get('cur') || 'EUR');
+
+  if (checkIn) {
+    url.searchParams.set('in', checkIn);
+  }
+
+  if (checkOut) {
+    url.searchParams.set('out', checkOut);
+  }
+
+  url.searchParams.set('guests', buildGuests(adults, rooms));
+
+  const coupon = promoCode.trim();
+  if (coupon) {
+    url.searchParams.set('coupon', coupon);
+  } else {
+    url.searchParams.delete('coupon');
+  }
+
+  return url.toString();
+}
+
 export const socialLinks = [
   {
     label: 'Instagram',
@@ -34,130 +101,176 @@ export const socialLinks = [
 
 const relaisImage = (file) => `/images/relais/${file}`;
 
+const image = (file, alt, width, height, objectPosition = 'center center', extra = {}) => ({
+  src: relaisImage(file),
+  alt,
+  width,
+  height,
+  objectPosition,
+  ...extra,
+});
+
 export const images = {
   logo: {
-    light: relaisImage('logo-rss.png'),
-    dark: relaisImage('logo-rss-black.png'),
-    mark: relaisImage('logo-icon.png'),
+    light: image('logo-rss.png', brand.name, 269, 118),
+    dark: image('logo-rss-black.png', brand.name, 269, 118),
+    mark: image('logo-icon.png', '', 200, 265),
   },
-  hero: {
-    src: relaisImage('hero-facade.jpg'),
-    alt: 'Ingresso del Relais Santo Stefano a Sandigliano con la torre e la facciata storica.',
-    objectPosition: 'center 52%',
-  },
-  pool: {
-    src: relaisImage('pool.jpg'),
-    alt: 'Piscina estiva del Relais Santo Stefano affacciata sul verde del Biellese.',
-    objectPosition: 'center center',
-  },
-  room: {
-    src: relaisImage('room-balcony.jpg'),
-    alt: 'Affaccio dai balconi delle camere del Relais Santo Stefano verso i giardini interni.',
-    objectPosition: 'center center',
-  },
-  suite: {
-    src: relaisImage('room-suite.jpg'),
-    alt: 'Suite Classic del Relais Santo Stefano con arredi caldi e atmosfera riservata.',
-    objectPosition: 'center center',
-  },
-  spa: {
-    src: relaisImage('spa.jpg'),
-    alt: 'Area umida della SPA del Relais Santo Stefano con idromassaggio e zona relax.',
-    objectPosition: 'center center',
-  },
-  spaMassage: {
-    src: relaisImage('spa-massage.jpg'),
-    alt: 'Cabina trattamenti della SPA del Relais Santo Stefano.',
-    objectPosition: 'center center',
-  },
-  restaurant: {
-    src: relaisImage('restaurant.jpg'),
-    alt: 'Cena al ristorante del Relais Santo Stefano con servizio al tavolo.',
-    objectPosition: 'center center',
-  },
-  breakfast: {
-    src: relaisImage('breakfast.jpg'),
-    alt: 'Buffet colazione del Relais Santo Stefano con frutta, dolci e prodotti da forno.',
-    objectPosition: 'center center',
-  },
-  sport: {
-    src: relaisImage('sport-padel.jpg'),
-    alt: 'Campi da padel del centro sportivo Santo Stefano.',
-    objectPosition: 'center center',
-  },
-  bike: {
-    src: relaisImage('sport-bike.jpg'),
-    alt: 'Dettaglio delle e-bike disponibili al Relais Santo Stefano.',
-    objectPosition: 'center center',
-  },
-  meeting: {
-    src: relaisImage('meeting.jpg'),
-    alt: 'Sala meeting del Relais Santo Stefano allestita per un evento aziendale.',
-    objectPosition: 'center center',
-  },
-  meetingOropa: {
-    src: relaisImage('meeting-oropa.jpg'),
-    alt: 'Sala Oropa del Relais Santo Stefano con sedute e schermi per convegni.',
-    objectPosition: 'center center',
-  },
-  territory: {
-    src: relaisImage('pool.jpg'),
-    alt: 'Vista sulla piscina e sul verde intorno al Relais Santo Stefano.',
-    objectPosition: 'center center',
-  },
-  offers: {
-    src: relaisImage('offers.jpg'),
-    alt: 'Coppia durante un soggiorno benessere al Relais Santo Stefano.',
-    objectPosition: 'center center',
-  },
-  welcome: {
-    src: relaisImage('welcome.jpg'),
-    alt: 'Accoglienza alla reception del Relais Santo Stefano.',
-    objectPosition: 'center center',
-  },
-  gallery: [
-    {
-      src: relaisImage('hero-facade.jpg'),
-      alt: 'Facciata e ingresso del Relais Santo Stefano.',
-      caption: 'Ingresso e torre',
-    },
-    {
-      src: relaisImage('pool.jpg'),
-      alt: 'Piscina estiva del Relais Santo Stefano.',
-      caption: 'Piscina estiva',
-    },
-    {
-      src: relaisImage('room-suite.jpg'),
-      alt: 'Suite Classic del Relais Santo Stefano.',
-      caption: 'Suite e ospitalità',
-    },
-    {
-      src: relaisImage('spa.jpg'),
-      alt: 'Area idromassaggio della SPA.',
-      caption: 'SPA e relax',
-    },
-    {
-      src: relaisImage('restaurant.jpg'),
-      alt: 'Ristorante del Relais Santo Stefano.',
-      caption: 'Cucina territoriale',
-    },
-    {
-      src: relaisImage('sport-padel.jpg'),
-      alt: 'Campi da padel del centro sportivo.',
-      caption: 'Padel e activity',
-    },
-    {
-      src: relaisImage('meeting.jpg'),
-      alt: 'Sala meeting del Relais Santo Stefano.',
-      caption: 'Meeting ed eventi',
-    },
-    {
-      src: relaisImage('breakfast.jpg'),
-      alt: 'Buffet colazione del Relais Santo Stefano.',
-      caption: 'Colazione',
-    },
-  ],
+  hero: image(
+    'hero-facade.jpg',
+    'Ingresso del Relais Santo Stefano a Sandigliano con la torre e la facciata storica.',
+    1000,
+    1203,
+    'center 52%'
+  ),
+  pool: image(
+    'pool.jpg',
+    'Piscina estiva del Relais Santo Stefano affacciata sul verde del Biellese.',
+    1920,
+    1280
+  ),
+  room: image(
+    'room-hero.jpg',
+    'Camera con SPA privata del Relais Santo Stefano con arredi caldi e luce naturale.',
+    1920,
+    1280,
+    'center 52%'
+  ),
+  roomBalcony: image(
+    'room-balcony.jpg',
+    'Affaccio dai balconi delle camere del Relais Santo Stefano verso i giardini interni.',
+    1000,
+    600
+  ),
+  suite: image(
+    'room-suite.jpg',
+    'Suite Classic del Relais Santo Stefano con arredi caldi e atmosfera riservata.',
+    1000,
+    600
+  ),
+  spa: image(
+    'spa-sauna-hero.jpg',
+    "Coppia nell'area benessere della SPA del Relais Santo Stefano.",
+    1920,
+    1280,
+    'center 45%'
+  ),
+  spaThumb: image(
+    'spa.jpg',
+    'Area umida della SPA del Relais Santo Stefano con idromassaggio e zona relax.',
+    600,
+    600
+  ),
+  spaMassage: image(
+    'spa-treatment.jpg',
+    'Cabina trattamenti della SPA del Relais Santo Stefano.',
+    1920,
+    1280,
+    'center 45%'
+  ),
+  restaurant: image(
+    'restaurant-dining.jpg',
+    'Sala ristorante del Relais Santo Stefano con tavoli affacciati sul verde.',
+    1920,
+    1281
+  ),
+  breakfast: image(
+    'breakfast.jpg',
+    'Buffet colazione del Relais Santo Stefano con frutta, dolci e prodotti da forno.',
+    1920,
+    1280
+  ),
+  sport: image(
+    'sport-padel.jpg',
+    'Campi da padel del centro sportivo Santo Stefano.',
+    1920,
+    1280
+  ),
+  bike: image(
+    'sport-bike.jpg',
+    'Dettaglio delle e-bike disponibili al Relais Santo Stefano.',
+    1920,
+    1280
+  ),
+  meeting: image(
+    'meeting.jpg',
+    'Sala meeting del Relais Santo Stefano allestita per un evento aziendale.',
+    1920,
+    1280
+  ),
+  meetingOropa: image(
+    'meeting-oropa.jpg',
+    'Sala Oropa del Relais Santo Stefano con sedute e schermi per convegni.',
+    1920,
+    1280
+  ),
+  territory: image(
+    'pool.jpg',
+    'Vista sulla piscina e sul verde intorno al Relais Santo Stefano.',
+    1920,
+    1280
+  ),
+  offers: image(
+    'offers-couple-spa.jpg',
+    'Coppia durante un soggiorno benessere al Relais Santo Stefano.',
+    1919,
+    1280,
+    'center 45%'
+  ),
+  welcome: image(
+    'welcome-reception-wide.jpg',
+    'Accoglienza alla reception del Relais Santo Stefano.',
+    1920,
+    1280,
+    'center 45%'
+  ),
+  welcomePortrait: image(
+    'welcome.jpg',
+    'Accoglienza alla reception del Relais Santo Stefano.',
+    1280,
+    1920,
+    'center 42%'
+  ),
 };
+
+images.gallery = [
+  {
+    ...images.hero,
+    caption: 'Ingresso e torre',
+  },
+  {
+    ...images.pool,
+    caption: 'Piscina estiva',
+  },
+  {
+    ...images.room,
+    caption: 'Camere e SPA Lodge',
+  },
+  {
+    ...images.suite,
+    caption: 'Suite e ospitalità',
+  },
+  {
+    ...images.spa,
+    caption: 'SPA e relax',
+  },
+  {
+    ...images.restaurant,
+    caption: 'Cucina territoriale',
+  },
+  {
+    ...images.sport,
+    caption: 'Padel e activity',
+  },
+  {
+    ...images.meeting,
+    caption: 'Meeting ed eventi',
+  },
+  {
+    ...images.breakfast,
+    caption: 'Colazione',
+  },
+];
 
 export const navigation = [
   { label: 'Home', path: '/' },
@@ -195,37 +308,44 @@ export const rooms = [
     name: 'Singola',
     summary: 'Una soluzione raccolta e funzionale per soggiorni business o passaggi brevi nel Biellese.',
     details: ['1 ospite', 'Wi-Fi gratuito', 'Vista giardino su disponibilità'],
+    image: images.roomBalcony,
   },
   {
     name: 'Standard Queen',
     summary: 'Comfort essenziale, letto queen e servizi curati per una permanenza semplice e riposante.',
     details: ['Letto queen', 'Bagno privato', 'Aria condizionata'],
+    image: images.room,
   },
   {
     name: 'Comfort Twin',
     summary: 'Doppia con letti separati, pratica per colleghi, amici e viaggiatori sportivi.',
     details: ['Letti twin', 'Scrivania', 'Parcheggio esterno gratuito'],
+    image: images.roomBalcony,
   },
   {
     name: 'Superior Queen e King',
     summary: 'Camere più ampie, anche con balcone, pensate per chi desidera più luce e respiro.',
     details: ['Queen o king', 'Balcone in alcune camere', 'Affacci sui giardini'],
+    image: images.room,
   },
   {
     name: 'Deluxe',
     summary: 'Spazi eleganti e maggiore comfort, disponibili anche con balcone per un soggiorno più lento.',
     details: ['Versione con balcone', 'Minibar', 'Sconto SPA trattamenti'],
+    image: images.suite,
   },
   {
     name: 'Tripla, Junior Suite e Suite',
     summary: 'Soluzioni flessibili per famiglie, coppie e soggiorni speciali, inclusa la scenografica Tower Room.',
     details: ['Fino a 4 ospiti', 'Suite Classic', 'Tower Room'],
+    image: images.suite,
   },
   {
     name: 'Spa Suite',
     summary:
       'Junior Suite Superior da 35 m², Suite Superior Gessi da 60 m² e Suite Deluxe da 70 m² con mini SPA privata.',
     details: ['Vasca idromassaggio', 'Sauna e bagno turco', 'Cromoterapia'],
+    image: images.room,
   },
 ];
 

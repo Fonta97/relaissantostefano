@@ -15,6 +15,8 @@ function PageHero({
       <img
         src={image.src}
         alt={image.alt}
+        width={image.width}
+        height={image.height}
         className="hero-media-enter absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: image.objectPosition || 'center center' }}
         loading={priority ? 'eager' : 'lazy'}
@@ -30,7 +32,7 @@ function PageHero({
           {eyebrow}
         </p>
         <h1
-        className="reveal-fade mt-5 max-w-5xl break-words font-serif text-[3.05rem] leading-[1.04] text-white sm:text-[5rem] lg:text-[6rem]"
+          className="reveal-fade mt-5 max-w-5xl break-words font-serif text-[2.8rem] leading-[1.04] text-white sm:text-[4.4rem] lg:text-[5.15rem]"
           style={{ '--reveal-delay': '160ms' }}
         >
           {title}

@@ -1,13 +1,20 @@
 {
+  "redirects": [
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/camere", "destination": "/camere-suite", "permanent": true },
+    {
+      "source": "/camere-e-spa-lodge-relais-santo-stefano",
+      "destination": "/camere-suite",
+      "permanent": true
+    },
+    { "source": "/suite", "destination": "/camere-suite", "permanent": true },
+    { "source": "/spa-resort-piemonte", "destination": "/spa-benessere", "permanent": true },
+    { "source": "/sale-meeting", "destination": "/meeting-eventi", "permanent": true },
+    { "source": "/sport", "destination": "/sport-activity", "permanent": true },
+    { "source": "/colazione", "destination": "/ristorante", "permanent": true },
+    { "source": "/offerte-speciali", "destination": "/offerte", "permanent": true }
+  ],
   "rewrites": [
-    { "source": "/home", "destination": "/" },
-    { "source": "/camere", "destination": "/" },
-    { "source": "/camere-e-spa-lodge-relais-santo-stefano", "destination": "/" },
-    { "source": "/suite", "destination": "/" },
-    { "source": "/spa-resort-piemonte", "destination": "/" },
-    { "source": "/sale-meeting", "destination": "/" },
-    { "source": "/sport", "destination": "/" },
-    { "source": "/colazione", "destination": "/" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }

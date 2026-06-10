@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import ConsentNotice from './ConsentNotice';
@@ -9,6 +9,7 @@ import { cookieCopy } from '../lib/siteData';
 
 function SiteLayout() {
   const location = useLocation();
+  const mainRef = useRef(null);
   useScrollReveal(location.pathname);
 
   useEffect(() => {
@@ -17,12 +18,55 @@ function SiteLayout() {
     }
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: reduceMotion ? 'auto' : 'smooth',
-    });
-  }, [location.pathname]);
+    const behavior = reduceMotion ? 'auto' : 'smooth';
+
+    let retryTimeout;
+    let animationFrame;
+
+    const focusTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior });
+      mainRef.current?.focus({ preventScroll: true });
+    };
+
+    const focusHashTarget = () => {
+      if (location.hash) {
+        const target = document.getElementById(location.hash.slice(1));
+        if (target) {
+          target.scrollIntoView({ behavior, block: 'start' });
+          target.focus?.({ preventScroll: true });
+          return true;
+        }
+      }
+
+      return false;
+    };
+
+    if (location.hash) {
+      let attempts = 0;
+      const retryHashTarget = () => {
+        if (focusHashTarget()) {
+          return;
+        }
+
+        attempts += 1;
+        if (attempts < 10) {
+          retryTimeout = window.setTimeout(retryHashTarget, 80);
+          return;
+        }
+
+        focusTop();
+      };
+
+      animationFrame = window.requestAnimationFrame(retryHashTarget);
+    } else {
+      animationFrame = window.requestAnimationFrame(focusTop);
+    }
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.clearTimeout(retryTimeout);
+    };
+  }, [location.hash, location.pathname]);
 
   return (
     <div className="min-h-screen overflow-hidden bg-ivory text-graphite">
@@ -36,7 +80,9 @@ function SiteLayout() {
       <SiteHeader />
 
       <main
+        ref={mainRef}
         id="main-content"
+        tabIndex={-1}
         className="relative z-10 mx-auto flex w-full max-w-[104rem] flex-col gap-20 px-5 pb-20 pt-24 sm:gap-24 sm:px-8 sm:pt-28 lg:gap-28 lg:px-14 lg:pt-32"
       >
         <Outlet />

@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
-import { bookingUrl, brand, contact, images, navigation } from '../lib/siteData';
+import useDialogFocus from '../hooks/useDialogFocus';
+import { brand, contact, images, navigation } from '../lib/siteData';
 
 function MenuIcon() {
   return (
@@ -47,8 +48,12 @@ function HeaderCta({ href, to, children, isScrolled, primary = false }) {
 function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const menuPanelRef = useRef(null);
+  const closeButtonRef = useRef(null);
   const location = useLocation();
   const menuId = 'site-menu';
+
+  useDialogFocus(isMenuOpen, menuPanelRef, closeButtonRef);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 18);
@@ -59,7 +64,7 @@ function SiteHeader() {
 
   useEffect(() => {
     setIsMenuOpen(false);
-  }, [location.pathname]);
+  }, [location.hash, location.pathname]);
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -93,7 +98,7 @@ function SiteHeader() {
       >
         <div className="mx-auto grid w-full max-w-[104rem] grid-cols-[1fr_auto_1fr] items-center gap-3 px-4 py-3 sm:px-8 lg:px-14">
           <div className="hidden items-center gap-2 md:flex">
-            <HeaderCta href={bookingUrl} isScrolled={isScrolled} primary>
+            <HeaderCta to="/#booking" isScrolled={isScrolled} primary>
               Prenota
             </HeaderCta>
             <HeaderCta href={`tel:${contact.phone.replace(/\s+/g, '')}`} isScrolled={isScrolled}>
@@ -106,13 +111,25 @@ function SiteHeader() {
 
           <Link to="/" className="justify-self-start md:justify-self-center" aria-label={brand.name}>
             <img
-              src={isScrolled ? images.logo.dark : images.logo.light}
+              src={isScrolled ? images.logo.dark.src : images.logo.light.src}
               alt={brand.name}
+              width={images.logo.dark.width}
+              height={images.logo.dark.height}
               className="h-11 w-auto object-contain transition-opacity sm:h-14"
             />
           </Link>
 
           <div className="flex items-center justify-end gap-2">
+            <Link
+              to="/#booking"
+              className={`inline-flex h-11 items-center justify-center border px-3 font-ui text-[0.62rem] font-semibold uppercase tracking-[0.12em] transition-colors md:hidden ${
+                isScrolled
+                  ? 'border-bronze bg-bronze text-white hover:bg-sage'
+                  : 'border-white bg-white text-sage hover:bg-ivory'
+              }`}
+            >
+              Prenota
+            </Link>
             <nav className="hidden items-center gap-5 xl:flex" aria-label="Navigazione principale">
               {navigation.slice(1, 6).map((item) => (
                 <NavLink
@@ -120,7 +137,11 @@ function SiteHeader() {
                   to={item.path}
                   className={({ isActive }) =>
                     `font-ui text-[0.68rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
-                      isActive ? 'text-bronze' : 'hover:text-bronze'
+                      isActive
+                        ? isScrolled
+                          ? 'text-bronze'
+                          : 'text-white underline decoration-white/70 underline-offset-8'
+                        : 'hover:text-bronze'
                     }`
                   }
                 >
@@ -153,21 +174,30 @@ function SiteHeader() {
           onClick={() => setIsMenuOpen(false)}
         >
           <aside
+            ref={menuPanelRef}
             id={menuId}
             role="dialog"
             aria-modal="true"
             aria-label="Menu principale"
             className="absolute inset-y-0 right-0 flex w-full max-w-xl flex-col overflow-y-auto bg-ivory p-6 text-graphite shadow-[0_24px_90px_rgba(0,0,0,0.24)] sm:p-8"
             onClick={(event) => event.stopPropagation()}
+            tabIndex={-1}
           >
             <div className="flex items-start justify-between gap-6">
               <div>
-                <img src={images.logo.dark} alt={brand.name} className="h-16 w-auto" />
+                <img
+                  src={images.logo.dark.src}
+                  alt={brand.name}
+                  width={images.logo.dark.width}
+                  height={images.logo.dark.height}
+                  className="h-16 w-auto"
+                />
                 <p className="mt-5 max-w-xs font-body text-sm leading-7 text-body">
                   Accoglienza piemontese, relax e sport in un resort 4 stelle alle porte di Biella.
                 </p>
               </div>
               <button
+                ref={closeButtonRef}
                 type="button"
                 onClick={() => setIsMenuOpen(false)}
                 className="border border-sage bg-sage px-4 py-2 font-ui text-xs uppercase tracking-[0.14em] text-white transition-colors hover:bg-bronze"
@@ -177,14 +207,12 @@ function SiteHeader() {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3 border-y border-black/10 py-6">
-              <a
-                href={bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/#booking"
                 className="border border-bronze bg-bronze px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage"
               >
                 Prenota soggiorno
-              </a>
+              </Link>
               <a
                 href={`tel:${contact.phone.replace(/\s+/g, '')}`}
                 className="border border-black/10 px-5 py-3 font-ui text-xs uppercase tracking-[0.14em] transition-colors hover:border-bronze hover:text-bronze"

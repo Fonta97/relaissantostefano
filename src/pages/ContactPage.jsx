@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import PageHero from '../components/PageHero';
-import { bookingUrl, contact, images } from '../lib/siteData';
+import { contact, images } from '../lib/siteData';
 
 function ContactCard({ label, children }) {
   return (
@@ -21,14 +23,12 @@ function ContactPage() {
         priority
         actions={
           <>
-            <a
-              href={bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/#booking"
               className="inline-flex justify-center border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage"
             >
               Prenota soggiorno
-            </a>
+            </Link>
             <a
               href={contact.mapsUrl}
               target="_blank"
@@ -73,7 +73,7 @@ function ContactPage() {
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">Richieste</p>
-          <h2 className="mt-4 font-serif text-[2.55rem] leading-[1.05] text-graphite sm:text-[4rem]">
+          <h2 className="mt-4 font-serif text-[2.45rem] leading-[1.05] text-graphite sm:text-[3.7rem]">
             Scrivi una richiesta precisa, ricevi una risposta utile.
           </h2>
           <p className="mt-6 font-body text-base leading-8 text-body">

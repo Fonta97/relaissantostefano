@@ -1,5 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+
+import useDialogFocus from '../hooks/useDialogFocus';
 
 function MosaicGallery({
   images,
@@ -10,7 +12,11 @@ function MosaicGallery({
 }) {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [portalRoot, setPortalRoot] = useState(null);
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
   const hasModalOpen = activeIndex >= 0;
+
+  useDialogFocus(hasModalOpen, dialogRef, closeButtonRef);
 
   useEffect(() => {
     if (typeof document !== 'undefined') {
@@ -59,15 +65,18 @@ function MosaicGallery({
             <img
               src={image.src}
               alt={image.alt}
+              width={image.width}
+              height={image.height}
               loading="lazy"
               decoding="async"
               className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
+              sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
             />
             {showCaptions ? (
               <>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/16 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p className="font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
+                  <p className="font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white/88">
                     {title}
                   </p>
                   <p className="mt-2 font-serif text-2xl leading-tight text-white">{image.caption}</p>
@@ -81,11 +90,13 @@ function MosaicGallery({
       {hasModalOpen && portalRoot
         ? createPortal(
             <div
+              ref={dialogRef}
               className="fixed inset-0 z-[200] h-[100dvh] w-screen overflow-hidden bg-black/92 backdrop-blur-md"
               role="dialog"
               aria-modal="true"
               aria-label={title}
               onClick={() => setActiveIndex(-1)}
+              tabIndex={-1}
             >
               <div
                 className="mx-auto flex h-full w-full max-w-7xl flex-col px-4 py-4 sm:px-8 sm:py-6"
@@ -96,6 +107,7 @@ function MosaicGallery({
                     {title}
                   </p>
                   <button
+                    ref={closeButtonRef}
                     type="button"
                     onClick={() => setActiveIndex(-1)}
                     aria-label={modalLabels.close}
@@ -107,8 +119,10 @@ function MosaicGallery({
 
                 <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden border border-white/10 bg-black">
                   <img
-                    src={images[activeIndex].src}
+                    src={images[activeIndex].fullSrc || images[activeIndex].src}
                     alt={images[activeIndex].alt}
+                    width={images[activeIndex].width}
+                    height={images[activeIndex].height}
                     className="h-full w-full object-contain p-3 sm:p-4"
                   />
 
@@ -136,7 +150,7 @@ function MosaicGallery({
                   <p className="font-serif text-[1.7rem] leading-tight sm:text-2xl">
                     {images[activeIndex].caption}
                   </p>
-                  <p className="font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white/65">
+                  <p className="font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white/82">
                     {activeIndex + 1} / {images.length}
                   </p>
                 </div>

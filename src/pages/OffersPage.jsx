@@ -31,7 +31,7 @@ function OffersPage() {
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
           <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">Pacchetti</p>
-          <h2 className="mt-4 font-serif text-[2.55rem] leading-[1.05] text-graphite sm:text-[4rem]">
+          <h2 className="mt-4 font-serif text-[2.45rem] leading-[1.05] text-graphite sm:text-[3.7rem]">
             Soggiorni romantici, benessere e gift card.
           </h2>
         </div>
@@ -57,7 +57,7 @@ function OffersPage() {
       </section>
 
       <section data-reveal className="reveal-scroll bg-sage px-6 py-10 text-white sm:px-10 lg:px-14">
-        <p className="max-w-4xl font-serif text-[2.3rem] leading-[1.08] sm:text-[3.3rem]">
+        <p className="max-w-4xl font-serif text-[2.25rem] leading-[1.08] sm:text-[3.15rem]">
           Date flessibili o regalo personalizzato? Il relais può confermare condizioni, disponibilità e integrazioni del soggiorno.
         </p>
       </section>

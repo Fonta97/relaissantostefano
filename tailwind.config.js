@@ -4,6 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        bordeaux: '#7C3233',
+        terracotta: '#A74E49',
+        sabbia: '#F1E9E0',
         ivory: '#F1E9E0',
         mist: '#F7F0E8',
         sage: '#7C3233',

@@ -25,12 +25,13 @@ function ConsentNotice({ copy }) {
   return (
     <aside
       className="fixed inset-x-3 bottom-3 z-[45] border border-white/16 bg-sage p-4 text-white shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:left-auto sm:max-w-lg sm:p-5"
-      aria-label={copy.title}
+      role="region"
+      aria-labelledby="cookie-notice-title"
     >
-      <p className="font-serif text-[1.45rem] leading-[1.08] sm:text-[1.8rem]">
+      <p id="cookie-notice-title" className="font-serif text-[1.45rem] leading-[1.08] sm:text-[1.8rem]">
         {copy.title}
       </p>
-      <p className="mt-2 font-body text-sm leading-6 text-white/80 sm:mt-3 sm:leading-7">
+      <p className="mt-2 font-body text-sm leading-6 text-white/88 sm:mt-3 sm:leading-7">
         {copy.text}
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-3 sm:mt-5">

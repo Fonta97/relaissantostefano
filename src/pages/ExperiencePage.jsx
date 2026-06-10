@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 
 import PageHero from '../components/PageHero';
 import {
-  bookingUrl,
   contact,
   images,
   territoryPlaces,
@@ -108,14 +107,12 @@ function ExperiencePage({ type }) {
             >
               {page.cta.label}
             </a>
-            <a
-              href={bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/#booking"
               className="inline-flex justify-center border border-white/45 px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white hover:bg-white/14"
             >
               Prenota soggiorno
-            </a>
+            </Link>
           </>
         }
       />
@@ -123,7 +120,7 @@ function ExperiencePage({ type }) {
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
           <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">{page.eyebrow}</p>
-          <h2 className="mt-4 font-serif text-[2.55rem] leading-[1.05] text-graphite sm:text-[4rem]">
+          <h2 className="mt-4 font-serif text-[2.45rem] leading-[1.05] text-graphite sm:text-[3.7rem]">
             {page.introTitle}
           </h2>
         </div>
@@ -138,6 +135,8 @@ function ExperiencePage({ type }) {
         <img
           src={page.secondaryImage.src}
           alt={page.secondaryImage.alt}
+          width={page.secondaryImage.width}
+          height={page.secondaryImage.height}
           className="min-h-[24rem] w-full object-cover"
           loading="lazy"
           decoding="async"
@@ -152,18 +151,18 @@ function ExperiencePage({ type }) {
       </section>
 
       <section data-reveal className="reveal-scroll grid gap-8 bg-sage px-6 py-10 text-white sm:px-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-14">
-        <h2 className="font-serif text-[2.45rem] leading-[1.05] sm:text-[3.8rem]">
+        <h2 className="font-serif text-[2.35rem] leading-[1.05] sm:text-[3.55rem]">
           Preferisci parlarne con il relais?
         </h2>
         <div>
-          <p className="font-body text-base leading-8 text-white/80">
+          <p className="font-body text-base leading-8 text-white/88">
             Per date, disponibilità, esigenze alimentari, trattamenti o richieste tecniche evento, il contatto diretto è la via più precisa.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="border border-white bg-white px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-sage">
               Chiama hotel
             </a>
-            <Link to="/contatti" className="border border-white/28 px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white hover:bg-white/10">
+            <Link to="/contatti" className="border border-white/30 px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white hover:bg-white/10">
               Vai ai contatti
             </Link>
           </div>

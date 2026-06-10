@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
+import BookingWidget from '../components/BookingWidget';
 import MosaicGallery from '../components/MosaicGallery';
 import PageHero from '../components/PageHero';
 import {
-  bookingUrl,
   contact,
   experiences,
   images,
@@ -53,7 +53,7 @@ function SectionHeading({ eyebrow, title, text }) {
     <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
       <div>
         <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">{eyebrow}</p>
-        <h2 className="mt-4 max-w-3xl font-serif text-[2.45rem] leading-[1.05] text-graphite sm:text-[3.8rem]">
+        <h2 className="mt-4 max-w-3xl font-serif text-[2.35rem] leading-[1.05] text-graphite sm:text-[3.55rem]">
           {title}
         </h2>
       </div>
@@ -72,17 +72,19 @@ function HomePage() {
         subtitle="Accoglienza piemontese, relax e sport in un resort 4 stelle con 75 camere, SPA, ristorante, piscina, padel e sale meeting alle porte di Biella."
         priority
         align="center"
-        minHeight="min-h-[92svh]"
+        minHeight="min-h-[84svh]"
         actions={
           <>
-            <PrimaryCta href={bookingUrl} external>Prenota</PrimaryCta>
+            <PrimaryCta to="/#booking">Prenota</PrimaryCta>
             <SecondaryCta href={`tel:${contact.phone.replace(/\s+/g, '')}`}>Chiama</SecondaryCta>
             <SecondaryCta to="/offerte">Offerte</SecondaryCta>
           </>
         }
       />
 
-      <section data-reveal className="reveal-scroll -mt-8 grid gap-3 bg-ivory p-3 shadow-soft sm:grid-cols-2 lg:grid-cols-4">
+      <BookingWidget className="-mt-10" />
+
+      <section data-reveal className="reveal-scroll grid gap-3 bg-ivory p-3 shadow-soft sm:grid-cols-2 lg:grid-cols-4">
         {quickFacts.map((fact) => (
           <div key={fact.label} className="border border-black/10 bg-white px-5 py-5">
             <p className="font-serif text-[2.2rem] leading-none text-bronze">{fact.value}</p>
@@ -93,18 +95,28 @@ function HomePage() {
 
       <section data-reveal className="reveal-scroll relative grid gap-10 overflow-hidden lg:grid-cols-[0.96fr_1.04fr] lg:items-center">
         <img
-          src={images.logo.mark}
+          src={images.logo.mark.src}
           alt=""
+          width={images.logo.mark.width}
+          height={images.logo.mark.height}
           aria-hidden="true"
           className="pointer-events-none absolute -right-10 top-4 hidden w-56 opacity-[0.06] lg:block"
         />
         <div className="relative min-h-[28rem] overflow-hidden bg-graphite">
-          <img src={images.welcome.src} alt={images.welcome.alt} className="h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img
+            src={images.welcome.src}
+            alt={images.welcome.alt}
+            width={images.welcome.width}
+            height={images.welcome.height}
+            className="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
           <div className="glass-image-overlay absolute inset-0" />
         </div>
         <div>
           <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">Un resort, tante esperienze</p>
-          <h2 className="mt-4 font-serif text-[2.55rem] leading-[1.05] text-graphite sm:text-[4rem]">
+          <h2 className="mt-4 font-serif text-[2.45rem] leading-[1.05] text-graphite sm:text-[3.75rem]">
             Il tempo buono di un soggiorno completo.
           </h2>
           <div className="mt-7 space-y-5 font-body text-base leading-8 text-body">
@@ -134,15 +146,26 @@ function HomePage() {
         />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {rooms.slice(0, 6).map((room) => (
-            <article key={room.name} className="group border border-black/10 bg-white p-6 transition-transform duration-500 hover:-translate-y-1">
-              <h3 className="font-serif text-[1.9rem] leading-tight text-graphite">{room.name}</h3>
-              <p className="mt-4 font-body text-sm leading-7 text-body">{room.summary}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {room.details.map((detail) => (
-                  <span key={detail} className="border border-black/10 px-3 py-2 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-body">
-                    {detail}
-                  </span>
-                ))}
+            <article key={room.name} className="group overflow-hidden border border-black/10 bg-white transition-transform duration-500 hover:-translate-y-1">
+              <img
+                src={room.image.src}
+                alt={room.image.alt}
+                width={room.image.width}
+                height={room.image.height}
+                className="aspect-[4/3] w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="p-6">
+                <h3 className="font-serif text-[1.9rem] leading-tight text-graphite">{room.name}</h3>
+                <p className="mt-4 font-body text-sm leading-7 text-body">{room.summary}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {room.details.map((detail) => (
+                    <span key={detail} className="border border-black/10 px-3 py-2 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-body">
+                      {detail}
+                    </span>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
@@ -161,6 +184,8 @@ function HomePage() {
               <img
                 src={item.image.src}
                 alt={item.image.alt}
+                width={item.image.width}
+                height={item.image.height}
                 style={{ objectPosition: item.image.objectPosition || 'center center' }}
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
                 loading="lazy"
@@ -169,8 +194,8 @@ function HomePage() {
               <div className="hero-readable-overlay absolute inset-0" />
               <div className="relative flex h-full min-h-[31rem] flex-col justify-end p-6">
                 <h3 className="font-serif text-[2.05rem] leading-tight">{item.title}</h3>
-                <p className="mt-4 font-body text-sm leading-7 text-white/82">{item.text}</p>
-                <span className="mt-6 inline-flex self-start border border-white/40 px-4 py-2 font-ui text-xs font-semibold uppercase tracking-[0.12em] transition-colors group-hover:bg-white group-hover:text-sage">
+                <p className="mt-4 font-body text-sm leading-7 text-white/88">{item.text}</p>
+                <span className="mt-6 inline-flex self-start border border-white/45 px-4 py-2 font-ui text-xs font-semibold uppercase tracking-[0.12em] transition-colors group-hover:bg-white group-hover:text-sage">
                   Scopri
                 </span>
               </div>
@@ -181,14 +206,14 @@ function HomePage() {
 
       <section data-reveal className="reveal-scroll grid gap-8 bg-sage px-6 py-10 text-white sm:px-10 lg:grid-cols-[0.82fr_1.18fr] lg:px-14">
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white/64">Servizi inclusi e plus</p>
-          <h2 className="mt-4 font-serif text-[2.45rem] leading-[1.05] sm:text-[3.8rem]">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white/82">Servizi inclusi e plus</p>
+          <h2 className="mt-4 font-serif text-[2.35rem] leading-[1.05] sm:text-[3.55rem]">
             Tutto quello che serve, con discrezione.
           </h2>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           {services.map((service) => (
-            <div key={service} className="border border-white/16 bg-white/8 px-4 py-4 font-body text-sm leading-6 text-white/84">
+            <div key={service} className="border border-white/16 bg-white/8 px-4 py-4 font-body text-sm leading-6 text-white/90">
               {service}
             </div>
           ))}
@@ -228,7 +253,15 @@ function HomePage() {
           </div>
         </div>
         <div className="relative min-h-[32rem] overflow-hidden bg-graphite">
-          <img src={images.pool.src} alt={images.pool.alt} className="h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img
+            src={images.pool.src}
+            alt={images.pool.alt}
+            width={images.pool.width}
+            height={images.pool.height}
+            className="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
           <div className="glass-image-overlay absolute inset-0" />
         </div>
       </section>
@@ -237,7 +270,7 @@ function HomePage() {
         <SectionHeading
           eyebrow="Galleria"
           title="Il relais, in immagini reali."
-          text="Una selezione di fotografie ufficiali racconta struttura, camere, SPA, cucina, sport e spazi per eventi con un taglio più ordinato e contemporaneo."
+          text="Una selezione di fotografie ufficiali racconta struttura, camere, SPA, cucina, sport e spazi per eventi con un taglio ordinato e contemporaneo."
         />
         <MosaicGallery
           images={images.gallery}
