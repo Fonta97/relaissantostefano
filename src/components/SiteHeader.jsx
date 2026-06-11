@@ -199,22 +199,22 @@ function SiteHeader() {
             role="dialog"
             aria-modal="true"
             aria-label={content.header.drawerLabel}
-            className="menu-panel-enter absolute inset-y-0 left-0 grid w-full overflow-y-auto bg-espresso text-ivory shadow-[0_24px_90px_rgba(0,0,0,0.34)] lg:grid-cols-[0.86fr_1.14fr]"
+            className="menu-panel-enter absolute inset-y-0 left-0 grid h-[100dvh] w-full overflow-hidden bg-espresso text-ivory shadow-[0_24px_90px_rgba(0,0,0,0.34)] lg:grid-cols-[0.86fr_1.14fr]"
             onClick={(event) => event.stopPropagation()}
             tabIndex={-1}
           >
-            <div className="menu-media-enter relative hidden min-h-full overflow-hidden lg:block">
+            <div className="menu-media-enter relative hidden h-[100dvh] min-h-0 overflow-hidden lg:block">
               <img
                 src={images.welcome.src}
                 alt={images.welcome.alt}
                 width={images.welcome.width}
                 height={images.welcome.height}
-                className="h-full min-h-screen w-full object-cover opacity-78"
+                className="h-full w-full object-cover opacity-78"
               />
               <div className="hero-readable-overlay absolute inset-0" />
             </div>
 
-            <div className="menu-content-enter flex min-h-screen flex-col p-6 sm:p-10 lg:p-12">
+            <div className="menu-content-enter menu-scroll-pane flex h-[100dvh] min-h-0 flex-col overflow-y-auto p-6 sm:p-10 lg:p-12">
               <div className="flex items-start justify-between gap-6">
                 <img
                   src={images.logo.light.src}

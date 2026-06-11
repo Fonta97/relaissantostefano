@@ -276,6 +276,26 @@ select:focus-visible {
   animation-delay: var(--menu-link-delay, 160ms);
 }
 
+.menu-scroll-pane {
+  overscroll-behavior: contain;
+  scrollbar-color: #b2935b rgba(244, 239, 231, 0.08);
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+
+.menu-scroll-pane::-webkit-scrollbar {
+  width: 10px;
+}
+
+.menu-scroll-pane::-webkit-scrollbar-track {
+  background: rgba(244, 239, 231, 0.08);
+}
+
+.menu-scroll-pane::-webkit-scrollbar-thumb {
+  border: 3px solid #140f0d;
+  background: linear-gradient(180deg, #b2935b, #7c3233);
+}
+
 @keyframes editorial-reveal {
   from {
     opacity: 0;
