@@ -49,13 +49,13 @@ function NumberStepper({ id, label, value, min, max, onChange, error, descriptio
       <label htmlFor={id} className="booking-label">
         {label}
       </label>
-      <div className="mt-2 grid grid-cols-[2.75rem_1fr_2.75rem] overflow-hidden border border-black/10 bg-white">
+      <div className="mt-2 grid grid-cols-[2.75rem_1fr_2.75rem] overflow-hidden border border-[color:var(--booking-border)] bg-[var(--booking-field)]">
         <button
           type="button"
           onClick={decrement}
           disabled={value <= min}
           aria-label={`Diminuisci ${label.toLowerCase()}`}
-          className="h-12 border-r border-black/10 font-ui text-xl text-graphite transition-colors hover:bg-mist disabled:cursor-not-allowed disabled:opacity-35"
+          className="h-12 border-r border-[color:var(--booking-border)] font-ui text-xl text-[var(--booking-text)] transition-colors hover:bg-[var(--booking-hover)] disabled:cursor-not-allowed disabled:opacity-35"
         >
           -
         </button>
@@ -68,25 +68,25 @@ function NumberStepper({ id, label, value, min, max, onChange, error, descriptio
           onChange={(event) => onChange(Number(event.target.value))}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? `${id}-error` : description ? `${id}-description` : undefined}
-          className="h-12 w-full appearance-none border-0 bg-white text-center font-ui text-sm font-semibold text-graphite outline-none"
+          className="h-12 w-full appearance-none border-0 bg-transparent text-center font-ui text-sm font-semibold text-[var(--booking-text)] outline-none"
         />
         <button
           type="button"
           onClick={increment}
           disabled={value >= max}
           aria-label={`Aumenta ${label.toLowerCase()}`}
-          className="h-12 border-l border-black/10 font-ui text-xl text-graphite transition-colors hover:bg-mist disabled:cursor-not-allowed disabled:opacity-35"
+          className="h-12 border-l border-[color:var(--booking-border)] font-ui text-xl text-[var(--booking-text)] transition-colors hover:bg-[var(--booking-hover)] disabled:cursor-not-allowed disabled:opacity-35"
         >
           +
         </button>
       </div>
       {description && !error ? (
-        <p id={`${id}-description`} className="mt-2 font-body text-xs leading-5 text-body">
+        <p id={`${id}-description`} className="mt-2 font-body text-xs leading-5 text-[var(--booking-muted)]">
           {description}
         </p>
       ) : null}
       {error ? (
-        <p id={`${id}-error`} className="mt-2 font-body text-xs font-semibold text-bronze">
+        <p id={`${id}-error`} className="mt-2 font-body text-xs font-semibold text-bronze-light">
           {error}
         </p>
       ) : null}
@@ -183,31 +183,33 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
   };
 
   const shellClasses = isCompact
-    ? 'border border-black/10 bg-white p-5 shadow-soft sm:p-6'
-    : 'relative z-20 border border-black/10 bg-ivory p-4 shadow-soft sm:p-6 lg:p-7';
+    ? 'border border-black/10 bg-mist p-5 text-graphite shadow-soft sm:p-6'
+    : 'relative z-20 border border-white/12 bg-espresso p-4 text-ivory shadow-editorial sm:p-6 lg:p-7';
+  const toneClasses = isCompact
+    ? '[--booking-border:rgba(32,25,22,0.14)] [--booking-field:rgba(255,255,255,0.82)] [--booking-hover:rgba(178,147,91,0.12)] [--booking-muted:#5F5852] [--booking-text:#201916]'
+    : '[--booking-border:rgba(244,239,231,0.22)] [--booking-field:rgba(244,239,231,0.07)] [--booking-hover:rgba(244,239,231,0.12)] [--booking-muted:rgba(244,239,231,0.68)] [--booking-text:#F4EFE7]';
 
   return (
     <section
       id={id}
-      data-reveal={!isCompact ? 'true' : undefined}
-      className={`${!isCompact ? 'reveal-scroll' : ''} ${shellClasses} ${className}`}
+      className={`${shellClasses} ${toneClasses} ${className}`}
       aria-labelledby={`${formId}-title`}
       tabIndex={-1}
     >
       <div className={isCompact ? 'mb-5' : 'grid gap-5 lg:grid-cols-[0.62fr_1.38fr] lg:items-end'}>
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze-light">
             Prenota il soggiorno
           </p>
           <h2
             id={`${formId}-title`}
-            className={`${isCompact ? 'mt-2 text-[2rem]' : 'mt-3 text-[2.45rem] sm:text-[3.25rem]'} font-serif leading-[1.05] text-graphite`}
+            className={`${isCompact ? 'mt-2 text-[2rem] text-graphite' : 'mt-3 text-[2.45rem] text-ivory sm:text-[3.25rem]'} font-serif font-medium leading-[0.98]`}
           >
             Date, ospiti e disponibilità.
           </h2>
         </div>
         {!isCompact ? (
-          <p className="max-w-3xl font-body text-sm leading-7 text-body lg:justify-self-end">
+          <p className="max-w-3xl font-body text-sm leading-7 text-ivory/72 lg:justify-self-end">
             Compila i dati: la verifica di disponibilità e tariffe avviene direttamente sul motore
             SimpleBooking del Relais Santo Stefano.
           </p>
@@ -218,7 +220,7 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
         <div
           ref={firstErrorRef}
           tabIndex={-1}
-          className="mt-5 border border-bronze/40 bg-white px-4 py-3 font-body text-sm leading-6 text-bronze"
+          className="mt-5 border border-bronze/40 bg-white px-4 py-3 font-body text-sm leading-6 text-bordeaux"
           role="alert"
         >
           Controlla i campi evidenziati prima di verificare la disponibilità.
@@ -241,10 +243,10 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
             onChange={(event) => updateCheckIn(event.target.value)}
             aria-invalid={Boolean(errors.checkIn)}
             aria-describedby={errors.checkIn ? `${formId}-check-in-error` : undefined}
-            className="mt-2 h-12 w-full border border-black/10 bg-white px-3 font-ui text-sm font-semibold text-graphite"
+            className="mt-2 h-12 w-full border border-[color:var(--booking-border)] bg-[var(--booking-field)] px-3 font-ui text-sm font-semibold text-[var(--booking-text)]"
           />
           {errors.checkIn ? (
-            <p id={`${formId}-check-in-error`} className="mt-2 font-body text-xs font-semibold text-bronze">
+            <p id={`${formId}-check-in-error`} className="mt-2 font-body text-xs font-semibold text-bronze-light">
               {errors.checkIn}
             </p>
           ) : null}
@@ -262,10 +264,10 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
             onChange={(event) => setCheckOut(event.target.value)}
             aria-invalid={Boolean(errors.checkOut)}
             aria-describedby={errors.checkOut ? `${formId}-check-out-error` : undefined}
-            className="mt-2 h-12 w-full border border-black/10 bg-white px-3 font-ui text-sm font-semibold text-graphite"
+            className="mt-2 h-12 w-full border border-[color:var(--booking-border)] bg-[var(--booking-field)] px-3 font-ui text-sm font-semibold text-[var(--booking-text)]"
           />
           {errors.checkOut ? (
-            <p id={`${formId}-check-out-error`} className="mt-2 font-body text-xs font-semibold text-bronze">
+            <p id={`${formId}-check-out-error`} className="mt-2 font-body text-xs font-semibold text-bronze-light">
               {errors.checkOut}
             </p>
           ) : null}
@@ -302,26 +304,26 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
             value={promoCode}
             onChange={(event) => setPromoCode(event.target.value)}
             placeholder="Opzionale"
-            className="mt-2 h-12 w-full border border-black/10 bg-white px-3 font-ui text-sm font-semibold uppercase text-graphite placeholder:normal-case placeholder:text-body/60"
+            className="mt-2 h-12 w-full border border-[color:var(--booking-border)] bg-[var(--booking-field)] px-3 font-ui text-sm font-semibold uppercase text-[var(--booking-text)] placeholder:normal-case placeholder:text-[var(--booking-muted)]"
           />
         </div>
 
         <div className={`${isCompact ? 'flex flex-col gap-3 sm:flex-row' : 'xl:pt-7'} min-w-0`}>
           <button
             type="submit"
-            className="inline-flex h-12 w-full items-center justify-center border border-bronze bg-bronze px-5 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage xl:w-auto"
+            className="inline-flex h-12 w-full items-center justify-center border border-bronze bg-bronze px-5 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light xl:w-auto"
           >
             Prenota
           </button>
         </div>
       </form>
 
-      <div className="mt-5 flex flex-wrap items-center gap-3 font-ui text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-body">
-        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="hover:text-bronze">
+      <div className="mt-5 flex flex-wrap items-center gap-3 font-ui text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-[var(--booking-muted)]">
+        <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="editorial-link hover:text-bronze-light">
           Apri booking engine
         </a>
         <span aria-hidden="true">/</span>
-        <a href={bookingManageUrl} target="_blank" rel="noopener noreferrer" className="hover:text-bronze">
+        <a href={bookingManageUrl} target="_blank" rel="noopener noreferrer" className="editorial-link hover:text-bronze-light">
           Modifica/cancella prenotazione
         </a>
       </div>
@@ -392,7 +394,7 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
                 href={bookingResultUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center border border-bronze bg-bronze px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-sage"
+                className="inline-flex items-center justify-center border border-bronze bg-bronze px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light"
               >
                 Apri disponibilita
               </a>
@@ -409,7 +411,7 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
                   ref={closeButtonRef}
                   type="button"
                   onClick={closeModal}
-                  className="inline-flex items-center justify-center border border-sage bg-sage px-4 py-3 font-ui text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-bronze"
+                  className="inline-flex items-center justify-center border border-espresso bg-espresso px-4 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-bordeaux"
                 >
                   Chiudi
                 </button>

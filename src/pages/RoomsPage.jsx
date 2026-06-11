@@ -17,13 +17,13 @@ function RoomsPage() {
           <>
             <a
               href="#booking-rooms"
-              className="inline-flex justify-center border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage"
+              className="inline-flex justify-center border border-bronze bg-bronze px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-espresso transition-colors hover:bg-bronze-light"
             >
               Verifica disponibilità
             </a>
             <Link
               to="/contatti"
-              className="inline-flex justify-center border border-white/45 px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white hover:bg-white/14"
+              className="inline-flex justify-center border border-white/45 px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white hover:bg-white hover:text-espresso"
             >
               Richiedi informazioni
             </Link>
@@ -35,8 +35,8 @@ function RoomsPage() {
 
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">Soggiornare</p>
-          <h2 className="mt-4 font-serif text-[2.45rem] leading-[1.05] text-graphite sm:text-[3.7rem]">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze">Soggiornare</p>
+          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.94] text-graphite sm:text-[5.1rem]">
             Camere luminose, servizi chiari, affacci sui giardini.
           </h2>
         </div>
@@ -50,11 +50,11 @@ function RoomsPage() {
         </div>
       </section>
 
-      <section data-reveal className="reveal-scroll grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <section data-reveal className="reveal-scroll grid gap-px bg-espresso/12 p-px md:grid-cols-2 xl:grid-cols-3">
         {rooms.map((room, index) => (
           <article
             key={room.name}
-            className="group overflow-hidden border border-black/10 bg-white transition-transform duration-500 hover:-translate-y-1"
+            className="group overflow-hidden bg-mist transition-transform duration-700 hover:-translate-y-1"
             style={{ '--reveal-delay': `${index * 70}ms` }}
           >
             <img
@@ -62,7 +62,7 @@ function RoomsPage() {
               alt={room.image.alt}
               width={room.image.width}
               height={room.image.height}
-              className="aspect-[4/3] w-full object-cover"
+              className="image-breathe aspect-[4/3] w-full object-cover"
               loading="lazy"
               decoding="async"
             />
@@ -70,7 +70,7 @@ function RoomsPage() {
               <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-bronze">
                 {String(index + 1).padStart(2, '0')}
               </p>
-              <h3 className="mt-3 font-serif text-[2rem] leading-tight text-graphite">{room.name}</h3>
+              <h3 className="mt-3 font-serif text-[2.3rem] font-medium leading-tight text-graphite">{room.name}</h3>
               <p className="mt-4 font-body text-sm leading-7 text-body">{room.summary}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {room.details.map((detail) => (
@@ -81,7 +81,7 @@ function RoomsPage() {
               </div>
               <a
                 href="#booking-rooms"
-                className="mt-6 inline-flex border border-bronze bg-bronze px-4 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage"
+                className="mt-6 inline-flex border border-bronze bg-bronze px-4 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light"
               >
                 Prenota ora
               </a>
@@ -90,10 +90,10 @@ function RoomsPage() {
         ))}
       </section>
 
-      <section data-reveal className="reveal-scroll grid gap-8 bg-sage px-6 py-10 text-white sm:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:px-14">
+      <section data-reveal className="reveal-scroll grid gap-8 bg-espresso px-6 py-12 text-white shadow-editorial sm:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:px-14">
         <div>
           <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white/82">Spa Suite</p>
-          <h2 className="mt-4 font-serif text-[2.35rem] leading-[1.05] sm:text-[3.55rem]">
+          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.95] sm:text-[5rem]">
             Mini SPA privata per soggiorni più intimi.
           </h2>
           <img
@@ -123,13 +123,13 @@ function RoomsPage() {
       <section data-reveal className="reveal-scroll space-y-8">
         <div>
           <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">Servizi camera e resort</p>
-          <h2 className="mt-4 font-serif text-[2.35rem] leading-[1.05] text-graphite sm:text-[3.55rem]">
+          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.95] text-graphite sm:text-[5rem]">
             Comfort essenziale, plus concreti.
           </h2>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
-            <div key={service} className="border border-black/10 bg-white px-4 py-4 font-body text-sm leading-6 text-body">
+            <div key={service} className="border border-black/10 bg-mist px-4 py-4 font-body text-sm leading-6 text-body">
               {service}
             </div>
           ))}

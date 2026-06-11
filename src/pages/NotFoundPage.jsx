@@ -13,7 +13,7 @@ function NotFoundPage() {
         </p>
         <Link
           to="/"
-          className="mt-8 inline-flex border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage"
+          className="mt-8 inline-flex border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light"
         >
           Vai alla home
         </Link>

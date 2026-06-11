@@ -14,13 +14,13 @@ function OffersPage() {
           <>
             <a
               href={`mailto:${contact.email}`}
-              className="inline-flex justify-center border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage"
+              className="inline-flex justify-center border border-bronze bg-bronze px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-espresso transition-colors hover:bg-bronze-light"
             >
               Chiedi informazioni
             </a>
             <a
               href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-              className="inline-flex justify-center border border-white/45 px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white hover:bg-white/14"
+              className="inline-flex justify-center border border-white/45 px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white hover:bg-white hover:text-espresso"
             >
               Chiama
             </a>
@@ -30,8 +30,8 @@ function OffersPage() {
 
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">Pacchetti</p>
-          <h2 className="mt-4 font-serif text-[2.45rem] leading-[1.05] text-graphite sm:text-[3.7rem]">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze">Pacchetti</p>
+          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.94] text-graphite sm:text-[5.1rem]">
             Soggiorni romantici, benessere e gift card.
           </h2>
         </div>
@@ -42,9 +42,9 @@ function OffersPage() {
 
       <section data-reveal className="reveal-scroll grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {offers.map((offer) => (
-          <article key={offer.title} className="border border-black/10 bg-white p-6">
+          <article key={offer.title} className="border border-black/10 bg-mist p-6 transition-colors hover:border-bronze/60">
             <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-bronze">{offer.price}</p>
-            <h3 className="mt-4 font-serif text-[2rem] leading-tight text-graphite">{offer.title}</h3>
+            <h3 className="mt-4 font-serif text-[2.25rem] font-medium leading-tight text-graphite">{offer.title}</h3>
             <p className="mt-5 font-body text-sm leading-7 text-body">{offer.text}</p>
             <a
               href={`mailto:${contact.email}?subject=${encodeURIComponent(`Richiesta offerta ${offer.title}`)}`}
@@ -56,8 +56,8 @@ function OffersPage() {
         ))}
       </section>
 
-      <section data-reveal className="reveal-scroll bg-sage px-6 py-10 text-white sm:px-10 lg:px-14">
-        <p className="max-w-4xl font-serif text-[2.25rem] leading-[1.08] sm:text-[3.15rem]">
+      <section data-reveal className="reveal-scroll bg-espresso px-6 py-12 text-white shadow-editorial sm:px-10 lg:px-14">
+        <p className="max-w-5xl font-serif text-[3rem] font-medium leading-[0.98] sm:text-[5rem]">
           Date flessibili o regalo personalizzato? Il relais può confermare condizioni, disponibilità e integrazioni del soggiorno.
         </p>
       </section>

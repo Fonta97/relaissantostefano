@@ -24,7 +24,7 @@ function ConsentNotice({ copy }) {
 
   return (
     <aside
-      className="fixed inset-x-3 bottom-3 z-[45] border border-white/16 bg-sage p-4 text-white shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:left-auto sm:max-w-lg sm:p-5"
+      className="fixed inset-x-3 bottom-3 z-[45] border border-bronze/30 bg-espresso p-4 text-white shadow-editorial sm:left-auto sm:max-w-lg sm:p-5"
       role="region"
       aria-labelledby="cookie-notice-title"
     >
@@ -38,7 +38,7 @@ function ConsentNotice({ copy }) {
         <button
           type="button"
           onClick={handleAccept}
-          className="border border-white bg-white px-4 py-2.5 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-sage transition-colors hover:bg-ivory sm:px-5 sm:py-3"
+          className="border border-bronze bg-bronze px-4 py-2.5 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light sm:px-5 sm:py-3"
         >
           {copy.accept}
         </button>
@@ -46,7 +46,7 @@ function ConsentNotice({ copy }) {
           href="/privacy.html"
           target="_blank"
           rel="noreferrer"
-          className="border border-white/24 px-4 py-2.5 font-ui text-xs font-semibold uppercase tracking-[0.14em] transition-colors hover:bg-white/10 sm:px-5 sm:py-3"
+          className="border border-white/24 px-4 py-2.5 font-ui text-xs font-semibold uppercase tracking-[0.16em] transition-colors hover:bg-white hover:text-espresso sm:px-5 sm:py-3"
         >
           {copy.privacy}
         </a>

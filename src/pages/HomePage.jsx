@@ -16,7 +16,7 @@ import {
 
 function PrimaryCta({ to, href, children, external = false }) {
   const className =
-    'inline-flex justify-center border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage';
+    'inline-flex justify-center border border-bronze bg-bronze px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-espresso transition-colors hover:bg-bronze-light';
 
   if (href) {
     return (
@@ -35,7 +35,7 @@ function PrimaryCta({ to, href, children, external = false }) {
 
 function SecondaryCta({ to, href, children, external = false }) {
   const className =
-    'inline-flex justify-center border border-white/45 px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white/14';
+    'inline-flex justify-center border border-white/42 px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:bg-white hover:text-espresso';
 
   if (href) {
     return (
@@ -50,10 +50,10 @@ function SecondaryCta({ to, href, children, external = false }) {
 
 function SectionHeading({ eyebrow, title, text }) {
   return (
-    <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+    <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
       <div>
-        <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">{eyebrow}</p>
-        <h2 className="mt-4 max-w-3xl font-serif text-[2.35rem] leading-[1.05] text-graphite sm:text-[3.55rem]">
+        <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze">{eyebrow}</p>
+        <h2 className="mt-4 max-w-4xl font-serif text-[3rem] font-medium leading-[0.92] text-graphite sm:text-[5.2rem]">
           {title}
         </h2>
       </div>
@@ -67,12 +67,12 @@ function HomePage() {
     <>
       <PageHero
         image={images.hero}
-        eyebrow="A place to live"
-        title="Relais Santo Stefano"
-        subtitle="Accoglienza piemontese, relax e sport in un resort 4 stelle con 75 camere, SPA, ristorante, piscina, padel e sale meeting alle porte di Biella."
+        eyebrow="Accoglienza piemontese, relax e sport"
+        title="A place to live"
+        subtitle="Un resort 4 stelle ai piedi delle Alpi Biellesi, circondato da ampi spazi verdi, con piscina, campi da padel, SPA, cucina ricercata e vini del territorio."
         priority
         align="center"
-        minHeight="min-h-[84svh]"
+        minHeight="min-h-[92svh]"
         actions={
           <>
             <PrimaryCta to="/#booking">Prenota</PrimaryCta>
@@ -82,18 +82,18 @@ function HomePage() {
         }
       />
 
-      <BookingWidget className="-mt-10" />
+      <BookingWidget className="-mt-24 sm:-mt-28" />
 
-      <section data-reveal className="reveal-scroll grid gap-3 bg-ivory p-3 shadow-soft sm:grid-cols-2 lg:grid-cols-4">
+      <section data-reveal className="reveal-scroll editorial-rule grid gap-px bg-espresso/10 p-px sm:grid-cols-2 lg:grid-cols-4">
         {quickFacts.map((fact) => (
-          <div key={fact.label} className="border border-black/10 bg-white px-5 py-5">
-            <p className="font-serif text-[2.2rem] leading-none text-bronze">{fact.value}</p>
-            <p className="mt-2 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-body">{fact.label}</p>
+          <div key={fact.label} className="bg-mist px-5 py-6 sm:px-7">
+            <p className="font-serif text-[3rem] font-medium leading-none text-bronze">{fact.value}</p>
+            <p className="mt-3 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-body">{fact.label}</p>
           </div>
         ))}
       </section>
 
-      <section data-reveal className="reveal-scroll relative grid gap-10 overflow-hidden lg:grid-cols-[0.96fr_1.04fr] lg:items-center">
+      <section data-reveal className="reveal-scroll relative grid gap-10 overflow-hidden lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <img
           src={images.logo.mark.src}
           alt=""
@@ -102,36 +102,36 @@ function HomePage() {
           aria-hidden="true"
           className="pointer-events-none absolute -right-10 top-4 hidden w-56 opacity-[0.06] lg:block"
         />
-        <div className="relative min-h-[28rem] overflow-hidden bg-graphite">
+        <div className="group relative min-h-[34rem] overflow-hidden bg-graphite shadow-editorial">
           <img
             src={images.welcome.src}
             alt={images.welcome.alt}
             width={images.welcome.width}
             height={images.welcome.height}
-            className="h-full w-full object-cover"
+            className="image-breathe h-full w-full object-cover"
             loading="lazy"
             decoding="async"
           />
           <div className="glass-image-overlay absolute inset-0" />
         </div>
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">Un resort, tante esperienze</p>
-          <h2 className="mt-4 font-serif text-[2.45rem] leading-[1.05] text-graphite sm:text-[3.75rem]">
-            Il tempo buono di un soggiorno completo.
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze">Un resort, tante esperienze</p>
+          <h2 className="mt-4 font-serif text-[3.1rem] font-medium leading-[0.94] text-graphite sm:text-[5.4rem]">
+            Benvenuto al tempo buono.
           </h2>
           <div className="mt-7 space-y-5 font-body text-base leading-8 text-body">
             <p>
-              Relais Santo Stefano è una struttura 4 stelle a Sandigliano, immersa nel verde e pensata per chi desidera un luogo da vivere: camera, SPA, ristorante, piscina, sport e territorio.
+              Un posto da vivere con tutto quello di cui hai bisogno: camere affacciate sul verde, una SPA curata, una cucina ricercata, piscina, padel e spazi per incontrarsi.
             </p>
             <p>
-              L’esperienza resta concreta: 75 camere, Wi-Fi gratuito, parcheggio esterno, palestra Technogym, piscina estiva e spazi per soggiorni leisure, business ed eventi.
+              La location resta concreta e riservata: alle porte di Biella, ai piedi delle Alpi Biellesi, con servizi per soggiorni leisure, business, sport ed eventi.
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/camere-suite" className="border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage">
+            <Link to="/camere-suite" className="border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light">
               Scopri le camere
             </Link>
-            <a href={`mailto:${contact.email}`} className="border border-black/10 px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] transition-colors hover:border-bronze hover:text-bronze">
+            <a href={`mailto:${contact.email}`} className="border border-black/14 px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] transition-colors hover:border-bronze hover:text-bronze">
               Scrivici
             </a>
           </div>
@@ -141,27 +141,27 @@ function HomePage() {
       <section data-reveal className="reveal-scroll space-y-8">
         <SectionHeading
           eyebrow="Camere & Suite"
-          title="Riposo, affacci sul verde e soluzioni per ogni soggiorno."
-          text="Dalla singola alle Spa Suite, ogni tipologia risponde a un’esigenza diversa: business, coppia, famiglia, wellness o viaggio sportivo."
+          title="Un dolce riposo, sempre affacciato sul verde."
+          text="Con 75 camere di diverse tipologie, ogni soggiorno trova la sua misura: business, coppia, famiglia, wellness o viaggio sportivo. Wi-Fi gratuito e comfort essenziali accompagnano ogni scelta."
         />
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-px bg-espresso/12 p-px md:grid-cols-2 xl:grid-cols-3">
           {rooms.slice(0, 6).map((room) => (
-            <article key={room.name} className="group overflow-hidden border border-black/10 bg-white transition-transform duration-500 hover:-translate-y-1">
+            <article key={room.name} className="group overflow-hidden bg-mist transition-transform duration-700 hover:-translate-y-1">
               <img
                 src={room.image.src}
                 alt={room.image.alt}
                 width={room.image.width}
                 height={room.image.height}
-                className="aspect-[4/3] w-full object-cover"
+                className="image-breathe aspect-[4/3] w-full object-cover"
                 loading="lazy"
                 decoding="async"
               />
-              <div className="p-6">
-                <h3 className="font-serif text-[1.9rem] leading-tight text-graphite">{room.name}</h3>
+              <div className="p-6 sm:p-7">
+                <h3 className="font-serif text-[2.25rem] font-medium leading-tight text-graphite">{room.name}</h3>
                 <p className="mt-4 font-body text-sm leading-7 text-body">{room.summary}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {room.details.map((detail) => (
-                    <span key={detail} className="border border-black/10 px-3 py-2 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-body">
+                    <span key={detail} className="border border-black/10 px-3 py-2 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-body">
                       {detail}
                     </span>
                   ))}
@@ -175,8 +175,8 @@ function HomePage() {
       <section data-reveal className="reveal-scroll space-y-8">
         <SectionHeading
           eyebrow="Esperienze"
-          title="Benessere, cucina, sport e lavoro nello stesso luogo."
-          text="Ogni area ha un’identità chiara: la SPA per ricaricarsi, il ristorante per gustare il territorio, lo sport per muoversi e le sale per incontrarsi."
+          title="SPA, cucina, sport e lavoro: un solo indirizzo."
+          text="Ogni area ha un'identita chiara: ricaricarsi, gustare il territorio, muoversi e incontrarsi senza uscire dal ritmo del relais."
         />
         <div className="grid gap-4 lg:grid-cols-4">
           {experiences.map((item) => (
@@ -187,15 +187,15 @@ function HomePage() {
                 width={item.image.width}
                 height={item.image.height}
                 style={{ objectPosition: item.image.objectPosition || 'center center' }}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
+                className="image-breathe absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
                 decoding="async"
               />
               <div className="hero-readable-overlay absolute inset-0" />
               <div className="relative flex h-full min-h-[31rem] flex-col justify-end p-6">
-                <h3 className="font-serif text-[2.05rem] leading-tight">{item.title}</h3>
+                <h3 className="font-serif text-[2.45rem] font-medium leading-tight">{item.title}</h3>
                 <p className="mt-4 font-body text-sm leading-7 text-white/88">{item.text}</p>
-                <span className="mt-6 inline-flex self-start border border-white/45 px-4 py-2 font-ui text-xs font-semibold uppercase tracking-[0.12em] transition-colors group-hover:bg-white group-hover:text-sage">
+                <span className="mt-6 inline-flex self-start border border-white/45 px-4 py-2 font-ui text-xs font-semibold uppercase tracking-[0.16em] transition-colors group-hover:bg-white group-hover:text-espresso">
                   Scopri
                 </span>
               </div>
@@ -204,16 +204,16 @@ function HomePage() {
         </div>
       </section>
 
-      <section data-reveal className="reveal-scroll grid gap-8 bg-sage px-6 py-10 text-white sm:px-10 lg:grid-cols-[0.82fr_1.18fr] lg:px-14">
+      <section data-reveal className="reveal-scroll grid gap-8 bg-espresso px-6 py-12 text-white shadow-editorial sm:px-10 lg:grid-cols-[0.82fr_1.18fr] lg:px-14">
         <div>
           <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white/82">Servizi inclusi e plus</p>
-          <h2 className="mt-4 font-serif text-[2.35rem] leading-[1.05] sm:text-[3.55rem]">
+          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.95] sm:text-[5rem]">
             Tutto quello che serve, con discrezione.
           </h2>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
           {services.map((service) => (
-            <div key={service} className="border border-white/16 bg-white/8 px-4 py-4 font-body text-sm leading-6 text-white/90">
+            <div key={service} className="border border-white/14 bg-white/6 px-4 py-4 font-body text-sm leading-6 text-white/86">
               {service}
             </div>
           ))}
@@ -228,9 +228,9 @@ function HomePage() {
         />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {offers.map((offer) => (
-            <article key={offer.title} className="border border-black/10 bg-white p-6">
+            <article key={offer.title} className="border border-black/10 bg-mist p-6 transition-colors hover:border-bronze/60">
               <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-bronze">{offer.price}</p>
-              <h3 className="mt-3 font-serif text-[1.9rem] leading-tight text-graphite">{offer.title}</h3>
+              <h3 className="mt-3 font-serif text-[2.2rem] font-medium leading-tight text-graphite">{offer.title}</h3>
               <p className="mt-4 font-body text-sm leading-7 text-body">{offer.text}</p>
             </article>
           ))}
@@ -246,19 +246,19 @@ function HomePage() {
           />
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {territoryPlaces.map((place) => (
-              <p key={place} className="border border-black/10 bg-white px-4 py-4 font-body text-sm leading-6 text-body">
+              <p key={place} className="border border-black/10 bg-mist px-4 py-4 font-body text-sm leading-6 text-body">
                 {place}
               </p>
             ))}
           </div>
         </div>
-        <div className="relative min-h-[32rem] overflow-hidden bg-graphite">
+        <div className="group relative min-h-[32rem] overflow-hidden bg-graphite shadow-editorial">
           <img
             src={images.pool.src}
             alt={images.pool.alt}
             width={images.pool.width}
             height={images.pool.height}
-            className="h-full w-full object-cover"
+            className="image-breathe h-full w-full object-cover"
             loading="lazy"
             decoding="async"
           />

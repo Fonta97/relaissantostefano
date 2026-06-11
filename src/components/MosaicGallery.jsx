@@ -53,12 +53,12 @@ function MosaicGallery({
 
   return (
     <>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-px bg-espresso/12 p-px md:grid-cols-2 xl:grid-cols-4">
         {images.map((image, index) => (
           <button
             key={`${image.src}-${index}`}
             type="button"
-            className="group relative aspect-[4/3] overflow-hidden border border-black/10 bg-black/5 text-left transition-transform duration-500 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze"
+            className="group relative aspect-[4/3] overflow-hidden bg-black/5 text-left transition-transform duration-700 hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-bronze"
             onClick={() => setActiveIndex(index)}
             aria-label={`${openLabel}: ${image.caption || image.alt}`}
           >
@@ -69,12 +69,12 @@ function MosaicGallery({
               height={image.height}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
+              className="image-breathe h-full w-full object-cover"
               sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
             />
             {showCaptions ? (
               <>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/16 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/76 via-black/14 to-transparent" />
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <p className="font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white/88">
                     {title}
@@ -91,7 +91,7 @@ function MosaicGallery({
         ? createPortal(
             <div
               ref={dialogRef}
-              className="fixed inset-0 z-[200] h-[100dvh] w-screen overflow-hidden bg-black/92 backdrop-blur-md"
+              className="fixed inset-0 z-[200] h-[100dvh] w-screen overflow-hidden bg-espresso/96 backdrop-blur-md"
               role="dialog"
               aria-modal="true"
               aria-label={title}
@@ -111,7 +111,7 @@ function MosaicGallery({
                     type="button"
                     onClick={() => setActiveIndex(-1)}
                     aria-label={modalLabels.close}
-                    className="border border-white bg-white px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-black transition-colors hover:bg-ivory"
+                    className="border border-bronze bg-bronze px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light"
                   >
                     {modalLabels.close}
                   </button>

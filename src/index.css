@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color: #4c4a4b;
-  background: #f1e9e0;
+  color: #201916;
+  background: #e9dfd1;
   font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,8 +27,8 @@ body {
   min-width: 320px;
   overflow-x: hidden;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.66), rgba(241, 233, 224, 0.92)),
-    #f1e9e0;
+    linear-gradient(180deg, rgba(244, 239, 231, 0.96), rgba(233, 223, 209, 0.96)),
+    #e9dfd1;
 }
 
 #root {
@@ -54,31 +54,81 @@ select:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: 4px;
   box-shadow:
-    0 0 0 5px #4c4a4b,
-    0 0 0 8px #a74e49;
+    0 0 0 5px #201916,
+    0 0 0 8px #b2935b;
 }
 
 .hero-readable-overlay {
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3) 42%, rgba(0, 0, 0, 0.56)),
-    linear-gradient(90deg, rgba(124, 50, 51, 0.24), rgba(0, 0, 0, 0.06) 48%, rgba(76, 74, 75, 0.2));
+    linear-gradient(180deg, rgba(21, 17, 15, 0.16), rgba(21, 17, 15, 0.24) 42%, rgba(21, 17, 15, 0.66)),
+    linear-gradient(90deg, rgba(117, 51, 50, 0.26), rgba(21, 17, 15, 0.02) 48%, rgba(32, 25, 22, 0.26));
 }
 
 .glass-image-overlay {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 42%, rgba(0, 0, 0, 0.18)),
-    linear-gradient(90deg, rgba(124, 50, 51, 0.18), transparent 48%, rgba(171, 153, 141, 0.14));
+    linear-gradient(180deg, rgba(244, 239, 231, 0.06), transparent 42%, rgba(21, 17, 15, 0.22)),
+    linear-gradient(90deg, rgba(117, 51, 50, 0.18), transparent 48%, rgba(178, 147, 91, 0.12));
+}
+
+.editorial-rule {
+  position: relative;
+}
+
+.editorial-rule::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(178, 147, 91, 0.62), rgba(178, 147, 91, 0.08));
+}
+
+.editorial-link {
+  position: relative;
+}
+
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: -0.28rem;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: right;
+  background: currentColor;
+  transition: transform 520ms cubic-bezier(0.16, 0.84, 0.22, 1);
+}
+
+.editorial-link:hover::after,
+.editorial-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.image-breathe {
+  transform: scale(1.012);
+  transition:
+    transform 1400ms cubic-bezier(0.16, 0.84, 0.22, 1),
+    filter 900ms cubic-bezier(0.16, 0.84, 0.22, 1);
+}
+
+.group:hover .image-breathe,
+.image-breathe:hover {
+  transform: scale(1.055);
+  filter: saturate(0.92) contrast(1.02);
 }
 
 .booking-label {
   display: block;
   font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   line-height: 1.2;
   text-transform: uppercase;
-  color: #676767;
+  color: currentColor;
+  opacity: 0.68;
 }
 
 .booking-control input[type='number']::-webkit-outer-spin-button,
@@ -93,13 +143,13 @@ select:focus-visible {
 
 .reveal-fade {
   --reveal-delay: 0ms;
-  animation: editorial-reveal 920ms cubic-bezier(0.16, 0.84, 0.22, 1) both;
+  animation: editorial-reveal 1180ms cubic-bezier(0.16, 0.84, 0.22, 1) both;
   animation-delay: var(--reveal-delay);
 }
 
 .reveal-scroll {
-  --reveal-y: 14px;
-  opacity: 1;
+  --reveal-y: 26px;
+  opacity: 0.18;
   transform:
     translate(var(--tw-translate-x, 0), calc(var(--tw-translate-y, 0px) + var(--reveal-y)))
     rotate(var(--tw-rotate, 0))
@@ -107,10 +157,13 @@ select:focus-visible {
     skewY(var(--tw-skew-y, 0))
     scaleX(var(--tw-scale-x, 1))
     scaleY(var(--tw-scale-y, 1));
-  filter: none;
-  transition: transform 740ms cubic-bezier(0.16, 0.84, 0.22, 1);
+  filter: blur(4px);
+  transition:
+    opacity 980ms cubic-bezier(0.16, 0.84, 0.22, 1),
+    filter 900ms cubic-bezier(0.16, 0.84, 0.22, 1),
+    transform 980ms cubic-bezier(0.16, 0.84, 0.22, 1);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: transform;
+  will-change: transform, opacity, filter;
 }
 
 .reveal-scroll.reveal-visible {
@@ -120,14 +173,14 @@ select:focus-visible {
 }
 
 .hero-media-enter {
-  animation: hero-media-reveal 1200ms cubic-bezier(0.18, 0.86, 0.22, 1) both;
+  animation: hero-media-reveal 1800ms cubic-bezier(0.18, 0.86, 0.22, 1) both;
 }
 
 @keyframes editorial-reveal {
   from {
     opacity: 0;
-    transform: translate3d(0, 14px, 0);
-    filter: blur(5px);
+    transform: translate3d(0, 22px, 0);
+    filter: blur(6px);
   }
 
   to {
@@ -140,8 +193,8 @@ select:focus-visible {
 @keyframes hero-media-reveal {
   from {
     opacity: 0;
-    transform: scale(1.035);
-    filter: blur(7px);
+    transform: scale(1.055);
+    filter: blur(9px);
   }
 
   to {
@@ -153,7 +206,9 @@ select:focus-visible {
 
 @media (max-width: 767px) {
   .reveal-scroll {
-    --reveal-y: 16px;
+    --reveal-y: 18px;
+    opacity: 1;
+    filter: none;
   }
 }
 

@@ -5,8 +5,8 @@ import { contact, images } from '../lib/siteData';
 
 function ContactCard({ label, children }) {
   return (
-    <article className="border border-black/10 bg-white p-6">
-      <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-bronze">{label}</p>
+    <article className="border border-black/10 bg-mist p-6">
+      <p className="font-ui text-xs font-semibold uppercase tracking-[0.2em] text-bronze">{label}</p>
       <div className="mt-4 font-body text-base leading-8 text-body">{children}</div>
     </article>
   );
@@ -25,7 +25,7 @@ function ContactPage() {
           <>
             <Link
               to="/#booking"
-              className="inline-flex justify-center border border-bronze bg-bronze px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-sage"
+              className="inline-flex justify-center border border-bronze bg-bronze px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-espresso transition-colors hover:bg-bronze-light"
             >
               Prenota soggiorno
             </Link>
@@ -33,7 +33,7 @@ function ContactPage() {
               href={contact.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex justify-center border border-white/45 px-6 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] text-white hover:bg-white/14"
+              className="inline-flex justify-center border border-white/45 px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white hover:bg-white hover:text-espresso"
             >
               Apri mappa
             </a>
@@ -72,8 +72,8 @@ function ContactPage() {
 
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">Richieste</p>
-          <h2 className="mt-4 font-serif text-[2.45rem] leading-[1.05] text-graphite sm:text-[3.7rem]">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze">Richieste</p>
+          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.94] text-graphite sm:text-[5.1rem]">
             Scrivi una richiesta precisa, ricevi una risposta utile.
           </h2>
           <p className="mt-6 font-body text-base leading-8 text-body">
@@ -83,25 +83,25 @@ function ContactPage() {
         <div className="grid gap-3 sm:grid-cols-2">
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent('Richiesta soggiorno Relais Santo Stefano')}`}
-            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.12em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-mist px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
           >
             Richiesta soggiorno
           </a>
           <a
             href={`mailto:${contact.spaEmail}?subject=${encodeURIComponent('Richiesta SPA Relais Santo Stefano')}`}
-            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.12em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-mist px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
           >
             Richiesta SPA
           </a>
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent('Richiesta ristorante Relais Santo Stefano')}`}
-            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.12em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-mist px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
           >
             Ristorante
           </a>
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent('Richiesta meeting ed eventi Relais Santo Stefano')}`}
-            className="border border-black/10 bg-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.12em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-mist px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
           >
             Meeting ed eventi
           </a>

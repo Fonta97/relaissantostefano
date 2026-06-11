@@ -83,7 +83,7 @@ function SiteLayout() {
         ref={mainRef}
         id="main-content"
         tabIndex={-1}
-        className="relative z-10 mx-auto flex w-full max-w-[104rem] flex-col gap-20 px-5 pb-20 pt-24 sm:gap-24 sm:px-8 sm:pt-28 lg:gap-28 lg:px-14 lg:pt-32"
+        className="relative z-10 mx-auto flex w-full max-w-[112rem] flex-col gap-24 px-5 pb-24 pt-24 sm:gap-28 sm:px-8 sm:pt-28 lg:gap-32 lg:px-12 lg:pt-32"
       >
         <Outlet />
       </main>
