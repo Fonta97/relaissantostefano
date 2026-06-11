@@ -142,11 +142,84 @@ export const images = {
     1000,
     600
   ),
+  roomSingola: image(
+    'room-singola.jpg',
+    'Camera Singola del Relais Santo Stefano con arredi caldi e letto singolo.',
+    1000,
+    600
+  ),
+  roomStandardQueen: image(
+    'room-standard-queen.jpg',
+    'Camera Standard Queen del Relais Santo Stefano con vista sui giardini.',
+    1000,
+    600
+  ),
+  roomComfortTwin: image(
+    'room-comfort-twin.jpg',
+    'Camera Comfort Twin del Relais Santo Stefano con due letti separati.',
+    1000,
+    600
+  ),
+  roomSuperiorQueen: image(
+    'room-superior-queen-balcony.jpg',
+    'Camera Superior Queen con balcone del Relais Santo Stefano.',
+    1000,
+    600
+  ),
+  roomSuperiorKing: image(
+    'room-superior-king-balcony.jpg',
+    'Camera Superior King con balcone affacciata sul verde del Relais Santo Stefano.',
+    1000,
+    600
+  ),
+  roomDeluxe: image(
+    'room-deluxe.jpg',
+    'Camera Deluxe del Relais Santo Stefano con letto king size.',
+    1000,
+    600
+  ),
+  roomDeluxeBalcony: image(
+    'room-deluxe-balcony.jpg',
+    'Camera Deluxe con balcone e vista piscina del Relais Santo Stefano.',
+    1000,
+    600
+  ),
+  roomTripla: image(
+    'room-tripla.jpg',
+    'Camera Tripla del Relais Santo Stefano con spazi ampi e arredi accoglienti.',
+    1000,
+    600
+  ),
+  roomJuniorSuite: image(
+    'room-junior-suite.jpg',
+    'Junior Suite del Relais Santo Stefano con camera spaziosa e luce naturale.',
+    1000,
+    600
+  ),
   suite: image(
     'room-suite.jpg',
     'Suite Classic del Relais Santo Stefano con arredi caldi e atmosfera riservata.',
     1000,
     600
+  ),
+  roomSuiteClassic: image(
+    'room-suite-classic.jpg',
+    'Suite Classic del Relais Santo Stefano con zona giorno e arredi in legno.',
+    1000,
+    600
+  ),
+  roomTower: image(
+    'room-tower.jpg',
+    'Tower Room del Relais Santo Stefano con atmosfera panoramica nella torre.',
+    1000,
+    600
+  ),
+  roomSpaSuite: image(
+    'room-spa-suite.jpg',
+    'Spa Suite del Relais Santo Stefano con area benessere privata in camera.',
+    1920,
+    1280,
+    'center 52%'
   ),
   spa: image(
     'spa-sauna-hero.jpg',
@@ -303,49 +376,137 @@ export const quickFacts = [
   { value: '3', label: 'sale meeting modulari' },
 ];
 
+export const roomAmenities = [
+  'Cassaforte',
+  'Aria condizionata',
+  'Telefono',
+  'Set di cortesia',
+  'TV-SAT',
+  'Ciabattine',
+  'Frigobar',
+  'Scrivania da lavoro',
+  'Asciugacapelli',
+  'Accappatoio',
+];
+
+export const roomRequestAmenities = [
+  'Servizio sveglia',
+  'Accappatoio',
+  'Bollitore con selezione di te e tisane',
+];
+
 export const rooms = [
   {
     name: 'Singola',
-    summary: 'Una soluzione raccolta e funzionale per soggiorni business o passaggi brevi nel Biellese.',
-    details: ['1 ospite', 'Wi-Fi gratuito', 'Vista giardino su disponibilità'],
-    image: images.roomBalcony,
+    eyebrow: 'Compatta e silenziosa',
+    summary:
+      'Completamente insonorizzata, pensata per garantire massimo comfort al miglior prezzo durante soggiorni business o passaggi brevi.',
+    details: ['Letto singolo/alla francese', 'Vasca/doccia', '15 m2', 'Moquette', 'Finestra/porta finestra'],
+    image: images.roomSingola,
   },
   {
     name: 'Standard Queen',
-    summary: 'Comfort essenziale, letto queen e servizi curati per una permanenza semplice e riposante.',
-    details: ['Letto queen', 'Bagno privato', 'Aria condizionata'],
-    image: images.room,
+    eyebrow: 'Classica per lavoro o vacanza',
+    summary:
+      'Letto queen-size, ambienti insonorizzati e vista sulle montagne o sul giardino: una scelta equilibrata per riposare bene.',
+    details: ['Letto queen size', 'Vasca', '20 m2', 'Moquette', 'Finestra/porta finestra'],
+    image: images.roomStandardQueen,
   },
   {
     name: 'Comfort Twin',
-    summary: 'Doppia con letti separati, pratica per colleghi, amici e viaggiatori sportivi.',
-    details: ['Letti twin', 'Scrivania', 'Parcheggio esterno gratuito'],
-    image: images.roomBalcony,
+    eyebrow: 'Due letti separati',
+    summary:
+      'Ideale per colleghi, amici e viaggiatori sportivi: due letti separati, comfort essenziali e affaccio su montagne o giardino.',
+    details: ['Letti separati', 'Vasca', '20 m2', 'Moquette', 'Finestra/porta finestra'],
+    image: images.roomComfortTwin,
   },
   {
-    name: 'Superior Queen e King',
-    summary: 'Camere più ampie, anche con balcone, pensate per chi desidera più luce e respiro.',
-    details: ['Queen o king', 'Balcone in alcune camere', 'Affacci sui giardini'],
-    image: images.room,
+    name: 'Superior Queen con balcone',
+    eyebrow: 'Balcone e letto queen',
+    summary:
+      'Camera insonorizzata con letto queen-size e balcone, adatta a soggiorni leisure o business con piu luce e respiro.',
+    details: ['Letto queen size', 'Vasca', '20 m2', 'Moquette', 'Balcone'],
+    image: images.roomSuperiorQueen,
+  },
+  {
+    name: 'Superior King con balcone',
+    eyebrow: 'Balcone e letto king',
+    summary:
+      'Letto king-size, balcone e comfort curati per chi cerca una camera luminosa con vista sulle montagne o sui giardini.',
+    details: ['Letto king size', 'Vasca', '20 m2', 'Moquette', 'Balcone'],
+    image: images.roomSuperiorKing,
   },
   {
     name: 'Deluxe',
-    summary: 'Spazi eleganti e maggiore comfort, disponibili anche con balcone per un soggiorno più lento.',
-    details: ['Versione con balcone', 'Minibar', 'Sconto SPA trattamenti'],
-    image: images.suite,
-  },
-  {
-    name: 'Tripla, Junior Suite e Suite',
-    summary: 'Soluzioni flessibili per famiglie, coppie e soggiorni speciali, inclusa la scenografica Tower Room.',
-    details: ['Fino a 4 ospiti', 'Suite Classic', 'Tower Room'],
-    image: images.suite,
-  },
-  {
-    name: 'Spa Suite',
+    eyebrow: 'Relax e doccia multigetto',
     summary:
-      'Junior Suite Superior da 35 m², Suite Superior Gessi da 60 m² e Suite Deluxe da 70 m² con mini SPA privata.',
-    details: ['Vasca idromassaggio', 'Sauna e bagno turco', 'Cromoterapia'],
-    image: images.room,
+      'Camera con letto king-size, affaccio sul giardino degli ulivi e sulla piscina, dotata di doccia walk-in con multigetto.',
+    details: ['Letto king size', 'Doccia walk-in multigetto', '20 m2', 'Finestra'],
+    image: images.roomDeluxe,
+  },
+  {
+    name: 'Deluxe con balcone',
+    eyebrow: 'Vista piscina',
+    summary:
+      'Versione con balcone della Deluxe: letto king-size, vista piscina e giardino degli ulivi, doccia walk-in multigetto.',
+    details: ['Letto king size', 'Doccia walk-in multigetto', '20 m2', 'Moquette', 'Balcone con vista piscina'],
+    image: images.roomDeluxeBalcony,
+  },
+  {
+    name: 'Tripla',
+    eyebrow: 'Per tre ospiti',
+    summary:
+      "Spaziosa e insonorizzata, con tre letti separati o configurazione matrimoniale piu letto: una soluzione comoda per soggiorni condivisi.",
+    details: ['1 matrimoniale + letto / 3 letti', 'Vasca', '30 m2', 'Moquette', 'Finestra'],
+    image: images.roomTripla,
+  },
+  {
+    name: 'Junior Suite',
+    eyebrow: 'Spaziosa per la coppia',
+    summary:
+      "Una camera ampia e insonorizzata, pensata per un soggiorno di coppia all'insegna dello charme e della comodita.",
+    details: ['Letto king size', '30 m2', 'Finestra'],
+    image: images.roomJuniorSuite,
+  },
+  {
+    name: 'Suite Classic',
+    eyebrow: 'Ingresso indipendente',
+    summary:
+      'Suite ampia e insonorizzata con arredi in legno, camera matrimoniale e soggiorno con divano letto per ospitare fino a 2 bambini.',
+    details: ['Letto king size', 'Vasca', '40 m2', 'Moquette', 'Salottino e balcone'],
+    image: images.roomSuiteClassic,
+  },
+  {
+    name: 'Tower Room',
+    eyebrow: 'Nella torre del Relais',
+    summary:
+      'Situata nella torre, offre vista panoramica a 360 gradi sulle montagne e sulla campagna, con letto a baldacchino al piano superiore.',
+    details: ['Letto a baldacchino', '30 m2', 'Vista panoramica 360 gradi'],
+    image: images.roomTower,
+  },
+];
+
+export const spaSuites = [
+  {
+    name: 'Junior Suite Superior New',
+    summary:
+      'Adiacente alla SPA, moderna e confortevole, con doccia Gessi a effetti multipli: acqua a pioggia, vapore, cascata e getti idromassaggio orizzontali.',
+    details: ['Letto king size', 'Doccia walk-in', '35 m2', 'Parquet', 'Balcone'],
+    image: images.roomSpaSuite,
+  },
+  {
+    name: 'Suite Superior Gessi New',
+    summary:
+      'Fino a 4 persone, con salotto di design, vasca rettangolare in camera e doccia Gessi a pioggia, vapore, cascata e getti idromassaggio.',
+    details: ['Letto king size', 'Doccia e vasca rettangolare', '60 m2', 'Parquet', 'Balcone'],
+    image: images.roomSpaSuite,
+  },
+  {
+    name: 'Suite Deluxe New',
+    summary:
+      'La suite piu esclusiva: mini SPA privata in camera con vasca idromassaggio a 2 posti, sauna, bagno turco e cromoterapia.',
+    details: ['Letto king size', 'SPA privata in camera', '70 m2', 'Parquet', 'Balcone'],
+    image: images.roomSpaSuite,
   },
 ];
 
@@ -431,7 +592,7 @@ export const seo = {
   '/camere-suite': {
     title: 'Camere e Suite | Relais Santo Stefano',
     description:
-      'Scopri camere, suite e Spa Suite del Relais Santo Stefano: 75 soluzioni con Wi-Fi, piscina, palestra e servizi per soggiorni business e leisure.',
+      'Scopri tutte le tipologie del Relais Santo Stefano: Singola, Standard Queen, Comfort Twin, Superior, Deluxe, Tripla, Junior Suite, Suite Classic, Tower Room e Spa Suite.',
   },
   '/spa-benessere': {
     title: 'SPA e Benessere | Relais Santo Stefano',

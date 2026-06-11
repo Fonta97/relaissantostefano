@@ -20,11 +20,11 @@ function useScrollReveal(routeKey) {
     const isMobile = window.matchMedia('(max-width: 767px)').matches;
     const observerOptions = isMobile
       ? {
-          threshold: 0.08,
+          threshold: 0.01,
           rootMargin: '0px 0px -24% 0px',
         }
       : {
-          threshold: 0.14,
+          threshold: 0.01,
           rootMargin: '0px 0px -10% 0px',
         };
 
