@@ -31,18 +31,9 @@ function useScrollReveal(routeKey) {
     const observer = new window.IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const shouldRevealOnce = entry.target.dataset.revealOnce === 'true';
-
           if (entry.isIntersecting) {
             entry.target.classList.add('reveal-visible');
-            if (shouldRevealOnce) {
-              observer.unobserve(entry.target);
-            }
-            return;
-          }
-
-          if (!shouldRevealOnce) {
-            entry.target.classList.remove('reveal-visible');
+            observer.unobserve(entry.target);
           }
         });
       },
