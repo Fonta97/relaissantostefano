@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import ConsentNotice from './ConsentNotice';
+import ScrollProgressRail from './ScrollProgressRail';
 import SiteFooter from './SiteFooter';
 import SiteHeader from './SiteHeader';
 import useScrollReveal from '../hooks/useScrollReveal';
@@ -79,6 +80,7 @@ function SiteLayout() {
       </a>
 
       <SiteHeader />
+      <ScrollProgressRail />
 
       <main
         ref={mainRef}

@@ -190,7 +190,7 @@ function SiteHeader() {
 
       {isMenuOpen ? (
         <div
-          className="fixed inset-0 z-50 bg-espresso/72 backdrop-blur-sm"
+          className="menu-backdrop-enter fixed inset-0 z-50 bg-espresso/72 backdrop-blur-sm"
           onClick={() => setIsMenuOpen(false)}
         >
           <aside
@@ -199,11 +199,11 @@ function SiteHeader() {
             role="dialog"
             aria-modal="true"
             aria-label={content.header.drawerLabel}
-            className="absolute inset-y-0 left-0 grid w-full overflow-y-auto bg-espresso text-ivory shadow-[0_24px_90px_rgba(0,0,0,0.34)] lg:grid-cols-[0.86fr_1.14fr]"
+            className="menu-panel-enter absolute inset-y-0 left-0 grid w-full overflow-y-auto bg-espresso text-ivory shadow-[0_24px_90px_rgba(0,0,0,0.34)] lg:grid-cols-[0.86fr_1.14fr]"
             onClick={(event) => event.stopPropagation()}
             tabIndex={-1}
           >
-            <div className="relative hidden min-h-full overflow-hidden lg:block">
+            <div className="menu-media-enter relative hidden min-h-full overflow-hidden lg:block">
               <img
                 src={images.welcome.src}
                 alt={images.welcome.alt}
@@ -214,7 +214,7 @@ function SiteHeader() {
               <div className="hero-readable-overlay absolute inset-0" />
             </div>
 
-            <div className="flex min-h-screen flex-col p-6 sm:p-10 lg:p-12">
+            <div className="menu-content-enter flex min-h-screen flex-col p-6 sm:p-10 lg:p-12">
               <div className="flex items-start justify-between gap-6">
                 <img
                   src={images.logo.light.src}
@@ -277,8 +277,9 @@ function SiteHeader() {
                   <NavLink
                     key={item.path}
                     to={path(item.path)}
+                    style={{ '--menu-link-delay': `${160 + index * 52}ms` }}
                     className={({ isActive }) =>
-                      `group flex items-center justify-between border-b border-white/10 py-4 font-serif text-[2.8rem] font-medium leading-[0.95] transition-colors sm:text-[4.4rem] ${
+                      `menu-link-enter group flex items-center justify-between border-b border-white/10 py-4 font-serif text-[2.8rem] font-medium leading-[0.95] transition-colors sm:text-[4.4rem] ${
                         isActive ? 'text-bronze-light' : 'text-white hover:text-bronze-light'
                       }`
                     }

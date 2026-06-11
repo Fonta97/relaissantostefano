@@ -20,6 +20,8 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-color: #b2935b #201916;
+  scrollbar-width: thin;
 }
 
 body {
@@ -43,6 +45,19 @@ a {
 img {
   display: block;
   max-width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #201916;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid #201916;
+  background: linear-gradient(180deg, #7c3233, #b2935b);
 }
 
 a:focus-visible,
@@ -119,6 +134,73 @@ select:focus-visible {
   filter: saturate(0.92) contrast(1.02);
 }
 
+.scroll-progress-rail {
+  position: fixed;
+  inset-block: 0;
+  right: 0;
+  z-index: 45;
+  width: 5px;
+  pointer-events: none;
+  background: rgba(32, 25, 22, 0.22);
+}
+
+.scroll-progress-rail span {
+  display: block;
+  height: 100%;
+  transform-origin: top;
+  background: linear-gradient(180deg, #7c3233, #b2935b 58%, #f1e9e0);
+  transition: transform 140ms linear;
+}
+
+.room-editorial-card {
+  position: relative;
+  isolation: isolate;
+  transition:
+    border-color 700ms cubic-bezier(0.16, 0.84, 0.22, 1),
+    transform 700ms cubic-bezier(0.16, 0.84, 0.22, 1);
+}
+
+.room-editorial-card::after {
+  content: var(--room-index);
+  position: absolute;
+  right: 1.1rem;
+  bottom: -0.78rem;
+  z-index: -1;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(6rem, 15vw, 13rem);
+  line-height: 0.8;
+  color: rgba(124, 50, 51, 0.055);
+  pointer-events: none;
+}
+
+.room-editorial-card:hover {
+  border-color: rgba(178, 147, 91, 0.72);
+  transform: translateY(-2px);
+}
+
+.room-media-frame::after {
+  content: '';
+  position: absolute;
+  inset: 1.2rem;
+  border: 1px solid rgba(244, 239, 231, 0.2);
+  opacity: 0;
+  transform: scale(0.985);
+  transition:
+    opacity 700ms cubic-bezier(0.16, 0.84, 0.22, 1),
+    transform 700ms cubic-bezier(0.16, 0.84, 0.22, 1);
+  pointer-events: none;
+}
+
+.room-editorial-card:hover .room-media-frame::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.room-amenity-tile {
+  animation: editorial-reveal 900ms cubic-bezier(0.16, 0.84, 0.22, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
 .booking-label {
   display: block;
   font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
@@ -173,6 +255,27 @@ select:focus-visible {
   animation: hero-media-reveal 1800ms cubic-bezier(0.18, 0.86, 0.22, 1) both;
 }
 
+.menu-backdrop-enter {
+  animation: menu-backdrop-reveal 420ms cubic-bezier(0.16, 0.84, 0.22, 1) both;
+}
+
+.menu-panel-enter {
+  animation: menu-panel-reveal 720ms cubic-bezier(0.16, 0.84, 0.22, 1) both;
+}
+
+.menu-media-enter {
+  animation: menu-media-reveal 980ms cubic-bezier(0.16, 0.84, 0.22, 1) 120ms both;
+}
+
+.menu-content-enter > *:not(nav) {
+  animation: menu-content-reveal 780ms cubic-bezier(0.16, 0.84, 0.22, 1) 180ms both;
+}
+
+.menu-link-enter {
+  animation: menu-link-reveal 760ms cubic-bezier(0.16, 0.84, 0.22, 1) both;
+  animation-delay: var(--menu-link-delay, 160ms);
+}
+
 @keyframes editorial-reveal {
   from {
     opacity: 0;
@@ -201,11 +304,83 @@ select:focus-visible {
   }
 }
 
+@keyframes menu-backdrop-reveal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes menu-panel-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(-2.4rem, 0, 0);
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes menu-media-reveal {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: none;
+  }
+}
+
+@keyframes menu-content-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    filter: blur(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: none;
+  }
+}
+
+@keyframes menu-link-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @media (max-width: 767px) {
   .reveal-scroll {
     --reveal-y: 18px;
     opacity: 1;
     filter: none;
+  }
+
+  .scroll-progress-rail {
+    width: 3px;
+  }
+
+  .room-editorial-card::after {
+    font-size: 6.8rem;
   }
 }
 
@@ -224,7 +399,13 @@ select:focus-visible {
   }
 
   .reveal-fade,
-  .hero-media-enter {
+  .hero-media-enter,
+  .menu-backdrop-enter,
+  .menu-panel-enter,
+  .menu-media-enter,
+  .menu-content-enter > *,
+  .menu-link-enter,
+  .room-amenity-tile {
     animation: none !important;
     filter: none !important;
     transform: none !important;

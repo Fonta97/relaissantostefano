@@ -5,6 +5,10 @@ import PageHero from '../components/PageHero';
 import { useI18n } from '../lib/i18n';
 import { images } from '../lib/siteData';
 
+function roomAnchor(index) {
+  return `room-${String(index + 1).padStart(2, '0')}`;
+}
+
 function RoomsPage() {
   const { content, path } = useI18n();
   const copy = content.roomsPage;
@@ -51,88 +55,128 @@ function RoomsPage() {
         </div>
       </section>
 
-      <section data-reveal className="reveal-scroll grid gap-8 bg-mist px-5 py-8 sm:px-8 lg:grid-cols-[0.72fr_1.28fr] lg:px-10">
+      <section data-reveal className="reveal-scroll grid gap-8 bg-espresso px-6 py-10 text-white shadow-editorial sm:px-10 lg:grid-cols-[0.72fr_1.28fr] lg:px-14">
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze-light">
             {copy.amenitiesEyebrow}
           </p>
-          <h2 className="mt-4 font-serif text-[2.7rem] font-medium leading-[0.95] text-graphite sm:text-[4.2rem]">
+          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.95] sm:text-[4.8rem]">
             {copy.amenitiesTitle}
           </h2>
-          <p className="mt-5 max-w-xl font-body text-sm leading-7 text-body">
+          <p className="mt-5 max-w-xl font-body text-sm leading-7 text-white/78">
             {copy.amenitiesText}
           </p>
-        </div>
-        <div className="grid gap-5 lg:grid-cols-[1fr_0.78fr]">
-          <div className="grid gap-px bg-espresso/12 p-px sm:grid-cols-2">
-            {content.roomAmenities.map((amenity) => (
-              <div key={amenity} className="bg-ivory px-4 py-4 font-ui text-[0.72rem] font-semibold uppercase tracking-[0.13em] text-body">
-                {amenity}
-              </div>
-            ))}
-          </div>
-          <div className="border border-black/10 bg-ivory p-5">
-            <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-bronze">
+          <div className="mt-7 border-t border-white/12 pt-5">
+            <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-bronze-light">
               {copy.onRequest}
             </p>
-            <ul className="mt-4 space-y-3 font-body text-sm leading-6 text-body">
+            <ul className="mt-4 space-y-3 font-body text-sm leading-6 text-white/78">
               {content.roomRequestAmenities.map((amenity) => (
-                <li key={amenity} className="border-b border-black/10 pb-3 last:border-0 last:pb-0">
+                <li key={amenity} className="border-b border-white/10 pb-3 last:border-0 last:pb-0">
                   {amenity}
                 </li>
               ))}
             </ul>
           </div>
         </div>
+        <div className="grid gap-px bg-white/12 p-px sm:grid-cols-2 lg:grid-cols-4">
+          {content.roomAmenities.map((amenity, index) => (
+            <div
+              key={amenity}
+              className="room-amenity-tile bg-white/[0.055] px-4 py-5"
+              style={{ '--reveal-delay': `${index * 44}ms` }}
+            >
+              <span className="font-ui text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-bronze-light">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <p className="mt-5 font-body text-sm leading-6 text-white/86">{amenity}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section data-reveal className="reveal-scroll space-y-8">
-        <div className="grid gap-6 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
-          <div>
+      <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[minmax(13rem,0.34fr)_1fr]">
+        <aside className="hidden h-fit lg:sticky lg:top-32 lg:block">
+          <div className="border-y border-black/12 py-6">
             <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">
               {copy.typesEyebrow}
             </p>
-            <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.95] text-graphite sm:text-[5rem]">
+            <h2 className="mt-4 font-serif text-[3.2rem] font-medium leading-[0.92] text-graphite">
               {copy.typesTitle}
             </h2>
+            <p className="mt-5 font-body text-sm leading-7 text-body">
+              {copy.typesText}
+            </p>
+            <nav className="mt-8 grid gap-2" aria-label={copy.typesEyebrow}>
+              {content.rooms.map((room, index) => (
+                <a
+                  key={room.name}
+                  href={`#${roomAnchor(index)}`}
+                  className="group grid grid-cols-[2.4rem_1fr] items-center border-t border-black/10 py-3 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-body transition-colors hover:text-bronze"
+                >
+                  <span className="text-bronze">{String(index + 1).padStart(2, '0')}</span>
+                  <span>{room.name}</span>
+                </a>
+              ))}
+            </nav>
           </div>
-          <p className="max-w-3xl font-body text-base leading-8 text-body lg:justify-self-end">
-            {copy.typesText}
-          </p>
-        </div>
+        </aside>
 
-        <div className="grid gap-px bg-espresso/12 p-px md:grid-cols-2 xl:grid-cols-3">
+        <div className="space-y-6">
+          <div className="lg:hidden">
+            <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">
+              {copy.typesEyebrow}
+            </p>
+            <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.95] text-graphite">
+              {copy.typesTitle}
+            </h2>
+            <p className="mt-5 font-body text-base leading-8 text-body">
+              {copy.typesText}
+            </p>
+          </div>
+
           {content.rooms.map((room, index) => (
             <article
+              id={roomAnchor(index)}
               key={room.name}
-              className="group flex min-h-full flex-col overflow-hidden bg-mist transition-transform duration-700 hover:-translate-y-1"
-              style={{ '--reveal-delay': `${index * 70}ms` }}
+              className="room-editorial-card group grid scroll-mt-32 overflow-hidden border border-black/10 bg-mist lg:min-h-[34rem] lg:grid-cols-[1.03fr_0.97fr]"
+              style={{ '--reveal-delay': `${index * 70}ms`, '--room-index': `"${String(index + 1).padStart(2, '0')}"` }}
             >
-              <img
-                src={room.image.src}
-                alt={room.image.alt}
-                width={room.image.width}
-                height={room.image.height}
-                className="image-breathe aspect-[4/3] w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="flex flex-1 flex-col p-6">
-                <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-bronze">
-                  {String(index + 1).padStart(2, '0')} / {room.eyebrow}
-                </p>
-                <h3 className="mt-3 font-serif text-[2.3rem] font-medium leading-tight text-graphite">{room.name}</h3>
-                <p className="mt-4 font-body text-sm leading-7 text-body">{room.summary}</p>
-                <div className="mt-5 grid gap-px bg-espresso/10 p-px">
+              <div className={`${index % 2 ? 'lg:order-2' : ''} room-media-frame relative min-h-[24rem] overflow-hidden bg-graphite`}>
+                <img
+                  src={room.image.src}
+                  alt={room.image.alt}
+                  width={room.image.width}
+                  height={room.image.height}
+                  className="image-breathe h-full min-h-[24rem] w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="glass-image-overlay absolute inset-0" />
+              </div>
+              <div className="relative flex min-h-full flex-col justify-between p-6 sm:p-8 lg:p-10">
+                <div>
+                  <p className="font-ui text-xs font-semibold uppercase tracking-[0.18em] text-bronze">
+                    {String(index + 1).padStart(2, '0')} / {room.eyebrow}
+                  </p>
+                  <h3 className="mt-4 font-serif text-[2.9rem] font-medium leading-[0.92] text-graphite sm:text-[4.4rem]">
+                    {room.name}
+                  </h3>
+                  <p className="mt-6 max-w-xl font-body text-base leading-8 text-body">
+                    {room.summary}
+                  </p>
+                </div>
+
+                <div className="mt-8 grid gap-px bg-espresso/10 p-px">
                   {room.details.map((detail) => (
-                    <span key={detail} className="bg-ivory px-3 py-2 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-body">
+                    <span key={detail} className="bg-ivory px-4 py-3 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-body">
                       {detail}
                     </span>
                   ))}
                 </div>
                 <a
                   href="#booking-rooms"
-                  className="mt-auto inline-flex w-fit border border-bronze bg-bronze px-4 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light"
+                  className="mt-8 inline-flex w-fit border border-bronze bg-bronze px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light"
                 >
                   {copy.bookNow}
                 </a>
