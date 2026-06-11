@@ -104,6 +104,7 @@ function HomePage() {
             width={images.welcome.width}
             height={images.welcome.height}
             className="image-breathe h-full w-full object-cover"
+            style={{ objectPosition: images.welcome.objectPosition || 'center center' }}
             loading="lazy"
             decoding="async"
           />
@@ -141,6 +142,7 @@ function HomePage() {
                 width={room.image.width}
                 height={room.image.height}
                 className="image-breathe aspect-[4/3] w-full object-cover"
+                style={{ objectPosition: room.image.objectPosition || 'center center' }}
                 loading="lazy"
                 decoding="async"
               />
@@ -235,6 +237,7 @@ function HomePage() {
             width={images.pool.width}
             height={images.pool.height}
             className="image-breathe h-full w-full object-cover"
+            style={{ objectPosition: images.pool.objectPosition || 'center center' }}
             loading="lazy"
             decoding="async"
           />

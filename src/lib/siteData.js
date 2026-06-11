@@ -118,192 +118,225 @@ export const images = {
     mark: image('logo-icon.png', '', 200, 265),
   },
   hero: image(
-    'hero-facade.jpg',
-    'Ingresso del Relais Santo Stefano a Sandigliano con la torre e la facciata storica.',
-    1000,
-    1203,
-    'center 52%'
+    'drive/accoglienza/reception.webp',
+    'Facciata del Relais Santo Stefano a Sandigliano illuminata al tramonto.',
+    1800,
+    921,
+    'center 50%'
   ),
   pool: image(
-    'pool.jpg',
-    'Piscina estiva del Relais Santo Stefano affacciata sul verde del Biellese.',
-    1920,
-    1280
+    'drive/piscina/piscina-estiva.webp',
+    'Piscina estiva del Relais Santo Stefano con lettini e giardino.',
+    2200,
+    1467,
+    'center 52%'
   ),
   room: image(
-    'room-hero.jpg',
-    'Camera con SPA privata del Relais Santo Stefano con arredi caldi e luce naturale.',
-    1920,
-    1280,
-    'center 52%'
+    'drive/shooting-2024/servizio-camera.webp',
+    'Servizio in camera al Relais Santo Stefano con ospiti in area lounge.',
+    2200,
+    1467,
+    'center 45%'
   ),
   roomBalcony: image(
-    'room-balcony.jpg',
+    'drive/camere-orbassano/balcone.webp',
     'Affaccio dai balconi delle camere del Relais Santo Stefano verso i giardini interni.',
-    1000,
-    600
+    1600,
+    1066,
+    'center 45%'
   ),
   roomSingola: image(
-    'room-singola.jpg',
+    'drive/camere-orbassano/singola.webp',
     'Camera Singola del Relais Santo Stefano con arredi caldi e letto singolo.',
-    1000,
-    600
+    1600,
+    1037
   ),
   roomStandardQueen: image(
-    'room-standard-queen.jpg',
+    'drive/camere-orbassano/standard-queen.webp',
     'Camera Standard Queen del Relais Santo Stefano con vista sui giardini.',
-    1000,
-    600
+    1600,
+    1066
   ),
   roomComfortTwin: image(
-    'room-comfort-twin.jpg',
+    'drive/camere-orbassano/comfort-twin.webp',
     'Camera Comfort Twin del Relais Santo Stefano con due letti separati.',
-    1000,
-    600
+    1600,
+    1066
   ),
   roomSuperiorQueen: image(
-    'room-superior-queen-balcony.jpg',
+    'drive/camere-orbassano/superior-queen-balcone.webp',
     'Camera Superior Queen con balcone del Relais Santo Stefano.',
-    1000,
-    600
+    1600,
+    1066
   ),
   roomSuperiorKing: image(
-    'room-superior-king-balcony.jpg',
+    'drive/camere-orbassano/superior-king-balcone.webp',
     'Camera Superior King con balcone affacciata sul verde del Relais Santo Stefano.',
-    1000,
-    600
+    1600,
+    1066,
+    'center 45%'
   ),
   roomDeluxe: image(
-    'room-deluxe.jpg',
+    'drive/camere-orbassano/deluxe.webp',
     'Camera Deluxe del Relais Santo Stefano con letto king size.',
-    1000,
-    600
+    1600,
+    1066
   ),
   roomDeluxeBalcony: image(
-    'room-deluxe-balcony.jpg',
+    'drive/camere-orbassano/deluxe-balcone.webp',
     'Camera Deluxe con balcone e vista piscina del Relais Santo Stefano.',
-    1000,
-    600
+    1600,
+    1066
   ),
   roomTripla: image(
-    'room-tripla.jpg',
+    'drive/camere-orbassano/tripla.webp',
     'Camera Tripla del Relais Santo Stefano con spazi ampi e arredi accoglienti.',
-    1000,
-    600
+    1600,
+    1066
   ),
   roomJuniorSuite: image(
-    'room-junior-suite.jpg',
+    'drive/camere-orbassano/junior-suite.webp',
     'Junior Suite del Relais Santo Stefano con camera spaziosa e luce naturale.',
-    1000,
-    600
+    1600,
+    1066
+  ),
+  roomJuniorSuiteSuperior: image(
+    'drive/camere-orbassano/junior-suite-superior-new.webp',
+    'Junior Suite Superior New del Relais Santo Stefano con arredi contemporanei.',
+    1800,
+    1496,
+    'center 48%'
   ),
   suite: image(
-    'room-suite.jpg',
+    'drive/camere-orbassano/suite-classic.webp',
     'Suite Classic del Relais Santo Stefano con arredi caldi e atmosfera riservata.',
-    1000,
-    600
+    1600,
+    1066
   ),
   roomSuiteClassic: image(
-    'room-suite-classic.jpg',
+    'drive/camere-orbassano/suite-classic.webp',
     'Suite Classic del Relais Santo Stefano con zona giorno e arredi in legno.',
-    1000,
-    600
+    1600,
+    1066
   ),
   roomTower: image(
-    'room-tower.jpg',
+    'drive/camere-orbassano/tower-room.webp',
     'Tower Room del Relais Santo Stefano con atmosfera panoramica nella torre.',
-    1000,
-    600
+    1365,
+    2048,
+    'center 35%'
   ),
   roomSpaSuite: image(
-    'room-spa-suite.jpg',
+    'drive/camere-orbassano/suite-spa-gessi.webp',
     'Spa Suite del Relais Santo Stefano con area benessere privata in camera.',
-    1920,
-    1280,
-    'center 52%'
+    1800,
+    914,
+    'center 48%'
+  ),
+  roomSuiteDeluxe: image(
+    'drive/camere-orbassano/suite-deluxe-604.webp',
+    'Suite Deluxe del Relais Santo Stefano con SPA privata in camera.',
+    1800,
+    859,
+    'center 45%'
   ),
   spa: image(
-    'spa-sauna-hero.jpg',
-    "Coppia nell'area benessere della SPA del Relais Santo Stefano.",
-    1920,
-    1280,
-    'center 45%'
+    'drive/spa/spa-trattamenti.webp',
+    'Area benessere del Relais Santo Stefano con idromassaggio e lettini relax.',
+    1800,
+    1200,
+    'center 52%'
   ),
   spaThumb: image(
-    'spa.jpg',
-    'Area umida della SPA del Relais Santo Stefano con idromassaggio e zona relax.',
-    600,
-    600
+    'drive/spa/spa-relax.webp',
+    'Sauna e area relax della SPA del Relais Santo Stefano.',
+    2200,
+    3300,
+    'center 42%'
   ),
   spaMassage: image(
-    'spa-treatment.jpg',
-    'Cabina trattamenti della SPA del Relais Santo Stefano.',
-    1920,
-    1280,
-    'center 45%'
+    'drive/spa/spa-area-umida.webp',
+    'Area umida della SPA del Relais Santo Stefano con sauna e lettini.',
+    1800,
+    1200,
+    'center 50%'
   ),
   restaurant: image(
-    'restaurant-dining.jpg',
-    'Sala ristorante del Relais Santo Stefano con tavoli affacciati sul verde.',
-    1920,
-    1281
+    'drive/cena-e-cucina/ristorante-cena.webp',
+    'Cena servita al ristorante del Relais Santo Stefano con vista sul verde.',
+    2200,
+    1467,
+    'center 48%'
   ),
   breakfast: image(
-    'breakfast.jpg',
-    'Buffet colazione del Relais Santo Stefano con frutta, dolci e prodotti da forno.',
-    1920,
-    1280
+    'drive/colazione/buffet-colazione.webp',
+    'Colazione al Relais Santo Stefano con prodotti serviti al tavolo.',
+    2200,
+    1467,
+    'center 48%'
   ),
   sport: image(
-    'sport-padel.jpg',
+    'drive/padel-palestra/padel.webp',
     'Campi da padel del centro sportivo Santo Stefano.',
-    1920,
-    1280
+    2200,
+    1467,
+    'center 52%'
   ),
   bike: image(
-    'sport-bike.jpg',
+    'drive/e-bike/e-bike.webp',
     'Dettaglio delle e-bike disponibili al Relais Santo Stefano.',
-    1920,
-    1280
+    1800,
+    1200,
+    'center 50%'
   ),
   meeting: image(
-    'meeting.jpg',
-    'Sala meeting del Relais Santo Stefano allestita per un evento aziendale.',
-    1920,
-    1280
+    'drive/sala-meeting-ristorante/meeting.webp',
+    'Sala meeting e ristorante del Relais Santo Stefano allestita per eventi.',
+    2200,
+    1467,
+    'center 50%'
   ),
   meetingOropa: image(
-    'meeting-oropa.jpg',
+    'drive/sala-meeting-ristorante/sala-oropa.webp',
     'Sala Oropa del Relais Santo Stefano con sedute e schermi per convegni.',
-    1920,
-    1280
+    1800,
+    1200,
+    'center 48%'
   ),
   territory: image(
-    'pool.jpg',
-    'Vista sulla piscina e sul verde intorno al Relais Santo Stefano.',
-    1920,
-    1280
+    'drive/foto-struttura-esterno/hero-facade.webp',
+    'Vista esterna del Relais Santo Stefano immerso nel verde.',
+    2200,
+    1467,
+    'center 50%'
   ),
   offers: image(
-    'offers-couple-spa.jpg',
-    'Coppia durante un soggiorno benessere al Relais Santo Stefano.',
-    1919,
-    1280,
-    'center 45%'
+    'drive/shooting-2024/lifestyle-relax.webp',
+    'Ospiti durante un momento relax nell area benessere del Relais Santo Stefano.',
+    1800,
+    1200,
+    'center 48%'
   ),
   welcome: image(
-    'welcome-reception-wide.jpg',
-    'Accoglienza alla reception del Relais Santo Stefano.',
-    1920,
-    1280,
+    'drive/shooting-2024/servizio-camera.webp',
+    'Accoglienza e servizio in camera al Relais Santo Stefano.',
+    2200,
+    1467,
     'center 45%'
   ),
   welcomePortrait: image(
-    'welcome.jpg',
-    'Accoglienza alla reception del Relais Santo Stefano.',
-    1280,
-    1920,
-    'center 42%'
+    'drive/shooting-2024/dettaglio-ospitalita.webp',
+    'Dettaglio di ospitalita e benessere al Relais Santo Stefano.',
+    1800,
+    1200,
+    'center 45%'
+  ),
+  barAperitivo: image(
+    'drive/bar-e-aperitivo/aperitivo.webp',
+    'Aperitivo servito nelle sale del Relais Santo Stefano.',
+    1800,
+    1200,
+    'center 50%'
   ),
 };
 
@@ -339,6 +372,10 @@ images.gallery = [
   {
     ...images.meeting,
     caption: 'Meeting ed eventi',
+  },
+  {
+    ...images.barAperitivo,
+    caption: 'Bar e aperitivo',
   },
   {
     ...images.breakfast,
@@ -493,7 +530,7 @@ export const spaSuites = [
     summary:
       'Adiacente alla SPA, moderna e confortevole, con doccia Gessi a effetti multipli: acqua a pioggia, vapore, cascata e getti idromassaggio orizzontali.',
     details: ['Letto king size', 'Doccia walk-in', '35 m2', 'Parquet', 'Balcone'],
-    image: images.roomSpaSuite,
+    image: images.roomJuniorSuiteSuperior,
   },
   {
     name: 'Suite Superior Gessi New',
@@ -507,7 +544,7 @@ export const spaSuites = [
     summary:
       'La suite piu esclusiva: mini SPA privata in camera con vasca idromassaggio a 2 posti, sauna, bagno turco e cromoterapia.',
     details: ['Letto king size', 'SPA privata in camera', '70 m2', 'Parquet', 'Balcone'],
-    image: images.roomSpaSuite,
+    image: images.roomSuiteDeluxe,
   },
 ];
 

@@ -149,6 +149,7 @@ function RoomsPage() {
                   width={room.image.width}
                   height={room.image.height}
                   className="image-breathe h-full min-h-[24rem] w-full object-cover"
+                  style={{ objectPosition: room.image.objectPosition || 'center center' }}
                   loading="lazy"
                   decoding="async"
                 />
@@ -201,6 +202,7 @@ function RoomsPage() {
             width={images.roomSpaSuite.width}
             height={images.roomSpaSuite.height}
             className="mt-8 aspect-[4/3] w-full object-cover"
+            style={{ objectPosition: images.roomSpaSuite.objectPosition || 'center center' }}
             loading="lazy"
             decoding="async"
           />

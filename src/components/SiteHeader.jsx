@@ -210,6 +210,7 @@ function SiteHeader() {
                 width={images.welcome.width}
                 height={images.welcome.height}
                 className="h-full w-full object-cover opacity-78"
+                style={{ objectPosition: images.welcome.objectPosition || 'center center' }}
               />
               <div className="hero-readable-overlay absolute inset-0" />
             </div>

@@ -646,7 +646,7 @@ const translatedContent = {
         summary:
           'Adjacent to the SPA, modern and comfortable, with Gessi multi-effect shower: rain, steam, waterfall and horizontal hydro-massage jets.',
         details: ['King-size bed', 'Walk-in shower', '35 m2', 'Parquet', 'Balcony'],
-        image: images.roomSpaSuite,
+        image: images.roomJuniorSuiteSuperior,
       },
       {
         name: 'Suite Superior Gessi New',
@@ -660,7 +660,7 @@ const translatedContent = {
         summary:
           'The most exclusive suite: private mini SPA in the room with two-seat whirlpool, sauna, steam bath and chromotherapy.',
         details: ['King-size bed', 'Private SPA in room', '70 m2', 'Parquet', 'Balcony'],
-        image: images.roomSpaSuite,
+        image: images.roomSuiteDeluxe,
       },
     ],
     services: [
@@ -795,9 +795,9 @@ const translatedContent = {
     roomAmenities: ['Safe', 'Klimaanlage', 'Telefon', 'Pflegeset', 'SAT-TV', 'Hausschuhe', 'Minibar', 'Schreibtisch', 'Haartrockner', 'Bademantel'],
     roomRequestAmenities: ['Weckservice', 'Bademantel', 'Wasserkocher mit Tee- und Kräuterteauswahl'],
     spaSuites: [
-      { name: 'Junior Suite Superior New', summary: 'An die SPA angrenzend, modern und komfortabel, mit Gessi-Dusche: Regen, Dampf, Wasserfall und horizontale Hydromassage-Düsen.', details: ['King-Size-Bett', 'Walk-in-Dusche', '35 m2', 'Parkett', 'Balkon'], image: images.roomSpaSuite },
+      { name: 'Junior Suite Superior New', summary: 'An die SPA angrenzend, modern und komfortabel, mit Gessi-Dusche: Regen, Dampf, Wasserfall und horizontale Hydromassage-Düsen.', details: ['King-Size-Bett', 'Walk-in-Dusche', '35 m2', 'Parkett', 'Balkon'], image: images.roomJuniorSuiteSuperior },
       { name: 'Suite Superior Gessi New', summary: 'Für bis zu 4 Gäste, mit Design-Salon, rechteckiger Badewanne im Zimmer und Gessi-Dusche mit Regen, Dampf, Wasserfall und Hydromassage.', details: ['King-Size-Bett', 'Dusche und rechteckige Badewanne', '60 m2', 'Parkett', 'Balkon'], image: images.roomSpaSuite },
-      { name: 'Suite Deluxe New', summary: 'Die exklusivste Suite: private Mini-SPA im Zimmer mit Whirlpool für zwei Personen, Sauna, Dampfbad und Chromotherapie.', details: ['King-Size-Bett', 'Private SPA im Zimmer', '70 m2', 'Parkett', 'Balkon'], image: images.roomSpaSuite },
+      { name: 'Suite Deluxe New', summary: 'Die exklusivste Suite: private Mini-SPA im Zimmer mit Whirlpool für zwei Personen, Sauna, Dampfbad und Chromotherapie.', details: ['King-Size-Bett', 'Private SPA im Zimmer', '70 m2', 'Parkett', 'Balkon'], image: images.roomSuiteDeluxe },
     ],
     services: ['Kostenloses WLAN', 'Sommerpool', 'Technogym-Fitnessraum', 'Kostenloser Außenparkplatz', 'Gepäckaufbewahrung', 'Haustiere gegen 10 Euro pro Tag erlaubt', 'Porsche Destination Charging', '10% Rabatt auf SPA-Behandlungen für Hotelgäste'],
     experiences: [
@@ -896,9 +896,9 @@ const translatedContent = {
     roomAmenities: ['Coffre-fort', 'Climatisation', 'Téléphone', 'Set de courtoisie', 'TV-SAT', 'Chaussons', 'Minibar', 'Bureau de travail', 'Sèche-cheveux', 'Peignoir'],
     roomRequestAmenities: ['Service réveil', 'Peignoir', 'Bouilloire avec sélection de thés et tisanes'],
     spaSuites: [
-      { name: 'Junior Suite Superior New', summary: 'Adjacente au SPA, moderne et confortable, avec douche Gessi multi-effets : pluie, vapeur, cascade et jets hydromassants horizontaux.', details: ['Lit king size', 'Douche walk-in', '35 m2', 'Parquet', 'Balcon'], image: images.roomSpaSuite },
+      { name: 'Junior Suite Superior New', summary: 'Adjacente au SPA, moderne et confortable, avec douche Gessi multi-effets : pluie, vapeur, cascade et jets hydromassants horizontaux.', details: ['Lit king size', 'Douche walk-in', '35 m2', 'Parquet', 'Balcon'], image: images.roomJuniorSuiteSuperior },
       { name: 'Suite Superior Gessi New', summary: 'Jusqu’à 4 personnes, avec salon design, baignoire rectangulaire dans la chambre et douche Gessi pluie, vapeur, cascade et hydromassage.', details: ['Lit king size', 'Douche et baignoire rectangulaire', '60 m2', 'Parquet', 'Balcon'], image: images.roomSpaSuite },
-      { name: 'Suite Deluxe New', summary: 'La suite la plus exclusive : mini SPA privée en chambre avec bain hydromassant deux places, sauna, hammam et chromothérapie.', details: ['Lit king size', 'SPA privée en chambre', '70 m2', 'Parquet', 'Balcon'], image: images.roomSpaSuite },
+      { name: 'Suite Deluxe New', summary: 'La suite la plus exclusive : mini SPA privée en chambre avec bain hydromassant deux places, sauna, hammam et chromothérapie.', details: ['Lit king size', 'SPA privée en chambre', '70 m2', 'Parquet', 'Balcon'], image: images.roomSuiteDeluxe },
     ],
     services: ['Wi-Fi gratuit', 'Piscine d’été', 'Salle Technogym', 'Parking extérieur gratuit', 'Consigne bagages', 'Animaux acceptés avec supplément de 10 euros par jour', 'Porsche Destination Charging', '10% de réduction sur les soins SPA pour les hôtes'],
     experiences: [

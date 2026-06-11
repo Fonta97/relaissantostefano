@@ -70,6 +70,7 @@ function MosaicGallery({
               loading="lazy"
               decoding="async"
               className="image-breathe h-full w-full object-cover"
+              style={{ objectPosition: image.objectPosition || 'center center' }}
               sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
             />
             {showCaptions ? (

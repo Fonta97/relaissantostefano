@@ -57,6 +57,7 @@ function ExperiencePage({ type }) {
           width={page.secondaryImage.width}
           height={page.secondaryImage.height}
           className="image-breathe min-h-[24rem] w-full object-cover"
+          style={{ objectPosition: page.secondaryImage.objectPosition || 'center center' }}
           loading="lazy"
           decoding="async"
         />
