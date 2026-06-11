@@ -1,3 +1,5 @@
+import { useI18n } from '../lib/i18n';
+
 function PageHero({
   image,
   eyebrow,
@@ -8,6 +10,7 @@ function PageHero({
   priority = false,
   minHeight = 'min-h-[82svh]',
 }) {
+  const { content } = useI18n();
   const textAlign = align === 'center' ? 'items-center text-center' : 'items-start text-left';
   const titleSize =
     title.length > 34
@@ -62,7 +65,7 @@ function PageHero({
           aria-hidden="true"
         >
           <span className="h-px w-16 bg-white/42" />
-          <span>Explore</span>
+          <span>{content.shared.explore}</span>
           <span className="h-px w-16 bg-white/42" />
         </div>
       </div>

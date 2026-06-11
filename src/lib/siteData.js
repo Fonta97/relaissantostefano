@@ -63,9 +63,10 @@ export function buildBookingUrl({
   adults = 2,
   rooms = 1,
   promoCode = '',
+  language = 'IT',
 } = {}) {
   const url = new URL(bookingUrl);
-  url.searchParams.set('lang', url.searchParams.get('lang') || 'IT');
+  url.searchParams.set('lang', language.toUpperCase());
   url.searchParams.set('cur', url.searchParams.get('cur') || 'EUR');
 
   if (checkIn) {

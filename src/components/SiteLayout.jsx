@@ -5,11 +5,12 @@ import ConsentNotice from './ConsentNotice';
 import SiteFooter from './SiteFooter';
 import SiteHeader from './SiteHeader';
 import useScrollReveal from '../hooks/useScrollReveal';
-import { cookieCopy } from '../lib/siteData';
+import { useI18n } from '../lib/i18n';
 
 function SiteLayout() {
   const location = useLocation();
   const mainRef = useRef(null);
+  const { content } = useI18n();
   useScrollReveal(location.pathname);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ function SiteLayout() {
         href="#main-content"
         className="fixed left-4 top-4 z-[300] -translate-y-24 bg-graphite px-4 py-3 font-ui text-xs uppercase tracking-[0.16em] text-white transition-transform focus:translate-y-0"
       >
-        Salta al contenuto
+        {content.shared.skipContent}
       </a>
 
       <SiteHeader />
@@ -89,7 +90,7 @@ function SiteLayout() {
       </main>
 
       <SiteFooter />
-      <ConsentNotice copy={cookieCopy} />
+      <ConsentNotice copy={content.cookie} />
     </div>
   );
 }

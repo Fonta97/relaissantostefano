@@ -1,16 +1,20 @@
 import { Link, NavLink } from 'react-router-dom';
 
+import { useI18n } from '../lib/i18n';
 import { brand, contact, images, navigation, socialLinks } from '../lib/siteData';
 
 function SiteFooter() {
+  const { content, path } = useI18n();
+  const localizedNavigation = content.navigation || navigation;
+
   return (
     <footer className="relative z-10 bg-espresso px-5 py-16 text-ivory sm:px-8 lg:px-12">
       <div className="mx-auto grid w-full max-w-[112rem] gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze-light">
-            Soggiorni, benessere, cucina e territorio
+            {content.footer.eyebrow}
           </p>
-          <Link to="/" className="mt-6 inline-flex" aria-label={brand.name}>
+          <Link to={path('/')} className="mt-6 inline-flex" aria-label={brand.name}>
             <img
               src={images.logo.light.src}
               alt={brand.name}
@@ -20,21 +24,20 @@ function SiteFooter() {
             />
           </Link>
           <p className="mt-7 max-w-2xl font-body text-base leading-8 text-ivory/78">
-            Relais Santo Stefano è in Via Garibaldi 5, a Sandigliano, alle porte di Biella:
-            un resort 4 stelle con camere, SPA, ristorante, sport e sale meeting.
+            {content.footer.intro}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
-              to="/#booking"
+              to={path('/#booking')}
               className="border border-bronze bg-bronze px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light"
             >
-              Prenota soggiorno
+              {content.shared.bookStay}
             </Link>
             <Link
-              to="/contatti"
+              to={path('/contatti')}
               className="border border-white/28 px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-white hover:text-espresso"
             >
-              Chiedi informazioni
+              {content.shared.askInfo}
             </Link>
           </div>
         </div>
@@ -73,13 +76,13 @@ function SiteFooter() {
 
           <div>
             <p className="font-ui text-xs font-semibold uppercase tracking-[0.2em] text-bronze-light">
-              Link utili
+              {content.footer.usefulLinks}
             </p>
             <div className="mt-4 grid gap-2">
-              {navigation.slice(1).map((item) => (
+              {localizedNavigation.slice(1).map((item) => (
                 <NavLink
                   key={item.path}
-                  to={item.path}
+                  to={path(item.path)}
                   className="font-body text-sm text-ivory/86 transition-colors hover:text-white"
                 >
                   {item.label}
@@ -112,7 +115,7 @@ function SiteFooter() {
       <div className="mx-auto mt-12 flex w-full max-w-[112rem] flex-col gap-3 border-t border-white/12 pt-5 font-ui text-xs uppercase tracking-[0.16em] text-ivory/70 sm:flex-row sm:items-center sm:justify-between">
         <p>© 2026 {brand.name}. P. IVA {contact.vat}</p>
         <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="hover:text-white">
-          Privacy e cookie
+          {content.footer.privacy}
         </a>
       </div>
     </footer>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 
 import useDialogFocus from '../hooks/useDialogFocus';
+import { languageOptions, useI18n } from '../lib/i18n';
 import { brand, contact, images, navigation } from '../lib/siteData';
 
 function MenuIcon() {
@@ -52,6 +53,8 @@ function SiteHeader() {
   const closeButtonRef = useRef(null);
   const location = useLocation();
   const menuId = 'site-menu';
+  const { content, language, path, switchPath } = useI18n();
+  const localizedNavigation = content.navigation || navigation;
 
   useDialogFocus(isMenuOpen, menuPanelRef, closeButtonRef);
 
@@ -101,7 +104,7 @@ function SiteHeader() {
             <button
               type="button"
               onClick={() => setIsMenuOpen(true)}
-              aria-label="Apri menu"
+              aria-label={content.header.openMenu}
               aria-expanded={isMenuOpen}
               aria-controls={menuId}
               className={`inline-flex h-11 items-center gap-4 transition-colors ${
@@ -110,15 +113,27 @@ function SiteHeader() {
             >
               <MenuIcon />
               <span className="hidden font-ui text-xs font-semibold uppercase tracking-[0.22em] sm:inline">
-                Menu
+                {content.header.menu}
               </span>
             </button>
-            <div className={`hidden font-ui text-xs font-semibold uppercase tracking-[0.18em] md:flex ${isScrolled ? 'text-body' : 'text-white/72'}`}>
-              IT
-            </div>
+            <nav
+              aria-label={content.shared.language}
+              className={`hidden items-center gap-2 font-ui text-[0.66rem] font-semibold uppercase tracking-[0.14em] md:flex ${isScrolled ? 'text-body' : 'text-white/72'}`}
+            >
+              {languageOptions.map((option) => (
+                <Link
+                  key={option.code}
+                  to={switchPath(option.code)}
+                  aria-current={language === option.code ? 'true' : undefined}
+                  className={language === option.code ? 'text-bronze' : 'hover:text-bronze-light'}
+                >
+                  {option.label}
+                </Link>
+              ))}
+            </nav>
           </div>
 
-          <Link to="/" className="justify-self-start md:justify-self-center" aria-label={brand.name}>
+          <Link to={path('/')} className="justify-self-start md:justify-self-center" aria-label={brand.name}>
             <img
               src={isScrolled ? images.logo.dark.src : images.logo.light.src}
               alt={brand.name}
@@ -129,11 +144,11 @@ function SiteHeader() {
           </Link>
 
           <div className="flex items-center justify-end gap-2">
-            <nav className="hidden items-center gap-5 xl:flex" aria-label="Navigazione principale">
-              {navigation.slice(1, 6).map((item) => (
+            <nav className="hidden items-center gap-5 xl:flex" aria-label={content.shared.mainNavigation}>
+              {localizedNavigation.slice(1, 6).map((item) => (
                 <NavLink
                   key={item.path}
-                  to={item.path}
+                  to={path(item.path)}
                   className={({ isActive }) =>
                     `editorial-link font-ui text-[0.68rem] font-semibold uppercase tracking-[0.18em] transition-colors ${
                       isActive
@@ -144,30 +159,30 @@ function SiteHeader() {
                     }`
                   }
                 >
-                  {item.label.replace(' & Suite', '')}
+                  {item.shortLabel || item.label}
                 </NavLink>
               ))}
             </nav>
             <div className="hidden items-center gap-5 md:flex">
               <HeaderCta href={`tel:${contact.phone.replace(/\s+/g, '')}`} isScrolled={isScrolled}>
-                Chiama
+                {content.shared.call}
               </HeaderCta>
-              <HeaderCta to="/offerte" isScrolled={isScrolled}>
-                Offerte
+              <HeaderCta to={path('/offerte')} isScrolled={isScrolled}>
+                {content.shared.offers}
               </HeaderCta>
-              <HeaderCta to="/#booking" isScrolled={isScrolled} primary>
-                Prenota
+              <HeaderCta to={path('/#booking')} isScrolled={isScrolled} primary>
+                {content.shared.book}
               </HeaderCta>
             </div>
             <Link
-              to="/#booking"
+              to={path('/#booking')}
               className={`inline-flex h-11 items-center justify-center border px-3 font-ui text-[0.62rem] font-semibold uppercase tracking-[0.14em] transition-colors md:hidden ${
                 isScrolled
                   ? 'border-bronze bg-bronze text-espresso hover:bg-bronze-light'
                   : 'border-white bg-white text-graphite hover:bg-bronze-light'
               }`}
             >
-              Prenota
+              {content.shared.book}
             </Link>
           </div>
         </div>
@@ -183,7 +198,7 @@ function SiteHeader() {
             id={menuId}
             role="dialog"
             aria-modal="true"
-            aria-label="Menu principale"
+            aria-label={content.header.drawerLabel}
             className="absolute inset-y-0 left-0 grid w-full overflow-y-auto bg-espresso text-ivory shadow-[0_24px_90px_rgba(0,0,0,0.34)] lg:grid-cols-[0.86fr_1.14fr]"
             onClick={(event) => event.stopPropagation()}
             tabIndex={-1}
@@ -214,34 +229,54 @@ function SiteHeader() {
                   onClick={() => setIsMenuOpen(false)}
                   className="border border-white/28 px-4 py-2 font-ui text-xs uppercase tracking-[0.18em] text-white transition-colors hover:bg-white hover:text-espresso"
                 >
-                  Chiudi
+                  {content.header.close}
                 </button>
               </div>
 
               <p className="mt-10 max-w-md font-body text-base leading-8 text-white/76">
-                Accoglienza piemontese, relax, cucina e sport in un resort 4 stelle alle porte di Biella.
+                {content.header.drawerText}
               </p>
 
               <div className="mt-10 flex flex-wrap gap-3 border-y border-white/12 py-6">
                 <Link
-                  to="/#booking"
+                  to={path('/#booking')}
                   className="border border-bronze bg-bronze px-5 py-3 font-ui text-xs font-semibold uppercase tracking-[0.16em] text-espresso transition-colors hover:bg-bronze-light"
                 >
-                  Prenota soggiorno
+                  {content.shared.bookStay}
                 </Link>
                 <a
                   href={`tel:${contact.phone.replace(/\s+/g, '')}`}
                   className="border border-white/24 px-5 py-3 font-ui text-xs uppercase tracking-[0.16em] transition-colors hover:bg-white hover:text-espresso"
                 >
-                  Chiama hotel
+                  {content.shared.hotelCall}
                 </a>
               </div>
 
-              <nav className="mt-8 flex flex-1 flex-col justify-center gap-1" aria-label="Menu">
-                {navigation.map((item, index) => (
+              <nav
+                aria-label={content.shared.language}
+                className="mt-6 flex flex-wrap gap-2 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.16em]"
+              >
+                {languageOptions.map((option) => (
+                  <Link
+                    key={option.code}
+                    to={switchPath(option.code)}
+                    aria-current={language === option.code ? 'true' : undefined}
+                    className={`border px-3 py-2 transition-colors ${
+                      language === option.code
+                        ? 'border-bronze bg-bronze text-espresso'
+                        : 'border-white/18 text-white/78 hover:border-bronze hover:text-bronze-light'
+                    }`}
+                  >
+                    {option.label}
+                  </Link>
+                ))}
+              </nav>
+
+              <nav className="mt-8 flex flex-1 flex-col justify-center gap-1" aria-label={content.shared.menuNavigation}>
+                {localizedNavigation.map((item, index) => (
                   <NavLink
                     key={item.path}
-                    to={item.path}
+                    to={path(item.path)}
                     className={({ isActive }) =>
                       `group flex items-center justify-between border-b border-white/10 py-4 font-serif text-[2.8rem] font-medium leading-[0.95] transition-colors sm:text-[4.4rem] ${
                         isActive ? 'text-bronze-light' : 'text-white hover:text-bronze-light'
