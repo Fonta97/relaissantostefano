@@ -3,6 +3,27 @@ import { Link, NavLink } from 'react-router-dom';
 import { useI18n } from '../lib/i18n';
 import { brand, contact, images, navigation, socialLinks } from '../lib/siteData';
 
+function FooterBrand() {
+  return (
+    <span className="inline-flex items-center gap-4">
+      <img
+        src={images.logo.mark.src}
+        alt=""
+        width={images.logo.mark.width}
+        height={images.logo.mark.height}
+        aria-hidden="true"
+        className="h-16 w-auto object-contain"
+      />
+      <span className="grid leading-none">
+        <span className="font-serif text-[2rem] font-semibold leading-[0.9] text-white">Relais</span>
+        <span className="font-ui text-[0.64rem] font-semibold uppercase tracking-[0.3em] text-white/70">
+          Santo Stefano
+        </span>
+      </span>
+    </span>
+  );
+}
+
 function SiteFooter() {
   const { content, path } = useI18n();
   const localizedNavigation = content.navigation || navigation;
@@ -15,13 +36,7 @@ function SiteFooter() {
             {content.footer.eyebrow}
           </p>
           <Link to={path('/')} className="mt-6 inline-flex" aria-label={brand.name}>
-            <img
-              src={images.logo.light.src}
-              alt={brand.name}
-              width={images.logo.light.width}
-              height={images.logo.light.height}
-              className="h-20 w-auto object-contain sm:h-24"
-            />
+            <FooterBrand />
           </Link>
           <p className="mt-7 max-w-2xl font-body text-base leading-8 text-ivory/78">
             {content.footer.intro}

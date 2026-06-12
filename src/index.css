@@ -1,13 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
+@font-face {
+  font-family: 'Vermiglione';
+  src: url('/fonts/Vermiglione-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vermiglione';
+  src: url('/fonts/Vermiglione-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color: #201916;
-  background: #e9dfd1;
-  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+  color: #11140f;
+  background: #eae1d4;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,7 +34,7 @@
 
 html {
   scroll-behavior: smooth;
-  scrollbar-color: #b2935b #201916;
+  scrollbar-color: #a99163 #0d100c;
   scrollbar-width: thin;
 }
 
@@ -29,8 +43,8 @@ body {
   min-width: 320px;
   overflow-x: hidden;
   background:
-    linear-gradient(180deg, rgba(244, 239, 231, 0.96), rgba(233, 223, 209, 0.96)),
-    #e9dfd1;
+    linear-gradient(180deg, rgba(247, 242, 234, 0.98), rgba(234, 225, 212, 0.98)),
+    #eae1d4;
 }
 
 #root {
@@ -52,12 +66,12 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-  background: #201916;
+  background: #0d100c;
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 3px solid #201916;
-  background: linear-gradient(180deg, #7c3233, #b2935b);
+  border: 3px solid #0d100c;
+  background: linear-gradient(180deg, #314733, #a99163);
 }
 
 a:focus-visible,
@@ -69,20 +83,20 @@ select:focus-visible {
   outline: 2px solid #ffffff;
   outline-offset: 4px;
   box-shadow:
-    0 0 0 5px #201916,
-    0 0 0 8px #b2935b;
+    0 0 0 5px #11140f,
+    0 0 0 8px #a99163;
 }
 
 .hero-readable-overlay {
   background:
-    linear-gradient(180deg, rgba(21, 17, 15, 0.16), rgba(21, 17, 15, 0.24) 42%, rgba(21, 17, 15, 0.66)),
-    linear-gradient(90deg, rgba(117, 51, 50, 0.26), rgba(21, 17, 15, 0.02) 48%, rgba(32, 25, 22, 0.26));
+    linear-gradient(180deg, rgba(13, 16, 12, 0.1), rgba(13, 16, 12, 0.18) 42%, rgba(13, 16, 12, 0.62)),
+    linear-gradient(90deg, rgba(24, 35, 29, 0.28), rgba(13, 16, 12, 0.02) 48%, rgba(13, 16, 12, 0.26));
 }
 
 .glass-image-overlay {
   background:
-    linear-gradient(180deg, rgba(244, 239, 231, 0.06), transparent 42%, rgba(21, 17, 15, 0.22)),
-    linear-gradient(90deg, rgba(117, 51, 50, 0.18), transparent 48%, rgba(178, 147, 91, 0.12));
+    linear-gradient(180deg, rgba(247, 242, 234, 0.06), transparent 42%, rgba(13, 16, 12, 0.2)),
+    linear-gradient(90deg, rgba(24, 35, 29, 0.18), transparent 48%, rgba(169, 145, 99, 0.12));
 }
 
 .editorial-rule {
@@ -96,7 +110,7 @@ select:focus-visible {
   top: 0;
   height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, rgba(178, 147, 91, 0.62), rgba(178, 147, 91, 0.08));
+  background: linear-gradient(90deg, rgba(169, 145, 99, 0.58), rgba(169, 145, 99, 0.08));
 }
 
 .editorial-link {
@@ -141,14 +155,14 @@ select:focus-visible {
   z-index: 45;
   width: 5px;
   pointer-events: none;
-  background: rgba(32, 25, 22, 0.22);
+  background: rgba(13, 16, 12, 0.2);
 }
 
 .scroll-progress-rail span {
   display: block;
   height: 100%;
   transform-origin: top;
-  background: linear-gradient(180deg, #7c3233, #b2935b 58%, #f1e9e0);
+  background: linear-gradient(180deg, #314733, #a99163 62%, #f7f2ea);
   transition: transform 140ms linear;
 }
 
@@ -166,10 +180,10 @@ select:focus-visible {
   right: 1.1rem;
   bottom: -0.78rem;
   z-index: -1;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: Vermiglione, Georgia, serif;
   font-size: clamp(6rem, 15vw, 13rem);
   line-height: 0.8;
-  color: rgba(124, 50, 51, 0.055);
+  color: rgba(49, 71, 51, 0.07);
   pointer-events: none;
 }
 
@@ -203,7 +217,7 @@ select:focus-visible {
 
 .booking-label {
   display: block;
-  font-family: Montserrat, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 0.64rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -278,7 +292,7 @@ select:focus-visible {
 
 .menu-scroll-pane {
   overscroll-behavior: contain;
-  scrollbar-color: #b2935b rgba(244, 239, 231, 0.08);
+  scrollbar-color: #a99163 rgba(247, 242, 234, 0.08);
   scrollbar-gutter: stable;
   scrollbar-width: thin;
 }
@@ -288,12 +302,12 @@ select:focus-visible {
 }
 
 .menu-scroll-pane::-webkit-scrollbar-track {
-  background: rgba(244, 239, 231, 0.08);
+  background: rgba(247, 242, 234, 0.08);
 }
 
 .menu-scroll-pane::-webkit-scrollbar-thumb {
-  border: 3px solid #140f0d;
-  background: linear-gradient(180deg, #b2935b, #7c3233);
+  border: 3px solid #0d100c;
+  background: linear-gradient(180deg, #a99163, #314733);
 }
 
 @keyframes editorial-reveal {

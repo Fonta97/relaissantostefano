@@ -18,7 +18,7 @@ function OffersPage() {
           <>
             <a
               href={`mailto:${contact.email}`}
-              className="inline-flex justify-center border border-bronze bg-bronze px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-espresso transition-colors hover:bg-bronze-light"
+              className="inline-flex justify-center bg-olive px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:bg-olive-dark"
             >
               {content.shared.askInfo}
             </a>
@@ -34,8 +34,8 @@ function OffersPage() {
 
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze">{copy.packagesEyebrow}</p>
-          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.94] text-graphite sm:text-[5.1rem]">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-olive">{copy.packagesEyebrow}</p>
+          <h2 className="mt-4 font-serif text-[3.1rem] font-medium leading-[0.9] text-graphite sm:text-[5.5rem]">
             {copy.packagesTitle}
           </h2>
         </div>
@@ -46,13 +46,13 @@ function OffersPage() {
 
       <section data-reveal className="reveal-scroll grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {content.offers.map((offer) => (
-          <article key={offer.title} className="border border-black/10 bg-mist p-6 transition-colors hover:border-bronze/60">
-            <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-bronze">{offer.price}</p>
+          <article key={offer.title} className="border border-black/10 bg-warm-white p-6 transition-colors hover:border-olive/60">
+            <p className="font-ui text-xs font-semibold uppercase tracking-[0.16em] text-olive">{offer.price}</p>
             <h3 className="mt-4 font-serif text-[2.25rem] font-medium leading-tight text-graphite">{offer.title}</h3>
             <p className="mt-5 font-body text-sm leading-7 text-body">{offer.text}</p>
             <a
               href={`mailto:${contact.email}?subject=${encodeURIComponent(`${copy.subjectPrefix} ${offer.title}`)}`}
-              className="mt-7 inline-flex border border-black/10 px-4 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] transition-colors hover:border-bronze hover:text-bronze"
+              className="mt-7 inline-flex border border-black/10 px-4 py-3 font-ui text-xs font-semibold uppercase tracking-[0.14em] transition-colors hover:border-olive hover:text-olive"
             >
               {content.shared.requestOffer}
             </a>

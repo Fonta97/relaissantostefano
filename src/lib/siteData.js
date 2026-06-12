@@ -118,11 +118,11 @@ export const images = {
     mark: image('logo-icon.png', '', 200, 265),
   },
   hero: image(
-    'drive/accoglienza/reception.webp',
-    'Facciata del Relais Santo Stefano a Sandigliano illuminata al tramonto.',
-    1800,
-    921,
-    'center 50%'
+    'drive/foto-struttura-esterno/hero-facade.webp',
+    'Facciata del Relais Santo Stefano a Sandigliano immersa nel verde.',
+    2200,
+    1467,
+    'center 52%'
   ),
   pool: image(
     'drive/piscina/piscina-estiva.webp',

@@ -22,7 +22,7 @@ function ExperiencePage({ type }) {
               href={page.cta.href}
               target={page.cta.external ? '_blank' : undefined}
               rel={page.cta.external ? 'noopener noreferrer' : undefined}
-              className="inline-flex justify-center border border-bronze bg-bronze px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-espresso transition-colors hover:bg-bronze-light"
+              className="inline-flex justify-center bg-olive px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:bg-olive-dark"
             >
               {page.cta.label}
             </a>
@@ -38,8 +38,8 @@ function ExperiencePage({ type }) {
 
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze">{page.eyebrow}</p>
-          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.94] text-graphite sm:text-[5.1rem]">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-olive">{page.eyebrow}</p>
+          <h2 className="mt-4 font-serif text-[3.1rem] font-medium leading-[0.9] text-graphite sm:text-[5.5rem]">
             {page.introTitle}
           </h2>
         </div>
@@ -63,7 +63,7 @@ function ExperiencePage({ type }) {
         />
         <div className="grid gap-3 sm:grid-cols-2">
           {page.highlights.map((item) => (
-            <div key={item} className="border border-black/10 bg-mist px-5 py-5">
+            <div key={item} className="border border-black/10 bg-warm-white px-5 py-5">
               <p className="font-body text-sm leading-7 text-body">{item}</p>
             </div>
           ))}
@@ -71,7 +71,7 @@ function ExperiencePage({ type }) {
       </section>
 
       <section data-reveal className="reveal-scroll grid gap-8 bg-espresso px-6 py-12 text-white shadow-editorial sm:px-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:px-14">
-        <h2 className="font-serif text-[3rem] font-medium leading-[0.95] sm:text-[5rem]">
+          <h2 className="font-serif text-[3.1rem] font-medium leading-[0.92] sm:text-[5.2rem]">
           {content.experiencePages.contactTitle}
         </h2>
         <div>

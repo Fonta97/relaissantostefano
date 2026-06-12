@@ -15,14 +15,37 @@ function MenuIcon() {
   );
 }
 
+function BrandIdentity({ inverted = false, compact = false }) {
+  return (
+    <span className="inline-flex items-center gap-3">
+      <img
+        src={images.logo.mark.src}
+        alt=""
+        width={images.logo.mark.width}
+        height={images.logo.mark.height}
+        aria-hidden="true"
+        className={`${compact ? 'h-10' : 'h-12 sm:h-14'} w-auto object-contain`}
+      />
+      <span className="grid leading-none">
+        <span className={`${compact ? 'text-[1.25rem]' : 'text-[1.45rem] sm:text-[1.7rem]'} font-serif font-semibold leading-[0.9] ${inverted ? 'text-white' : 'text-graphite'}`}>
+          Relais
+        </span>
+        <span className={`font-ui text-[0.55rem] font-semibold uppercase tracking-[0.28em] ${inverted ? 'text-white/72' : 'text-body'}`}>
+          Santo Stefano
+        </span>
+      </span>
+    </span>
+  );
+}
+
 function HeaderCta({ href, to, children, isScrolled, primary = false }) {
   const className = `editorial-link inline-flex items-center justify-center px-1 py-3 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.2em] transition-colors ${
     primary
       ? isScrolled
-        ? 'text-bronze hover:text-graphite'
+        ? 'text-olive hover:text-graphite'
         : 'text-bronze-light hover:text-white'
       : isScrolled
-        ? 'text-graphite hover:text-bronze'
+        ? 'text-graphite hover:text-olive'
         : 'text-white/86 hover:text-white'
   }`;
 
@@ -95,7 +118,7 @@ function SiteHeader() {
       <header
         className={`fixed inset-x-0 top-0 z-40 transition-all duration-700 ${
           isScrolled
-            ? 'bg-ivory/92 shadow-[0_18px_60px_rgba(32,25,22,0.10)] backdrop-blur-xl'
+            ? 'bg-warm-white/92 shadow-[0_18px_60px_rgba(17,20,15,0.10)] backdrop-blur-xl'
             : 'bg-gradient-to-b from-black/42 to-transparent text-white'
         }`}
       >
@@ -108,7 +131,7 @@ function SiteHeader() {
               aria-expanded={isMenuOpen}
               aria-controls={menuId}
               className={`inline-flex h-11 items-center gap-4 transition-colors ${
-                isScrolled ? 'text-graphite hover:text-bronze' : 'text-white hover:text-bronze-light'
+                isScrolled ? 'text-graphite hover:text-olive' : 'text-white hover:text-bronze-light'
               }`}
             >
               <MenuIcon />
@@ -125,7 +148,7 @@ function SiteHeader() {
                   key={option.code}
                   to={switchPath(option.code)}
                   aria-current={language === option.code ? 'true' : undefined}
-                  className={language === option.code ? 'text-bronze' : 'hover:text-bronze-light'}
+                  className={language === option.code ? 'text-olive' : 'hover:text-bronze-light'}
                 >
                   {option.label}
                 </Link>
@@ -134,13 +157,7 @@ function SiteHeader() {
           </div>
 
           <Link to={path('/')} className="justify-self-start md:justify-self-center" aria-label={brand.name}>
-            <img
-              src={isScrolled ? images.logo.dark.src : images.logo.light.src}
-              alt={brand.name}
-              width={images.logo.dark.width}
-              height={images.logo.dark.height}
-              className="h-12 w-auto object-contain transition-opacity sm:h-16"
-            />
+            <BrandIdentity inverted={!isScrolled} />
           </Link>
 
           <div className="flex items-center justify-end gap-2">
@@ -153,9 +170,9 @@ function SiteHeader() {
                     `editorial-link font-ui text-[0.68rem] font-semibold uppercase tracking-[0.18em] transition-colors ${
                       isActive
                         ? isScrolled
-                          ? 'text-bronze'
+                          ? 'text-olive'
                           : 'text-white underline decoration-white/70 underline-offset-8'
-                        : 'hover:text-bronze'
+                        : 'hover:text-olive'
                     }`
                   }
                 >
@@ -178,7 +195,7 @@ function SiteHeader() {
               to={path('/#booking')}
               className={`inline-flex h-11 items-center justify-center border px-3 font-ui text-[0.62rem] font-semibold uppercase tracking-[0.14em] transition-colors md:hidden ${
                 isScrolled
-                  ? 'border-bronze bg-bronze text-espresso hover:bg-bronze-light'
+                  ? 'border-olive bg-olive text-white hover:bg-olive-dark'
                   : 'border-white bg-white text-graphite hover:bg-bronze-light'
               }`}
             >
@@ -199,31 +216,27 @@ function SiteHeader() {
             role="dialog"
             aria-modal="true"
             aria-label={content.header.drawerLabel}
-            className="menu-panel-enter absolute inset-y-0 left-0 grid h-[100dvh] w-full overflow-hidden bg-espresso text-ivory shadow-[0_24px_90px_rgba(0,0,0,0.34)] lg:grid-cols-[0.86fr_1.14fr]"
+            className="menu-panel-enter absolute inset-y-0 left-0 grid h-[100dvh] w-full overflow-hidden bg-espresso text-ivory shadow-[0_24px_90px_rgba(0,0,0,0.34)] lg:grid-cols-[0.82fr_1.18fr]"
             onClick={(event) => event.stopPropagation()}
             tabIndex={-1}
           >
             <div className="menu-media-enter relative hidden h-[100dvh] min-h-0 overflow-hidden lg:block">
               <img
-                src={images.welcome.src}
-                alt={images.welcome.alt}
-                width={images.welcome.width}
-                height={images.welcome.height}
+                src={images.hero.src}
+                alt={images.hero.alt}
+                width={images.hero.width}
+                height={images.hero.height}
                 className="h-full w-full object-cover opacity-78"
-                style={{ objectPosition: images.welcome.objectPosition || 'center center' }}
+                style={{ objectPosition: images.hero.objectPosition || 'center center' }}
               />
               <div className="hero-readable-overlay absolute inset-0" />
             </div>
 
             <div className="menu-content-enter menu-scroll-pane flex h-[100dvh] min-h-0 flex-col overflow-y-auto p-6 sm:p-10 lg:p-12">
               <div className="flex items-start justify-between gap-6">
-                <img
-                  src={images.logo.light.src}
-                  alt={brand.name}
-                  width={images.logo.light.width}
-                  height={images.logo.light.height}
-                  className="h-16 w-auto"
-                />
+                <Link to={path('/')} aria-label={brand.name}>
+                  <BrandIdentity inverted compact />
+                </Link>
                 <button
                   ref={closeButtonRef}
                   type="button"

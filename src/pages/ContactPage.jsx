@@ -6,8 +6,8 @@ import { contact, images } from '../lib/siteData';
 
 function ContactCard({ label, children }) {
   return (
-    <article className="border border-black/10 bg-mist p-6">
-      <p className="font-ui text-xs font-semibold uppercase tracking-[0.2em] text-bronze">{label}</p>
+    <article className="border border-black/10 bg-warm-white p-6">
+      <p className="font-ui text-xs font-semibold uppercase tracking-[0.2em] text-olive">{label}</p>
       <div className="mt-4 font-body text-base leading-8 text-body">{children}</div>
     </article>
   );
@@ -29,7 +29,7 @@ function ContactPage() {
           <>
             <Link
               to={path('/#booking')}
-              className="inline-flex justify-center border border-bronze bg-bronze px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-espresso transition-colors hover:bg-bronze-light"
+              className="inline-flex justify-center bg-olive px-7 py-3.5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:bg-olive-dark"
             >
               {content.shared.bookStay}
             </Link>
@@ -48,7 +48,7 @@ function ContactPage() {
       <section data-reveal className="reveal-scroll grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <ContactCard label={copy.address}>
           <p>{contact.address}</p>
-          <a href={contact.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex text-bronze hover:text-sage">
+          <a href={contact.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex text-olive hover:text-olive-dark">
             Google Maps
           </a>
         </ContactCard>
@@ -76,8 +76,8 @@ function ContactPage() {
 
       <section data-reveal className="reveal-scroll grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-bronze">{copy.requestsEyebrow}</p>
-          <h2 className="mt-4 font-serif text-[3rem] font-medium leading-[0.94] text-graphite sm:text-[5.1rem]">
+          <p className="font-ui text-xs font-semibold uppercase tracking-[0.24em] text-olive">{copy.requestsEyebrow}</p>
+          <h2 className="mt-4 font-serif text-[3.1rem] font-medium leading-[0.9] text-graphite sm:text-[5.5rem]">
             {copy.requestsTitle}
           </h2>
           <p className="mt-6 font-body text-base leading-8 text-body">
@@ -87,25 +87,25 @@ function ContactPage() {
         <div className="grid gap-3 sm:grid-cols-2">
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent(copy.staySubject)}`}
-            className="border border-black/10 bg-mist px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-warm-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-olive hover:text-olive"
           >
             {copy.stayRequest}
           </a>
           <a
             href={`mailto:${contact.spaEmail}?subject=${encodeURIComponent(copy.spaSubject)}`}
-            className="border border-black/10 bg-mist px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-warm-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-olive hover:text-olive"
           >
             {copy.spaRequest}
           </a>
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent(copy.restaurantSubject)}`}
-            className="border border-black/10 bg-mist px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-warm-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-olive hover:text-olive"
           >
             {copy.restaurantRequest}
           </a>
           <a
             href={`mailto:${contact.email}?subject=${encodeURIComponent(copy.meetingSubject)}`}
-            className="border border-black/10 bg-mist px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-bronze hover:text-bronze"
+            className="border border-black/10 bg-warm-white px-5 py-5 font-ui text-sm font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-olive hover:text-olive"
           >
             {copy.meetingRequest}
           </a>

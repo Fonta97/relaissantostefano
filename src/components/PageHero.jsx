@@ -46,7 +46,7 @@ function PageHero({
           {title}
         </h1>
         <p
-          className="reveal-fade mt-7 max-w-3xl break-words font-body text-base leading-8 text-white/86 sm:text-xl sm:leading-9"
+          className="reveal-fade mt-7 max-w-3xl break-words font-body text-base leading-8 text-white/88 sm:text-xl sm:leading-9"
           style={{ '--reveal-delay': '260ms' }}
         >
           {subtitle}
