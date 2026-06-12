@@ -1570,6 +1570,9 @@ export function getContent(language) {
 
 export function getLocalizedSeo(language, pathname) {
   const content = getContent(language);
+  if (pathname.startsWith('/camere-suite/')) {
+    return content.seo['/camere-suite'];
+  }
   return content.seo[pathname] || content.seo[aliasRedirects[pathname]] || content.seo['/'];
 }
 

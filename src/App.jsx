@@ -16,6 +16,7 @@ import { aliasRedirects, brand } from './lib/siteData';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const RoomsPage = lazy(() => import('./pages/RoomsPage'));
+const RoomDetailPage = lazy(() => import('./pages/RoomDetailPage'));
 const ExperiencePage = lazy(() => import('./pages/ExperiencePage'));
 const OffersPage = lazy(() => import('./pages/OffersPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
@@ -69,6 +70,7 @@ function PageRoutes() {
     <>
       <Route index element={<HomePage />} />
       <Route path="camere-suite" element={<RoomsPage />} />
+      <Route path="camere-suite/:roomSlug" element={<RoomDetailPage />} />
       <Route path="spa-benessere" element={<ExperiencePage type="spa" />} />
       <Route path="ristorante" element={<ExperiencePage type="restaurant" />} />
       <Route path="sport-activity" element={<ExperiencePage type="sport" />} />

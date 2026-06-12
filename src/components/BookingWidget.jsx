@@ -1,11 +1,7 @@
 import { useId, useMemo, useRef, useState } from 'react';
 
 import { useI18n } from '../lib/i18n';
-import {
-  buildBookingUrl,
-  getDefaultBookingDates,
-  toDateInputValue,
-} from '../lib/siteData';
+import { buildBookingUrl, getDefaultBookingDates, toDateInputValue } from '../lib/siteData';
 
 function validateBooking({ checkIn, checkOut, adults, rooms, messages }) {
   const today = toDateInputValue(new Date());
@@ -38,22 +34,19 @@ function validateBooking({ checkIn, checkOut, adults, rooms, messages }) {
   return errors;
 }
 
-function Stepper({ id, label, value, min, max, onChange, error, decreaseLabel, increaseLabel }) {
-  const decrease = () => onChange(Math.max(min, value - 1));
-  const increase = () => onChange(Math.min(max, value + 1));
-
+function CounterField({ id, label, value, min, max, onChange, error, decreaseLabel, increaseLabel }) {
   return (
-    <div className="booking-control min-w-0">
-      <label htmlFor={id} className="booking-label">
+    <div className="min-w-0">
+      <label htmlFor={id} className="booking-label text-current">
         {label}
       </label>
-      <div className="mt-3 grid h-14 grid-cols-[2.6rem_1fr_2.6rem] border border-[color:var(--booking-border)] bg-[var(--booking-field)]">
+      <div className="mt-3 grid h-12 grid-cols-[2.35rem_1fr_2.35rem] border border-current/18">
         <button
           type="button"
-          onClick={decrease}
+          onClick={() => onChange(Math.max(min, value - 1))}
           disabled={value <= min}
           aria-label={`${decreaseLabel} ${label.toLowerCase()}`}
-          className="border-r border-[color:var(--booking-border)] text-xl transition-colors hover:bg-[var(--booking-hover)] disabled:cursor-not-allowed disabled:opacity-35"
+          className="border-r border-current/18 text-lg transition-colors hover:bg-current/8 disabled:opacity-35"
         >
           -
         </button>
@@ -66,14 +59,14 @@ function Stepper({ id, label, value, min, max, onChange, error, decreaseLabel, i
           onChange={(event) => onChange(Number(event.target.value))}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? `${id}-error` : undefined}
-          className="w-full appearance-none border-0 bg-transparent text-center font-ui text-sm font-semibold text-[var(--booking-text)] outline-none"
+          className="w-full appearance-none border-0 bg-transparent text-center font-ui text-sm font-semibold outline-none"
         />
         <button
           type="button"
-          onClick={increase}
+          onClick={() => onChange(Math.min(max, value + 1))}
           disabled={value >= max}
           aria-label={`${increaseLabel} ${label.toLowerCase()}`}
-          className="border-l border-[color:var(--booking-border)] text-xl transition-colors hover:bg-[var(--booking-hover)] disabled:cursor-not-allowed disabled:opacity-35"
+          className="border-l border-current/18 text-lg transition-colors hover:bg-current/8 disabled:opacity-35"
         >
           +
         </button>
@@ -87,7 +80,32 @@ function Stepper({ id, label, value, min, max, onChange, error, decreaseLabel, i
   );
 }
 
-function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
+function DateField({ id, label, value, min, onChange, error }) {
+  return (
+    <div className="min-w-0">
+      <label htmlFor={id} className="booking-label text-current">
+        {label}
+      </label>
+      <input
+        id={id}
+        type="date"
+        min={min}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className="mt-3 h-12 w-full border border-current/18 bg-transparent px-3 font-ui text-sm font-semibold outline-none"
+      />
+      {error ? (
+        <p id={`${id}-error`} className="mt-2 font-body text-xs font-semibold text-bronze-light">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function BookingWidget({ id = 'booking', variant = 'strip', className = '' }) {
   const { bookingLanguage, content } = useI18n();
   const bookingCopy = content.booking;
   const defaults = useMemo(() => getDefaultBookingDates(), []);
@@ -99,8 +117,7 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
   const firstErrorRef = useRef(null);
   const formId = useId();
   const today = toDateInputValue(new Date());
-  const isCompact = variant === 'compact';
-  const localizedBookingUrl = buildBookingUrl({ language: bookingLanguage });
+  const compact = variant === 'compact';
 
   const updateCheckIn = (value) => {
     setCheckIn(value);
@@ -108,13 +125,6 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
       const nextDate = new Date(`${value}T12:00:00`);
       nextDate.setDate(nextDate.getDate() + 1);
       setCheckOut(toDateInputValue(nextDate));
-    }
-  };
-
-  const openBookingEngine = (url) => {
-    const opened = window.open(url, '_blank', 'noopener,noreferrer');
-    if (!opened) {
-      window.location.href = url;
     }
   };
 
@@ -134,155 +144,90 @@ function BookingWidget({ id = 'booking', variant = 'full', className = '' }) {
       return;
     }
 
-    openBookingEngine(
-      buildBookingUrl({
-        checkIn,
-        checkOut,
-        adults,
-        rooms,
-        language: bookingLanguage,
-      })
-    );
+    const url = buildBookingUrl({ checkIn, checkOut, adults, rooms, language: bookingLanguage });
+    const opened = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!opened) {
+      window.location.href = url;
+    }
   };
 
   return (
     <section
       id={id}
-      className={`relative z-20 border border-black/10 bg-warm-white/96 text-graphite shadow-soft [--booking-border:rgba(17,20,15,0.14)] [--booking-field:rgba(255,255,255,0.62)] [--booking-hover:rgba(49,71,51,0.08)] [--booking-muted:#4E504A] [--booking-text:#11140F] ${isCompact ? 'p-5 sm:p-6' : 'p-4 sm:p-5 lg:p-6'} ${className}`}
+      className={`relative z-20 border-y border-current/14 ${compact ? 'bg-warm-white text-graphite' : 'bg-espresso text-white'} ${className}`}
       aria-labelledby={`${formId}-title`}
       tabIndex={-1}
     >
-      <div className={`${isCompact ? 'grid gap-3' : 'grid gap-5 lg:grid-cols-[0.32fr_1fr] lg:items-end'}`}>
-        <div>
-          <p className="font-ui text-[0.66rem] font-semibold uppercase tracking-[0.24em] text-olive">
-            {bookingCopy.title}
-          </p>
-          <h2
-            id={`${formId}-title`}
-            className={`${isCompact ? 'mt-2 text-[2rem]' : 'mt-2 text-[2.2rem] sm:text-[3rem]'} font-serif font-medium leading-[0.92] text-graphite`}
-          >
-            {bookingCopy.heading}
-          </h2>
-        </div>
-        {!isCompact ? (
-          <p className="max-w-3xl font-body text-sm leading-7 text-body lg:justify-self-end">
-            {bookingCopy.intro}
-          </p>
-        ) : null}
-      </div>
-
+      <h2 id={`${formId}-title`} className="sr-only">
+        {bookingCopy.title}
+      </h2>
       {Object.keys(errors).length ? (
         <div
           ref={firstErrorRef}
           tabIndex={-1}
-          className="mt-5 border border-olive/30 bg-white px-4 py-3 font-body text-sm leading-6 text-olive-dark"
           role="alert"
+          className="mx-auto max-w-[112rem] px-5 pt-5 font-body text-sm font-semibold text-bronze-light sm:px-8 lg:px-12"
         >
           {bookingCopy.alert}
         </div>
       ) : null}
-
       <form
         onSubmit={handleSubmit}
-        className={`${isCompact ? 'mt-5 grid gap-4' : 'mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-[1fr_1fr_0.86fr_0.86fr_auto] xl:items-start'}`}
+        className="mx-auto grid w-full max-w-[112rem] gap-px bg-current/10 p-px md:grid-cols-2 xl:grid-cols-[1fr_1fr_0.78fr_0.78fr_auto]"
       >
-        <div className="booking-control min-w-0">
-          <label htmlFor={`${formId}-check-in`} className="booking-label">
-            {bookingCopy.labels.checkIn}
-          </label>
-          <input
+        <div className={`${compact ? 'bg-warm-white' : 'bg-espresso'} p-4 sm:p-5`}>
+          <DateField
             id={`${formId}-check-in`}
-            type="date"
+            label={bookingCopy.labels.checkIn}
             min={today}
             value={checkIn}
-            onChange={(event) => updateCheckIn(event.target.value)}
-            aria-invalid={Boolean(errors.checkIn)}
-            aria-describedby={errors.checkIn ? `${formId}-check-in-error` : undefined}
-            className="mt-3 h-14 w-full border border-[color:var(--booking-border)] bg-[var(--booking-field)] px-3 font-ui text-sm font-semibold text-[var(--booking-text)]"
+            onChange={updateCheckIn}
+            error={errors.checkIn}
           />
-          {errors.checkIn ? (
-            <p id={`${formId}-check-in-error`} className="mt-2 font-body text-xs font-semibold text-olive">
-              {errors.checkIn}
-            </p>
-          ) : null}
         </div>
-
-        <div className="booking-control min-w-0">
-          <label htmlFor={`${formId}-check-out`} className="booking-label">
-            {bookingCopy.labels.checkOut}
-          </label>
-          <input
+        <div className={`${compact ? 'bg-warm-white' : 'bg-espresso'} p-4 sm:p-5`}>
+          <DateField
             id={`${formId}-check-out`}
-            type="date"
+            label={bookingCopy.labels.checkOut}
             min={checkIn || today}
             value={checkOut}
-            onChange={(event) => setCheckOut(event.target.value)}
-            aria-invalid={Boolean(errors.checkOut)}
-            aria-describedby={errors.checkOut ? `${formId}-check-out-error` : undefined}
-            className="mt-3 h-14 w-full border border-[color:var(--booking-border)] bg-[var(--booking-field)] px-3 font-ui text-sm font-semibold text-[var(--booking-text)]"
+            onChange={setCheckOut}
+            error={errors.checkOut}
           />
-          {errors.checkOut ? (
-            <p id={`${formId}-check-out-error`} className="mt-2 font-body text-xs font-semibold text-olive">
-              {errors.checkOut}
-            </p>
-          ) : null}
         </div>
-
-        <Stepper
-          id={`${formId}-adults`}
-          label={bookingCopy.labels.adults}
-          value={adults}
-          min={1}
-          max={8}
-          onChange={setAdults}
-          error={errors.adults}
-          decreaseLabel={bookingCopy.decrease}
-          increaseLabel={bookingCopy.increase}
-        />
-
-        <Stepper
-          id={`${formId}-rooms`}
-          label={bookingCopy.labels.rooms}
-          value={rooms}
-          min={1}
-          max={4}
-          onChange={setRooms}
-          error={errors.rooms}
-          decreaseLabel={bookingCopy.decrease}
-          increaseLabel={bookingCopy.increase}
-        />
-
-        <div className={`${isCompact ? 'grid gap-3 sm:grid-cols-2' : 'grid gap-3 xl:min-w-[11rem] xl:pt-[1.95rem]'}`}>
-          <button
-            type="submit"
-            className="inline-flex h-14 w-full items-center justify-center bg-olive px-5 font-ui text-xs font-semibold uppercase tracking-[0.18em] text-white transition-colors hover:bg-olive-dark"
-          >
-            {content.shared.book}
-          </button>
-          {isCompact ? (
-            <a
-              href={localizedBookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-14 items-center justify-center border border-black/12 px-4 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-graphite transition-colors hover:border-olive hover:text-olive"
-            >
-              {bookingCopy.manage}
-            </a>
-          ) : null}
+        <div className={`${compact ? 'bg-warm-white' : 'bg-espresso'} p-4 sm:p-5`}>
+          <CounterField
+            id={`${formId}-adults`}
+            label={bookingCopy.labels.adults}
+            value={adults}
+            min={1}
+            max={8}
+            onChange={setAdults}
+            error={errors.adults}
+            decreaseLabel={bookingCopy.decrease}
+            increaseLabel={bookingCopy.increase}
+          />
         </div>
+        <div className={`${compact ? 'bg-warm-white' : 'bg-espresso'} p-4 sm:p-5`}>
+          <CounterField
+            id={`${formId}-rooms`}
+            label={bookingCopy.labels.rooms}
+            value={rooms}
+            min={1}
+            max={4}
+            onChange={setRooms}
+            error={errors.rooms}
+            decreaseLabel={bookingCopy.decrease}
+            increaseLabel={bookingCopy.increase}
+          />
+        </div>
+        <button
+          type="submit"
+          className="min-h-[5.75rem] bg-bronze px-7 font-ui text-xs font-bold uppercase tracking-[0.22em] text-espresso transition-colors hover:bg-bronze-light xl:min-w-[12rem]"
+        >
+          {content.shared.book}
+        </button>
       </form>
-
-      {!isCompact ? (
-        <div className="mt-5 flex flex-wrap items-center gap-3 font-ui text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-body">
-          <a href={localizedBookingUrl} target="_blank" rel="noopener noreferrer" className="editorial-link hover:text-olive">
-            {bookingCopy.openEngine}
-          </a>
-          <span aria-hidden="true">/</span>
-          <a href={localizedBookingUrl} target="_blank" rel="noopener noreferrer" className="editorial-link hover:text-olive">
-            {bookingCopy.manage}
-          </a>
-        </div>
-      ) : null}
     </section>
   );
 }

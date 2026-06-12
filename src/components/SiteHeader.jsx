@@ -232,7 +232,7 @@ function SiteHeader() {
               <div className="hero-readable-overlay absolute inset-0" />
             </div>
 
-            <div className="menu-content-enter menu-scroll-pane flex h-[100dvh] min-h-0 flex-col overflow-y-auto p-6 sm:p-10 lg:p-12">
+            <div className="menu-content-enter flex h-[100dvh] min-h-0 flex-col overflow-hidden p-6 sm:p-10 lg:p-12">
               <div className="flex items-start justify-between gap-6">
                 <Link to={path('/')} aria-label={brand.name}>
                   <BrandIdentity inverted compact />
@@ -286,7 +286,7 @@ function SiteHeader() {
                 ))}
               </nav>
 
-              <nav className="mt-8 flex flex-1 flex-col justify-center gap-1" aria-label={content.shared.menuNavigation}>
+              <nav className="menu-scroll-pane mt-8 flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto pr-2" aria-label={content.shared.menuNavigation}>
                 {localizedNavigation.map((item, index) => (
                   <NavLink
                     key={item.path}
